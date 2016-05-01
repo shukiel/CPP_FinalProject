@@ -81,6 +81,7 @@
     <ClInclude Include="Contact.h" />
     <ClInclude Include="Crew.h" />
     <ClInclude Include="DanceShow.h" />
+    <ClInclude Include="Employee.h" />
     <ClInclude Include="Musical.h" />
     <ClInclude Include="MusicShow.h" />
     <ClInclude Include="Participator.h" />
@@ -92,6 +93,7 @@
     <ClInclude Include="Venue.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Contact.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
