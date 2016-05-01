@@ -11,26 +11,21 @@ private:
 	Participator choreograph;
 
 public:
-	DanceShow(char* name, int duration, int loadInLoadOutTime, 
-		 Crew lightingDesigner, Crew soundDesigner, Crew setDesigner, 
-		 int ticketPrice, int numOfShows, int numOfParticipant,
-		 Participator choreograph, Participator* dancers = NULL);
+	DanceShow(const Show& other, const Participator choreograph, const Participator* dancers = NULL);
 	DanceShow(const DanceShow& other);
 	~DanceShow();
 
 	void setChoreograph(Participator choreograph);
 
-	const Participator* getDancers() const {return dancers;}
-	const Participator getChoreograph() const {return choreograph;}
-	
-	void show() const;
+	const Participator* getDancers() const { return dancers; }
+	const Participator& getChoreograph() const { return choreograph; }
 
 	const DanceShow& operator=(const DanceShow& other);
 	friend ostream& operator<<(ostream& os, const DanceShow& show);
 	friend istream& operator>>(istream& in, DanceShow& show);
 
-	const void makeShow();
-	void dancerInjured(Participator dancer); 
+	void makeShow() const;
+	void dancerInjured(const Participator& dancer); 
 };
 
 #endif

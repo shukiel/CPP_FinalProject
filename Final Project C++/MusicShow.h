@@ -12,29 +12,25 @@ private:
 	int soundCheckTime;
 
 public:
-	MusicShow(char* name, int duration, int loadInLoadOutTime, 
-		 Crew lightingDesigner, Crew soundDesigner, Crew setDesigner, 
-		 int ticketPrice, int numOfShows, int numOfParticipant,
-		 Crew musicalManger, int soundCheckTime, Participator* musicians);
+	MusicShow(const Show& other, const Crew& musicalManger, int soundCheckTime, const Participator* musicians = NULL);
 	MusicShow(const MusicShow& other);
 	~MusicShow();
 
-	void setDirector(Crew director);
-	void setSoundCheckTime(int soundCheckTime);
+	void setDirector(const Crew& director);
+	void setSoundCheckTime(int soundCheckTime) { this->soundCheckTime = soundCheckTime; }
 
-	const Participator* getMusicians() const {return musicians;}
-	const Crew getMusicalManger() const {return musicalManger;}
-	const int getSoundCheckTime() const {return soundCheckTime;}
-
-	void show() const;
+	const Participator* getMusicians() const { return musicians; }
+	const Crew& getMusicalManger() const { return musicalManger; }
+	int getSoundCheckTime() const { return soundCheckTime; }
 
 	const MusicShow& operator=(const MusicShow& other);
 	friend ostream& operator<<(ostream& os, const MusicShow& show);
 	friend istream& operator>>(istream& in, MusicShow& show);
 
-	const void makeShow();
-	void encore();
+	void makeShow() const;
+	void encore() const;
 	void drinkBeerAndSmokeCiggarettes();
+	bool addMusician(const Participator& musician);
 };
 
 #endif

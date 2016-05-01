@@ -10,16 +10,15 @@ private:
 	Contact customer;
 
 public:
-	Seat(Contact customer, bool isOccupied = false);
+	Seat(const Contact& customer, bool isOccupied = false);
 	Seat(const Seat& other);
+	~Seat();
 
-	void setIsOccupied(bool isOccupied);
-	void setCustomer(Contact customer);
+	void setIsOccupied(bool isOccupied) { this->isOccupied = isOccupied; }
+	void setCustomer(const Contact& customer);
 
-	const bool getIsOccupied() const {return isOccupied;}
-	const Contact getCustomer() const {return customer;}
-
-	void show() const;
+	bool getIsOccupied() const { return isOccupied; }
+	const Contact& getCustomer() const { return customer; }
 
 	const Seat& operator=(const Seat& other);
 	friend ostream& operator<<(ostream& os, const Seat& seat);

@@ -11,26 +11,24 @@ private:
 	char* date;
 	int ticketPrice;
 
-	const bool isFreeSpace(int numOfTickets) const;
+	bool isFreeSpace(int numOfTickets) const;
 
 public:
-	ShowAtVenue(Show show, char* date, int ticketPrice);
+	ShowAtVenue(const Show& show, const char* date, int ticketPrice);
 	ShowAtVenue(const ShowAtVenue& other);
 	~ShowAtVenue();
 
-	void setShow(Show show);
-	void setDate(char* date);
-	void setTicketPrice(int ticketPrice);
+	void setShow(const Show& show);
+	void setDate(const char* date);
+	void setTicketPrice(int ticketPrice) { this->ticketPrice = ticketPrice; }
 
-	const Show getShow() const {return show;}
-	const char* getDate() const {return date;}
-	const int getTicketPrice() const {return ticketPrice;}
+	const Show& getShow() const { return show; }
+	const char* getDate() const { return date; }
+	int getTicketPrice() const { return ticketPrice; }
 
-	const int GetTotalSalesValue() const;
-	void AddSeats(int numOfTickets, Contact customer);
+	int GetTotalSalesValue() const;
+	void AddSeats(int numOfTickets, const Contact& customer);
 	const Contact* getAllCustumers() const;
-
-	void show() const;
 
 	const ShowAtVenue& operator=(const ShowAtVenue& other);
 	friend ostream& operator<<(ostream& os, const ShowAtVenue& show);

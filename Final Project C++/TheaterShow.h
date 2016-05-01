@@ -11,26 +11,21 @@ private:
 	Crew director;
 
 public:
-	TheaterShow(char* name, int duration, int loadInLoadOutTime, 
-		 Crew lightingDesigner, Crew soundDesigner, Crew setDesigner, 
-		 int ticketPrice, int numOfShows, int numOfParticipant,
-		 Crew director, Participator* actors = NULL);
+	TheaterShow(const Show& other, const Crew& director, const Participator* actors = NULL);
 	TheaterShow(const TheaterShow& other);
 	~TheaterShow();
 
-	void setDirector(Crew director);
+	void setDirector(const Crew& director);
 
-	const Participator* getActors() const {return actors;}
-	const Crew getDirector() const {return director;}
-
-	void show() const;
+	const Participator* getActors() const { return actors; }
+	const Crew& getDirector() const { return director; }
 
 	const TheaterShow& operator=(const TheaterShow& other);
 	friend ostream& operator<<(ostream& os, const TheaterShow& show);
 	friend istream& operator>>(istream& in, TheaterShow& show);
 
-	const void makeShow();
-	const void makeDrama();
+	void makeShow() const;
+	void makeDrama() const;
 };
 
 #endif

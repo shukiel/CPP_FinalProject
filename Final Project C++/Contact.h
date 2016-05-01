@@ -12,18 +12,16 @@ private:
 	char* address;
 
 public:
-	Contact(char* name, char* phonrNum, char* address);
+	Contact(const char* name, const char* phoneNum, const char* address);
 	Contact(const Contact& other);
 	~Contact();
 
-	void setPhoneNum(char* phoneNum);
-	void setAddress(char* address);
+	void setPhoneNum(const char* phoneNum);
+	void setAddress(const char* address);
 
-	const char* getName() const {return name;}
-	const char* getPhoneNum() const {return phoneNum;}
-	const char* getAddress() const {return address;}
-
-	void show() const;
+	const char* getName() const { return name; }
+	const char* getPhoneNum() const { return phoneNum; }
+	const char* getAddress() const { return address; }
 
 	const Contact& operator=(const Contact& other);
 	bool operator==(const Contact& other) const;

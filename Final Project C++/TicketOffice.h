@@ -11,30 +11,28 @@ private:
 	ShowAtVenue* shows;
 	Contact contactDetails;
 
-	const void NotifyAllCustomer (ShowAtVenue show, char* message);
+	void NotifyAllCustomer (const ShowAtVenue& show, const char* message) const;
 
 public:
-	TicketOffice(Venue* venues, ShowAtVenue* shows, Contact contactDetails);
+	TicketOffice(const Venue* venues, const ShowAtVenue* shows, const Contact& contactDetails);
 	TicketOffice(const TicketOffice& other);
 	~TicketOffice();
 
-	void setContactDetails(Contact contactDetails);
+	void setContactDetails(const Contact& contactDetails);
 
-	const Contact getContactDetails() const {return contactDetails;}
-	const Venue* getVenues() const {return venues;}
-	const ShowAtVenue* getShows() const {return shows;}
-
-	void show() const;
+	const Contact& getContactDetails() const { return contactDetails; }
+	const Venue* getVenues() const { return venues; }
+	const ShowAtVenue* getShows() const { return shows; }
 
 	const TicketOffice& operator=(const TicketOffice& other);
 	friend ostream& operator<<(ostream& os, const TicketOffice& ticketOffice);
 	friend istream& operator>>(istream& in, TicketOffice& ticketOffice);
 
-	ShowAtVenue* ReserveShow(Venue venue, Show show, char* date);
+	const ShowAtVenue* ReserveShow(const Venue& venue, const Show& show, const char* date);
 	bool CancelShow();
-	bool BuyTicket(ShowAtVenue show, int numOfTickets, Contact customer);
-	bool cancelTicket(ShowAtVenue show, Contact customer);
-	void ChangeShowTime(ShowAtVenue show, char* newDate);
+	bool BuyTicket(const ShowAtVenue& show, int numOfTickets, const Contact& customer);
+	bool cancelTicket(const ShowAtVenue& show, const Contact& customer);
+	void ChangeShowTime(const ShowAtVenue& show, const char* newDate);
 };
 
 #endif

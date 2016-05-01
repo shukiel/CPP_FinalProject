@@ -14,22 +14,20 @@ private:
 	ShowAtVenue* showAtVenue; 
 
 public:
-	Venue(Contact contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, ShowAtVenue* showAtVenue);
+	Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, const ShowAtVenue* showAtVenue);
 	Venue(const Venue& other);
 	~Venue();
 
-	void setContactDetails(Contact contactDetails);
-	void setCapacity(int capacity);
-	void setNumOfRows(int numOfRows);
-	void setNumOfSeatsPerRow(int numOfSeatsPerRow);
+	void setContactDetails(const Contact& contactDetails);
+	void setCapacity(int capacity) { this->capacity = capacity; }
+	void setNumOfRows(int numOfRows) { this->numOfRows = numOfRows; }
+	void setNumOfSeatsPerRow(int numOfSeatsPerRow) { this->numOfSeatsPerRow = numOfSeatsPerRow; }
 
-	const Contact getContactDetails() const {return contactDetails;}
-	const int getCapacity() const {return capacity;}
-	const int getNumOfRows() const {return numOfRows;}
-	const int getNumOfSeatsPerRow() const {return numOfSeatsPerRow;}
-	const ShowAtVenue* getShowAtVenue() const {return showAtVenue;}
-
-	void show() const;
+	const Contact& getContactDetails() const { return contactDetails; }
+	int getCapacity() const { return capacity; }
+	int getNumOfRows() const { return numOfRows; }
+	int getNumOfSeatsPerRow() const { return numOfSeatsPerRow; }
+	const ShowAtVenue* getShowAtVenue() const { return showAtVenue; }
 
 	const Venue& operator=(const Venue& other);
 	bool operator==(const Venue& other) const;
@@ -41,10 +39,10 @@ public:
 	friend ostream& operator<<(ostream& os, const Venue& venue);
 	friend istream& operator>>(istream& in, Venue& venue);
 
-	bool AddShow(Show show);
-	bool RemoveShow(Show show);
-	const int getSalesRevenue() const;
-	const bool isAvailable(char* date, Show show) const;
+	bool AddShow(const Show& show);
+	bool RemoveShow(const Show& show);
+	int getSalesRevenue() const;
+	bool isAvailable(const char* date, const Show& show) const;
 };
 
 #endif

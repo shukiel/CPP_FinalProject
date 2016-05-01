@@ -1,32 +1,24 @@
 #ifndef __PARTICIPATOR_H
 #define __PARTICIPATOR_H
 
-#include "Contact.h"
+#include "Employee.h"
 
-class Participator : public Contact
+class Participator : public Employee
 {
 private:
-	float salaryPerShow;
-	int numOfShows;
 	char* line;
 	int egoLevel;
 
 public:
-	Participator(char* name, char* phoneNum, char* address, 
-				 float salaryPerShow, char* line, int numOfShows = 0, int egoLevel = 0);
+	Participator(const Employee& other, const char* line, int egoLevel = 0);
 	Participator(const Participator& other);
+	~Participator();
 
-	void setSalaryPerShow(float salaryPerShow);
-	void setLine(char* line);
-	void setNumOfShows(int numOfShows);
-	void setEgoLevel(int egoLevel);
+	void setLine(const char* line);
+	void setEgoLevel(int egoLevel) { this->egoLevel = egoLevel; }
 
-	const float getSalaryPerShow() const {return salaryPerShow;}
-	const char* getLine() const {return line;}
-	const int getNumOfShows() const {return numOfShows;}
-	const int getEgoLevel() const {return egoLevel;}
-
-	void show() const;
+	const char* getLine() const { return line; }
+	int getEgoLevel() const { return egoLevel; }
 
 	const Participator& operator=(const Participator& other);
 	friend ostream& operator<<(ostream& os, const Participator& participator);
