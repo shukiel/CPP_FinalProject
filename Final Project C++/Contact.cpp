@@ -1,33 +1,56 @@
 #include "Contact.h"
 
-Contact::Contact(char* name, char* phoneNum, char* address)
+
+Contact::Contact(const char* name, const char* phoneNum, const char* address)
 {
-	this->name = strdup(name);
-	this->phoneNum = strdup(phoneNum);
-	this->address = strdup(address);
+	this->m_name = _strdup(name);
+	this->m_phoneNum = _strdup(phoneNum);
+	this->m_address = _strdup(address);
 }
 Contact::Contact(const Contact& other)
 {
-	this->name = strdup(other->name);
-	this->phoneNum = strdup(phoneNum);
-	this->address = strdup(address);
+	this* = other;
 }
 Contact::~Contact()
 {
-		
+	freeAlloc();
 }
 
-void setPhoneNum(char* phoneNum);
-void setAddress(char* address);
+void Contact::setPhoneNum(const char* phoneNum) { this->m_phoneNum = _strdup(phoneNum); }
+void Contact::setAddress(const char* address) { this->m_address = _strdup(address); }
+void Contact::freeAlloc()
+{
+	delete m_name;
+	delete m_phoneNum;
+	delete m_address;
+}
 
-const char* getName() const {return name;}
-const char* getPhoneNum() const {return phoneNum;}
-const char* getAddress() const {return address;}
-
-void show() const;
-
-const Contact& operator=(const Contact& other);
-bool operator==(const Contact& other) const;
-bool operator!=(const Contact& other) const;
-friend ostream& operator<<(ostream& os, const Contact& contact);
-friend istream& operator>>(istream& in, Contact& contact);
+const Contact& Contact::operator=(const Contact& other)
+{
+	if (this != &other)
+	{
+		freeAlloc();
+		this->m_name = _strdup(other.m_name);
+		this->m_phoneNum = _strdup(m_phoneNum);
+		this->m_address = _strdup(m_address);
+		
+	}
+}
+bool	Contact::operator==(const Contact& other) const
+{
+	return (strcmp(other.m_address, m_address) && strcmp(other.m_name, m_name) && strcmp(other.m_phoneNum, m_phoneNum));
+}
+bool	Contact::operator!=(const Contact& other) const
+{
+	return (!(other == this*));
+}
+ostream& operator<<(ostream& os, const Contact& contact)
+{
+	os << contact.m_name << contact.m_phoneNum << contact.m_address; 
+	return os;
+}
+istream& operator>>(istream& in, Contact& contact)
+{
+	in >> contact.m_name >> contact.m_phoneNum >> contact.m_address;
+	return in;
+}

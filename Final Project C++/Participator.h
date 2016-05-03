@@ -6,19 +6,19 @@
 class Participator : public Employee
 {
 private:
-	char* line;
-	int egoLevel;
+	char* m_part;
+	int m_egoLevel;
 
 public:
-	Participator(const Employee& other, const char* line, int egoLevel = 0);
+	Participator(const Employee& other, const char* part, int egoLevel = 0);
 	Participator(const Participator& other);
 	~Participator();
 
-	void setLine(const char* line);
-	void setEgoLevel(int egoLevel) { this->egoLevel = egoLevel; }
+	void setPart(const char* part);
+	void resetEgoLevel() { this->m_egoLevel = 0; }
 
-	const char* getLine() const { return line; }
-	int getEgoLevel() const { return egoLevel; }
+	const char* getLine() const { return m_part; }
+	int getEgoLevel() const { return m_egoLevel; }
 
 	const Participator& operator=(const Participator& other);
 	friend ostream& operator<<(ostream& os, const Participator& participator);

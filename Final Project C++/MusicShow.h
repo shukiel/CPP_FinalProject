@@ -7,9 +7,9 @@
 class MusicShow : public Show
 {
 private:
-	Participator* musicians; 
-	Crew musicalManger;
-	int soundCheckTime;
+	Participator* m_musicians; 
+	Crew m_musicalManger;
+	int m_soundCheckTime;
 
 public:
 	MusicShow(const Show& other, const Crew& musicalManger, int soundCheckTime, const Participator* musicians = NULL);
@@ -17,11 +17,11 @@ public:
 	~MusicShow();
 
 	void setDirector(const Crew& director);
-	void setSoundCheckTime(int soundCheckTime) { this->soundCheckTime = soundCheckTime; }
+	void setSoundCheckTime(int soundCheckTime) { this->m_soundCheckTime = soundCheckTime; }
 
-	const Participator* getMusicians() const { return musicians; }
-	const Crew& getMusicalManger() const { return musicalManger; }
-	int getSoundCheckTime() const { return soundCheckTime; }
+	const Participator* getMusicians() const { return m_musicians; }
+	const Crew& getMusicalManger() const { return m_musicalManger; }
+	int getSoundCheckTime() const { return m_soundCheckTime; }
 
 	const MusicShow& operator=(const MusicShow& other);
 	friend ostream& operator<<(ostream& os, const MusicShow& show);

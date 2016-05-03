@@ -7,11 +7,12 @@
 class ShowAtVenue
 {
 private:
-	Show show;
-	char* date;
-	int ticketPrice;
+	Show*		m_show;
+	char*		m_date;
+	int			m_ticketPrice;
+	Contact**	m_seatArr;
+	bool		m_isFreeSpace(int numOfTickets) const;
 
-	bool isFreeSpace(int numOfTickets) const;
 
 public:
 	ShowAtVenue(const Show& show, const char* date, int ticketPrice);
@@ -20,15 +21,18 @@ public:
 
 	void setShow(const Show& show);
 	void setDate(const char* date);
-	void setTicketPrice(int ticketPrice) { this->ticketPrice = ticketPrice; }
+	void setTicketPrice(int ticketPrice) { this->m_ticketPrice = ticketPrice; }
 
-	const Show& getShow() const { return show; }
-	const char* getDate() const { return date; }
-	int getTicketPrice() const { return ticketPrice; }
+	const Show& getShow() const { return *m_show; }
+	const char* getDate() const { return m_date; }
+	int getTicketPrice() const { return m_ticketPrice; }
+	int getNumOfPeopleInAudience() const;
+
 
 	int GetTotalSalesValue() const;
 	void AddSeats(int numOfTickets, const Contact& customer);
 	const Contact* getAllCustumers() const;
+
 
 	const ShowAtVenue& operator=(const ShowAtVenue& other);
 	friend ostream& operator<<(ostream& os, const ShowAtVenue& show);

@@ -7,9 +7,9 @@
 class TicketOffice
 {
 private:
-	Venue* venues;
-	ShowAtVenue* shows;
-	Contact contactDetails;
+	Venue*			m_venues;
+	ShowAtVenue*	m_shows;
+	Contact			m_contactDetails;
 
 	void NotifyAllCustomer (const ShowAtVenue& show, const char* message) const;
 
@@ -20,9 +20,9 @@ public:
 
 	void setContactDetails(const Contact& contactDetails);
 
-	const Contact& getContactDetails() const { return contactDetails; }
-	const Venue* getVenues() const { return venues; }
-	const ShowAtVenue* getShows() const { return shows; }
+	const Contact& getContactDetails() const { return m_contactDetails; }
+	const Venue* getVenues() const { return m_venues; }
+	const ShowAtVenue* getShows() const { return m_shows; }
 
 	const TicketOffice& operator=(const TicketOffice& other);
 	friend ostream& operator<<(ostream& os, const TicketOffice& ticketOffice);

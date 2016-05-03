@@ -7,8 +7,8 @@
 class TheaterShow : public Show
 {
 private:
-	Participator* actors; 
-	Crew director;
+	Participator*	 m_actors; 
+	Crew			 m_director;
 
 public:
 	TheaterShow(const Show& other, const Crew& director, const Participator* actors = NULL);
@@ -17,8 +17,8 @@ public:
 
 	void setDirector(const Crew& director);
 
-	const Participator* getActors() const { return actors; }
-	const Crew& getDirector() const { return director; }
+	const Participator* getActors() const { return m_actors; }
+	const Crew& getDirector() const { return m_director; }
 
 	const TheaterShow& operator=(const TheaterShow& other);
 	friend ostream& operator<<(ostream& os, const TheaterShow& show);

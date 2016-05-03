@@ -6,20 +6,20 @@
 class Employee : public Contact
 {
 private:
-	float salaryPerHour;
-	int numOfWorkingHours;
+	float	m_salaryPerHour;
+	int		m_numOfWorkingHours;
 
 public:
 	Employee(const Contact& other, float salaryPerHour, int numOfWorkingHours = 0);
 
-	void setSalaryPerHour(float salaryPerHour) { this->salaryPerHour = salaryPerHour; }
-	void setNumOfWorkingHours(int numOfWorkingHours) { this->numOfWorkingHours = numOfWorkingHours; }
+	void setSalaryPerHour(float salaryPerHour) { this->m_salaryPerHour = salaryPerHour; }
+	void setNumOfWorkingHours(int numOfWorkingHours) { this->m_numOfWorkingHours = numOfWorkingHours; }
 
-	float getSalaryPerHour() const { return salaryPerHour; }
-	int getNumOfWorkingHours() const { return numOfWorkingHours; }
+	float getSalaryPerHour() const { return m_salaryPerHour; }
+	int getNumOfWorkingHours() const { return m_numOfWorkingHours; }
 
-	friend ostream& operator<<(ostream& os, const Crew& crew);
-	friend istream& operator>>(istream& in, Crew& crew);
+	friend ostream& operator<< (ostream& os, const Employee& emp);
+	friend istream& operator>> (istream& in, Employee& emp);
 
 	float calcSalary() const;
 };
