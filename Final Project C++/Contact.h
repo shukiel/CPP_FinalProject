@@ -11,13 +11,11 @@ private:
 	char* m_phoneNum;
 	char* m_address;
 
-	void freeAlloc();
-
 	void setName(const char* name);
 
 public:
 	Contact(const char* name, const char* phoneNum, const char* address);
-	Contact(const Contact& other) : name(NULL), phoneNum(NULL), address(NULL) { *this = other; }
+	Contact(const Contact& other) : m_name(NULL), m_phoneNum(NULL), m_address(NULL) { *this = other; }
 	virtual ~Contact();
 
 	void setPhoneNum(const char* phoneNum);

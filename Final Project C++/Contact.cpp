@@ -1,6 +1,6 @@
 #include "Contact.h"
 
-	Contact::Contact(const char* name, const char* phoneNum, const char* address) : name(NULL), phoneNum(NULL), address(NULL)
+	Contact::Contact(const char* name, const char* phoneNum, const char* address) : m_name(NULL), m_phoneNum(NULL), m_address(NULL)
 	{
 		setName(name);
 		setPhoneNum(phoneNum);
@@ -9,27 +9,27 @@
 
 	Contact::~Contact()
 	{
-		delete []name;
-		delete []phoneNum;
-		delete []address;
+		delete []m_name;
+		delete []m_phoneNum;
+		delete []m_address;
 	}
 
 	void Contact::setName(const char* name)
 	{
-		delete[] this->name;
-		this->name = strdup(name);
+		delete[] m_name;
+		m_name = strdup(name);
 	}
 
 	void Contact::setPhoneNum(const char* phoneNum)
 	{
-		delete[] this->phoneNum;
-		this->phoneNum = strdup(phoneNum);
+		delete[] m_phoneNum;
+		m_phoneNum = strdup(phoneNum);
 	}
 
 	void Contact::setAddress(const char* address)
 	{
-		delete[] this->address;
-		this->address = strdup(address);
+		delete[] m_address;
+		m_address = strdup(address);
 	}
 
 	const Contact& Contact::operator=(const Contact& other)
@@ -52,6 +52,6 @@
 
 	istream& operator>>(istream& in, Contact& contact)
 	{
-		in >> contact.name >> contact.phoneNum >> contact.address;
+		in >> contact.m_name >> contact.m_phoneNum >> contact.m_address;
 		return in;
 	}
