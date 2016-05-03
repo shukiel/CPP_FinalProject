@@ -1,33 +1,58 @@
 #include "Contact.h"
 
-Contact::Contact(char* name, char* phoneNum, char* address)
-{
-	this->name = strdup(name);
-	this->phoneNum = strdup(phoneNum);
-	this->address = strdup(address);
-}
-Contact::Contact(const Contact& other)
-{
-	this->name = strdup(other->name);
-	this->phoneNum = strdup(phoneNum);
-	this->address = strdup(address);
-}
-Contact::~Contact()
-{
-		
-}
+	Contact::Contact(const char* name, const char* phoneNum, const char* address) : name(NULL), phoneNum(NULL), address(NULL)
+	{
+		setName(name);
+		setPhoneNum(phoneNum);
+		setAddress(address);
+	}
 
-void setPhoneNum(char* phoneNum);
-void setAddress(char* address);
+	Contact::~Contact()
+	{
+		delete []name;
+		delete []phoneNum;
+		delete []address;
+	}
 
-const char* getName() const {return name;}
-const char* getPhoneNum() const {return phoneNum;}
-const char* getAddress() const {return address;}
+	void Contact::setName(const char* name)
+	{
+		delete[] this->name;
+		this->name = strdup(name);
+	}
 
-void show() const;
+	void Contact::setPhoneNum(const char* phoneNum)
+	{
+		delete[] this->phoneNum;
+		this->phoneNum = strdup(phoneNum);
+	}
 
-const Contact& operator=(const Contact& other);
-bool operator==(const Contact& other) const;
-bool operator!=(const Contact& other) const;
-friend ostream& operator<<(ostream& os, const Contact& contact);
-friend istream& operator>>(istream& in, Contact& contact);
+	void Contact::setAddress(const char* address)
+	{
+		delete[] this->address;
+		this->address = strdup(address);
+	}
+
+	const Contact& Contact::operator=(const Contact& other)
+	{
+		if (this != &other)
+		{
+			setName(other.getName());
+			setPhoneNum(other.getPhoneNum());
+			setAddress(other.getAddress());
+		}
+		return *this;
+	}
+
+	ostream& operator<<(ostream& os, const Contact& contact)
+	{
+		os << "Name: " << contact.getName() << ", Phone number: " << contact.getPhoneNum() << ", Address: " << contact.getAddress() << endl;
+		contact.toOs(os);
+		return os;
+	}
+
+	istream& operator>>(istream& in, Contact& contact)
+	{
+		in >> contact.name >> contact.phoneNum >> contact.address;
+		return in;
+	}
+

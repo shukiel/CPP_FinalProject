@@ -10,7 +10,7 @@ private:
 	int numOfWorkingHours;
 
 public:
-	Employee(const Contact& other, float salaryPerHour, int numOfWorkingHours = 0);
+	Employee(const Contact& other, float salaryPerHour, int numOfWorkingHours = 0) : Contact(other), salaryPerHour(salaryPerHour), numOfWorkingHours(numOfWorkingHours) {}
 
 	void setSalaryPerHour(float salaryPerHour) { this->salaryPerHour = salaryPerHour; }
 	void setNumOfWorkingHours(int numOfWorkingHours) { this->numOfWorkingHours = numOfWorkingHours; }
@@ -18,10 +18,11 @@ public:
 	float getSalaryPerHour() const { return salaryPerHour; }
 	int getNumOfWorkingHours() const { return numOfWorkingHours; }
 
-	friend ostream& operator<<(ostream& os, const Crew& crew);
-	friend istream& operator>>(istream& in, Crew& crew);
+	friend istream& operator>>(istream& in, Employee& employee);
 
-	float calcSalary() const;
+	virtual void toOs(ostream& os);
+
+	float calcSalary() const { return numOfWorkingHours*salaryPerHour; }
 };
 
 #endif
