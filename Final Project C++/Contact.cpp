@@ -55,4 +55,3 @@
 		in >> contact.name >> contact.phoneNum >> contact.address;
 		return in;
 	}
-

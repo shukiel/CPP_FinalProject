@@ -6,15 +6,15 @@
 class Show
 {
 private:
-	char* name;
-	int duration;
-	int loadInLoadOutTime;
-	Crew lightingDesigner;
-	Crew soundDesigner;
-	Crew setDesigner;
-	int ticketPrice;
-	int numOfShows;
-	int numOfParticipant;
+	char*	m_name;
+	int		m_duration;
+	int		m_loadInLoadOutTime;
+	Crew	m_lightingDesigner;
+	Crew	m_soundDesigner;
+	Crew	m_setDesigner;
+	int		m_ticketPrice;
+	int		m_numOfShows;
+	int		m_numOfParticipant;
 
 public:
 	Show(const char* name, int duration, int loadInLoadOutTime, 
@@ -23,24 +23,32 @@ public:
 	Show(const Show& other);
 	~Show();
 
-	void setDuration(int duration) { this->duration = duration; }
-	void setLoadInLoadOutTime(int loadInLoadOutTime) { this->loadInLoadOutTime = loadInLoadOutTime; }
+	virtual void makeShow() const			=0;
+	virtual float getAllSalaries() const	=0;
+	virtual bool isShowPossible() const		=0;
+	virtual void talkWithProducer() const	=0;
+
+	void addPerformance();
+
+
+	void setDuration(int duration) { this->m_duration = duration; }
+	void setLoadInLoadOutTime(int loadInLoadOutTime) { this->m_loadInLoadOutTime = loadInLoadOutTime; }
 	void setLightingDesigner(const Crew& lightingDesigner);
 	void setSoundDesigner(const Crew& soundDesigner);
 	void setSetDesigner(const Crew& setDesigner);
-	void setTicketPrice(int ticketPrice) { this->ticketPrice = ticketPrice; }
-	void setNumOfShows(int numOfShows) { this->numOfShows = numOfShows; }
-	void setNumOfParticipant(int numOfParticipant) { this->numOfParticipant = numOfParticipant; }
+	void setTicketPrice(int ticketPrice) { this->m_ticketPrice = ticketPrice; }
+	void setNumOfShows(int numOfShows) { this->m_numOfShows = numOfShows; }
+	void setNumOfParticipant(int numOfParticipant) { this->m_numOfParticipant = numOfParticipant; }
 
-	const char* getName() const { return name; }
-	int getDuration() const { return duration; }
-	int getLoadInLoadOutTime() const { return loadInLoadOutTime; }
-	const Crew& getLightingDesigner() const { return lightingDesigner; }
-	const Crew& getSoundDesigner() const { return soundDesigner; }
-	const Crew& getSetDesigner() const { return setDesigner; }
-	int getTicketPrice() const { return ticketPrice; }
-	int getNumOfShows() const { return numOfShows; }
-	int getNumOfParticipant() const { return numOfParticipant; }
+	const char* getName() const { return m_name; }
+	int getDuration() const { return m_duration; }
+	int getLoadInLoadOutTime() const { return m_loadInLoadOutTime; }
+	const Crew& getLightingDesigner() const { return m_lightingDesigner; }
+	const Crew& getSoundDesigner() const { return m_soundDesigner; }
+	const Crew& getSetDesigner() const { return m_setDesigner; }
+	int getTicketPrice() const { return m_ticketPrice; }
+	int getNumOfShows() const { return m_numOfShows; }
+	int getNumOfParticipant() const { return m_numOfParticipant; }
 
 	const Show& operator=(const Show& other);
 	bool operator==(const Show& other) const;
@@ -48,11 +56,7 @@ public:
 	friend ostream& operator<<(ostream& os, const Show& show);
 	friend istream& operator>>(istream& in, Show& show);
 
-	float getAllSalaries() const;
-	void addPerformance();
-	void makeShow() const;
-	bool isShowPossible () const;
-	void talkWithProducer() const;
+	
 };
 
 #endif

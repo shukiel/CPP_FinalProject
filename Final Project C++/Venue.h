@@ -4,14 +4,15 @@
 #include "Contact.h"
 #include "ShowAtVenue.h"
 
-class Venue
-{
+
+class Venue {
+
 private:
-	Contact contactDetails;
-	int capacity;
-	int numOfRows;
-	int numOfSeatsPerRow;
-	ShowAtVenue* showAtVenue; 
+	Contact		 m_contactDetails;
+	int			 m_capacity;
+	int			 m_numOfRows;
+	int			 m_numOfSeatsPerRow;
+	ShowAtVenue* m_showAtVenue; 
 
 public:
 	Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, const ShowAtVenue* showAtVenue);
@@ -19,15 +20,15 @@ public:
 	~Venue();
 
 	void setContactDetails(const Contact& contactDetails);
-	void setCapacity(int capacity) { this->capacity = capacity; }
-	void setNumOfRows(int numOfRows) { this->numOfRows = numOfRows; }
-	void setNumOfSeatsPerRow(int numOfSeatsPerRow) { this->numOfSeatsPerRow = numOfSeatsPerRow; }
+	void setCapacity(int capacity) { this->m_capacity = capacity; }
+	void setNumOfRows(int numOfRows) { this->m_numOfRows = numOfRows; }
+	void setNumOfSeatsPerRow(int numOfSeatsPerRow) { this->m_numOfSeatsPerRow = numOfSeatsPerRow; }
 
-	const Contact& getContactDetails() const { return contactDetails; }
-	int getCapacity() const { return capacity; }
-	int getNumOfRows() const { return numOfRows; }
-	int getNumOfSeatsPerRow() const { return numOfSeatsPerRow; }
-	const ShowAtVenue* getShowAtVenue() const { return showAtVenue; }
+	const Contact& getContactDetails() const { return m_contactDetails; }
+	int getCapacity() const { return m_capacity; }
+	int getNumOfRows() const { return m_numOfRows; }
+	int getNumOfSeatsPerRow() const { return m_numOfSeatsPerRow; }
+	const ShowAtVenue* getShowAtVenue() const { return m_showAtVenue; }
 
 	const Venue& operator=(const Venue& other);
 	bool operator==(const Venue& other) const;
@@ -43,6 +44,5 @@ public:
 	bool RemoveShow(const Show& show);
 	int getSalesRevenue() const;
 	bool isAvailable(const char* date, const Show& show) const;
-};
-
+}
 #endif

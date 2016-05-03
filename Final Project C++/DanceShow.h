@@ -7,8 +7,8 @@
 class DanceShow : public Show
 {
 private:
-	Participator* dancers; 
-	Participator choreograph;
+	Participator* m_dancers; 
+	Participator m_choreograph;
 
 public:
 	DanceShow(const Show& other, const Participator choreograph, const Participator* dancers = NULL);
@@ -17,8 +17,8 @@ public:
 
 	void setChoreograph(Participator choreograph);
 
-	const Participator* getDancers() const { return dancers; }
-	const Participator& getChoreograph() const { return choreograph; }
+	const Participator* getDancers() const { return m_dancers; }
+	const Participator& getChoreograph() const { return m_choreograph; }
 
 	const DanceShow& operator=(const DanceShow& other);
 	friend ostream& operator<<(ostream& os, const DanceShow& show);

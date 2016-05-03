@@ -19,5 +19,4 @@ public:
 	friend ostream& operator<<(ostream& os, const Musical& show);
 	friend istream& operator>>(istream& in, Musical& show);
 }
-
 #endif
