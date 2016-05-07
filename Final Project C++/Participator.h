@@ -10,12 +10,12 @@ private:
 	int m_egoLevel;
 
 public:
-	Participator(const Employee& other, const char* part, int egoLevel = 0);
-	Participator(const Participator& other);
-	~Participator();
+	Participator(const Employee& other, const char* part, int egoLevel = 0) : Employee(other), m_part(NULL), m_egoLevel(egoLevel) { setPart(part); }
+	Participator(const Participator& other) : Employee(other), m_part(NULL),  m_egoLevel(other.m_egoLevel) { setPart(other.m_part); }
+	virtual ~Participator() { delete []m_part; }
 
 	void setPart(const char* part);
-	void resetEgoLevel() { this->m_egoLevel = 0; }
+	void resetEgoLevel() { m_egoLevel = 0; }
 
 	const char* getLine() const { return m_part; }
 	int getEgoLevel() const { return m_egoLevel; }
@@ -24,7 +24,6 @@ public:
 	virtual void toOs(ostream& os) const;
 
 	const Participator& operator=(const Participator& other);
-	friend ostream& operator<<(ostream& os, const Participator& participator);
 	friend istream& operator>>(istream& in, Participator& participator);
 };
 

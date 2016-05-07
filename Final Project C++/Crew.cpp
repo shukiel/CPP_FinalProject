@@ -6,13 +6,8 @@ istream& operator>>(istream& in, Crew& crew)
 	return in;
 }
 
-void Crew::toOs(ostream& os)
+void Crew::toOs(ostream& os) const
 {
 	Employee::toOs(os);
 	os << "Num of beers drank: " << m_numOfBeersDrank << endl;
-}
-
-void Crew::soberUp()
-{
-	m_numOfBeersDrank = 0;
 }

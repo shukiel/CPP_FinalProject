@@ -11,7 +11,6 @@ private:
 
 public:
 	Crew(const Employee& other, int numOfBeersDrank = 0) : Employee(other), m_numOfBeersDrank(numOfBeersDrank) { }
-	//Crew(const char* name, const char* phoneNum, const char* address, int m_salaryPerHour);
 
 	void setNumOfBeersDrank(int numOfBeersDrank) { m_numOfBeersDrank = numOfBeersDrank; }
 
@@ -19,9 +18,9 @@ public:
 
 	friend istream& operator>>(istream& in, Crew& crew);
 
-	virtual void toOs(ostream& os);
+	virtual void toOs(ostream& os) const;
 
-	void soberUp();
+	void soberUp() { m_numOfBeersDrank = 0; }
 };
 
 #endif

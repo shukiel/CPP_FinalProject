@@ -26,11 +26,11 @@ public:
 	const char* getAddress() const { return m_address; }
 
 	const Contact& operator=(const Contact& other);
-	bool operator==(const Contact& other) const { return ((strcmp(this->getName(), other.getName()) == 0) && this->getPhoneNum() == other.getPhoneNum()); }
+	bool operator==(const Contact& other) const { return ((strcmp(this->getName(), other.getName()) == 0) && (strcmp(this->getPhoneNum(), other.getPhoneNum()))); }
 	bool operator!=(const Contact& other) const { return !(*this == other); }
 	friend ostream& operator<<(ostream& os, const Contact& contact);
 	friend istream& operator>>(istream& in, Contact& contact);
-
+	
 	virtual void toOs(ostream& os) const;
 };
 

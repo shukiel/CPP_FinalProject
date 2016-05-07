@@ -8,7 +8,7 @@ class Dancer : public Participator
 public:
 	int isNotHurt();
 
-	Dancer(Employee& emp, char* part) : Participator(emp, part, 0){};
+	Dancer(Employee& emp, char* part) : Participator(emp, part, 0) { };
 	void doPartInShow();
 	void makeGetHurt();
 };

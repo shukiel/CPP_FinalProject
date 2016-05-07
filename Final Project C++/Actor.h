@@ -6,7 +6,7 @@
 class Actor : public Participator
 {
 public:
-	Actor(Employee& emp, char* part) : Participator(emp, part, 0){};
+	Actor(Employee& emp, char* part) : Participator(emp, part, 0) { };
 	void doPartInShow();
 	void makeDrama();
 };

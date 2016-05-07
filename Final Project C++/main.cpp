@@ -1,6 +1,5 @@
 #include "Venue.h"
 
-
 void main()
 {
 	/*Contact c ("Aviad", "050987846", "TA");

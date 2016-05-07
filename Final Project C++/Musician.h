@@ -4,10 +4,17 @@
 #include "Participator.h"
 class Musician : public Participator
 {
-public:
+private:
 	char* m_instrument;
 
-	Musician(Employee& emp, char* part, char * instrument) : Participator(emp, part, 0){ m_instrument = _strdup(instrument);}
+public:
+	Musician(Employee& emp, char* part, char * instrument) : Participator(emp, part, 0), m_instrument(NULL) { setInstrument(instrument); }
+
+	void setInstrument(const char* instrument);
+
+	const char* getInstrument() const { return m_instrument; }
+
+	virtual void toOs(ostream& os) const; 
 	void doPartInShow();
 };
 
