@@ -21,7 +21,7 @@ public:
 	const Actor& operator=(const Actor& other);
 	friend istream& operator>>(istream& in, Actor& actor);
 
-	void makeDrama() const;
+	void makeDrama() ;		//Ego might go up!
 
 	virtual void doPartInShow() const;
 	virtual void toOs(ostream& os) const;

@@ -101,9 +101,11 @@
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Musician.cpp" />
+    <ClCompile Include="MusicShow.cpp" />
     <ClCompile Include="Participator.cpp" />
     <ClCompile Include="Show.cpp" />
     <ClCompile Include="ShowAtVenue.cpp" />
+    <ClCompile Include="TheaterShow.cpp" />
     <ClCompile Include="Venue.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

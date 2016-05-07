@@ -3,29 +3,35 @@
 
 #include "Show.h"
 #include "Participator.h"
+class Actor;	//forward declaration
 
 class TheaterShow : public Show
 {
 private:
-	Participator*	 m_actors; 
-	Crew			 m_director;
+	Actor**	 m_actors; 
+	Crew	m_director;
+
+	const int MAX_NUM_OF_ACTORS = 20;
 
 public:
-	TheaterShow(const Show& other, const Crew& director, const Participator* actors = NULL);
+	TheaterShow(const Show& other, const Crew& director);
 	TheaterShow(const TheaterShow& other);
 	~TheaterShow();
 
 	void setDirector(const Crew& director);
 
-	const Participator* getActors() const { return m_actors; }
+	const Actor** getActors() const { return m_actors; }
 	const Crew& getDirector() const { return m_director; }
 
 	const TheaterShow& operator=(const TheaterShow& other);
 	friend ostream& operator<<(ostream& os, const TheaterShow& show);
 	friend istream& operator>>(istream& in, TheaterShow& show);
 
-	void makeShow() const;
-	void makeDrama() const;
+	bool isShowPossible();
+	void talkWithProducer();
+	float getCost();
+	void addActor(Actor& actor);
+	void makeShow();
 };
 
 #endif

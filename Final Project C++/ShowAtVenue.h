@@ -39,13 +39,16 @@ public:
 	const Show& getShow() const { return *m_show; }
 	const char* getDate() const { return m_date; }
 
-	int GetTotalSalesValue() const;
+	float GetTotalSalesValue() const;
+	float getProfit() const;
+
 
 	void AddSeats(int numOfTickets, const Contact *customer);
 	void RemoveSeats(Contact* customer);
 	const Contact** getAllCustumers() const;  //Will return a array of pointers to all the customers in the show FREE
 
-
+	const bool operator==(const ShowAtVenue& other)
+		{ return ((this->m_show == other.m_show) && m_venue == other.m_venue && strcmp(m_date,other.m_date));};
 	const ShowAtVenue& operator=(const ShowAtVenue& other);
 	friend ostream& operator<<(ostream& os, const ShowAtVenue& show);
 	friend istream& operator>>(istream& in, ShowAtVenue& show);

@@ -92,5 +92,11 @@
     <ClCompile Include="Musician.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TheaterShow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicShow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

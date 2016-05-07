@@ -42,8 +42,8 @@ public:
 	bool operator==(const Venue& other) const;
 	bool operator!=(const Venue& other) const;
 
-	void operator+=(const ShowAtVenue* show);	//adds a show to the venue
-	void operator-=(const ShowAtVenue* show);	//removes a show from a venue
+	void operator+=(const ShowAtVenue show);	//adds a show to the venue
+	void operator-=(const ShowAtVenue show);	//removes a show from a venue
 
 
 	bool operator>(const Venue& other) const;
@@ -54,10 +54,10 @@ public:
 	friend ostream& operator<<(ostream& os, const Venue& venue);
 	friend istream& operator>>(istream& in, Venue& venue);
 
-	bool AddShow(const Show& show);
-	bool RemoveShow(const Show& show);
+	bool AddShow(const ShowAtVenue& show) { *this += show; };
+	bool RemoveShow(const ShowAtVenue& show){ *this += show; };
+
 	int getSalesRevenue() const;
-	bool isAvailable(const char* date, const Show& show) const;
 };
 
 #endif

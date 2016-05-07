@@ -19,6 +19,17 @@ Show::Show(const Show& other) : m_lightingDesigner(other.getLightingDesigner()),
 	m_name = _strdup(other.m_name);
 }
 
+float Show::getCost() const
+{
+	float sum = 0;
+	int totalWorkHours = m_loadInLoadOutTime + m_duration;
+
+	sum += m_lightingDesigner.getSalaryPerHour()* totalWorkHours;
+	sum += m_setDesigner.getSalaryPerHour()*m_loadInLoadOutTime;
+	sum += m_soundDesigner.getSalaryPerHour()*totalWorkHours;
+	return sum;
+}
+
 const Show& Show::operator=(const Show& other)
 {
 	if (this != &other)
@@ -48,6 +59,6 @@ istream& operator>>(istream& in, Show& show)
 {
 	in >> show.m_name >> show.m_duration >> show.m_loadInLoadOutTime 
 		>> (Crew&)show.m_lightingDesigner >> (Crew&)show.m_soundDesigner >> (Crew&)show.m_setDesigner 
-		>> show.m_ticketPrice >> show.getNumOfShows >> show.m_numOfParticipant;
+		>> show.m_ticketPrice >> show.m_numOfParticipant >> show.m_numOfParticipant;
 	return in;
 }	

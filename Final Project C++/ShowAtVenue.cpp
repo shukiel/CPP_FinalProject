@@ -42,7 +42,7 @@ void ShowAtVenue::setDate(const char* date)
 	this->m_date = _strdup(date);
 }
 
-int	ShowAtVenue::GetTotalSalesValue() const
+float	ShowAtVenue::GetTotalSalesValue() const
 {
 	return m_numOfPeople * m_show->getTicketPrice();
 }
@@ -132,6 +132,10 @@ const ShowAtVenue& ShowAtVenue::operator=(const ShowAtVenue& other)
 		}
 	}
 	return *this;
+}
+float ShowAtVenue::getProfit() const
+{
+	return GetTotalSalesValue() - m_show->getCost();
 }
 
 void ShowAtVenue::freeAlloc() const

@@ -42,8 +42,21 @@ public:
 class TooMuchShowsException : public Exception
 {
 private:
-	ShowAtVenue show;
+	const ShowAtVenue* m_show;
 public:
+	TooMuchShowsException(const ShowAtVenue &show) : m_show(&show) {}
+
+	void printErrorToConsole()
+	{
+		cout << "This Show have no free spot -> " << *m_show << endl;
+	}
+
+	void printErrorToLogFile()
+	{
+		ofstream log(LOG_FILE_NAME, ios::app);
+		log << "This Show have no free spot -> " << *m_show << endl;
+		log.close();
+	}
 
 };
 

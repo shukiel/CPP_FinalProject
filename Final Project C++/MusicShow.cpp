@@ -3,12 +3,11 @@
 
 #include "Show.h"
 #include "Participator.h"
-class Musician; //Forward declaration
 
 class MusicShow : public Show
 {
 private:
-	Musician** m_musicians; 
+	Participator* m_musicians;
 	Crew m_musicalManger;
 	int m_soundCheckTime;
 
@@ -20,7 +19,7 @@ public:
 	void setDirector(const Crew& director);
 	void setSoundCheckTime(int soundCheckTime) { this->m_soundCheckTime = soundCheckTime; }
 
-	const Musician** getMusicians() const { return m_musicians; }
+	const Participator* getMusicians() const { return m_musicians; }
 	const Crew& getMusicalManger() const { return m_musicalManger; }
 	int getSoundCheckTime() const { return m_soundCheckTime; }
 
@@ -29,10 +28,6 @@ public:
 	friend istream& operator>>(istream& in, MusicShow& show);
 
 	void makeShow() const;
-	void makeShow();
-	bool isShowPossible();
-	void talkWithProducer();
-	float getCost();
 	void encore() const;
 	void drinkBeerAndSmokeCiggarettes();
 	bool addMusician(const Participator& musician);

@@ -11,9 +11,17 @@ public:
 	Musical(char* name, int duration, int loadInLoadOutTime, 
 		 Crew lightingDesigner, Crew soundDesigner, Crew setDesigner, 
 		 int ticketPrice, int numOfShows, int numOfParticipant,
-		 Crew director, Crew musicalManger, int soundCheckTime, Participator choreograph, 
-		 Participator* musicians, Participator* actors, Participator* dancers);
+		 Crew director, Crew musicalManger, int soundCheckTime, Crew choreograph, 
+		 Participator* musicians, Actor* actors, Dancer* dancers);
 	Musical(const Musical& other);
+
+
+	void makeShow();
+	bool isShowPossible();
+	void talkWithProducer();
+	float getCost();
+
+
 
 	const Musical& operator=(const Musical& other);
 	friend ostream& operator<<(ostream& os, const Musical& show);
