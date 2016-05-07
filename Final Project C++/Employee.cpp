@@ -6,7 +6,8 @@
 		return in;
 	}
 
-	void Employee::toOs(ostream& os)
+	void Employee::toOs(ostream& os) const
 	{
+		Contact::toOs(os);
 		os << "Salary per hour: " << m_salaryPerHour << ", Num of working hours: " << m_numOfWorkingHours << endl;
 	}

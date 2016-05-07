@@ -8,6 +8,7 @@ istream& operator>>(istream& in, Crew& crew)
 
 void Crew::toOs(ostream& os)
 {
+	Employee::toOs(os);
 	os << "Num of beers drank: " << m_numOfBeersDrank << endl;
 }
 

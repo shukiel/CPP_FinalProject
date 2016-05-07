@@ -1,7 +1,10 @@
 #ifndef __SHOW_H
 #define __SHOW_H
 
+#include<iostream>
 #include "Crew.h"
+
+using namespace std;
 
 class Show
 {

@@ -4,10 +4,9 @@
 #include "Contact.h"
 #include "ShowAtVenue.h"
 
-
-class Venue {
-
+class Venue{
 private:
+	char*		 m_name;
 	Contact		 m_contactDetails;
 	int			 m_capacity;
 	int			 m_numOfRows;
@@ -15,7 +14,7 @@ private:
 	ShowAtVenue* m_showAtVenue; 
 
 public:
-	Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, const ShowAtVenue* showAtVenue);
+	Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, const ShowAtVenue* showAtVenue, char* name);
 	Venue(const Venue& other);
 	~Venue();
 
@@ -28,15 +27,23 @@ public:
 	int getCapacity() const { return m_capacity; }
 	int getNumOfRows() const { return m_numOfRows; }
 	int getNumOfSeatsPerRow() const { return m_numOfSeatsPerRow; }
+	const char* getVenueName() const { return m_name; }
 	const ShowAtVenue* getShowAtVenue() const { return m_showAtVenue; }
+
 
 	const Venue& operator=(const Venue& other);
 	bool operator==(const Venue& other) const;
 	bool operator!=(const Venue& other) const;
+
+	void operator+=(const ShowAtVenue* show);	//adds a show to the venue
+	void operator-=(const ShowAtVenue* show);	//removes a show from a venue
+
+
 	bool operator>(const Venue& other) const;
 	bool operator<(const Venue& other) const;
 	bool operator>=(const Venue& other) const;
 	bool operator<=(const Venue& other) const;
+
 	friend ostream& operator<<(ostream& os, const Venue& venue);
 	friend istream& operator>>(istream& in, Venue& venue);
 
@@ -44,5 +51,6 @@ public:
 	bool RemoveShow(const Show& show);
 	int getSalesRevenue() const;
 	bool isAvailable(const char* date, const Show& show) const;
-}
+};
+
 #endif

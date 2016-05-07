@@ -20,6 +20,9 @@ public:
 	const char* getLine() const { return m_part; }
 	int getEgoLevel() const { return m_egoLevel; }
 
+	virtual void doPartInShow();
+	virtual void toOs(ostream& os) const;
+
 	const Participator& operator=(const Participator& other);
 	friend ostream& operator<<(ostream& os, const Participator& participator);
 	friend istream& operator>>(istream& in, Participator& participator);

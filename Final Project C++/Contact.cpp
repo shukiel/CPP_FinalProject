@@ -17,13 +17,13 @@
 	void Contact::setName(const char* name)
 	{
 		delete[] m_name;
-		m_name = strdup(name);
+		m_name = _strdup(name);
 	}
 
 	void Contact::setPhoneNum(const char* phoneNum)
 	{
 		delete[] m_phoneNum;
-		m_phoneNum = strdup(phoneNum);
+		m_phoneNum = _strdup(phoneNum);
 	}
 
 	void Contact::setAddress(const char* address)
@@ -46,7 +46,6 @@
 	ostream& operator<<(ostream& os, const Contact& contact)
 	{
 		os << "Name: " << contact.getName() << ", Phone number: " << contact.getPhoneNum() << ", Address: " << contact.getAddress() << endl;
-		contact.toOs(os);
 		return os;
 	}
 

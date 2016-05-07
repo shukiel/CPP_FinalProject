@@ -2,6 +2,7 @@
 #define __CREW_H
 
 #include "Employee.h"
+#include "Exceptions.h"
 
 class Crew : public Employee
 {

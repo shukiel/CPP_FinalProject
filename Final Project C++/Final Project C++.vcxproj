@@ -84,6 +84,7 @@
     <ClInclude Include="Dancer.h" />
     <ClInclude Include="DanceShow.h" />
     <ClInclude Include="Employee.h" />
+    <ClInclude Include="Exceptions.h" />
     <ClInclude Include="Musical.h" />
     <ClInclude Include="Musician.h" />
     <ClInclude Include="MusicShow.h" />
@@ -99,6 +100,10 @@
     <ClCompile Include="Crew.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Participator.cpp" />
+    <ClCompile Include="Show.cpp" />
+    <ClCompile Include="ShowAtVenue.cpp" />
+    <ClCompile Include="Venue.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
