@@ -1,10 +1,8 @@
 #ifndef __SHOW_H
 #define __SHOW_H
 
-#include<iostream>
+#include "Participator.h"
 #include "Crew.h"
-
-using namespace std;
 
 class Show
 {
@@ -24,24 +22,24 @@ public:
 		 const Crew& lightingDesigner, const Crew& soundDesigner, const Crew& setDesigner, 
 		 int ticketPrice, int numOfShows, int numOfParticipant);
 	Show(const Show& other);
-	~Show();
+	virtual ~Show() { delete[] m_name; }
 
-	virtual void makeShow() const			=0;
-	virtual float getAllSalaries() const	=0;
-	virtual bool isShowPossible() const		=0;
-	virtual void talkWithProducer() const	=0;
+	virtual void makeShow()			const = 0;
+	virtual float getAllSalaries()	const = 0;
+	virtual bool isShowPossible()	const = 0;
+	virtual void talkWithProducer()	const = 0;
 
-	void addPerformance();
+	virtual void addPerformance(const Participator& participator) = 0;
+	virtual void toOs(ostream& os) const = 0;
 
-
-	void setDuration(int duration) { this->m_duration = duration; }
-	void setLoadInLoadOutTime(int loadInLoadOutTime) { this->m_loadInLoadOutTime = loadInLoadOutTime; }
-	void setLightingDesigner(const Crew& lightingDesigner);
-	void setSoundDesigner(const Crew& soundDesigner);
-	void setSetDesigner(const Crew& setDesigner);
-	void setTicketPrice(int ticketPrice) { this->m_ticketPrice = ticketPrice; }
-	void setNumOfShows(int numOfShows) { this->m_numOfShows = numOfShows; }
-	void setNumOfParticipant(int numOfParticipant) { this->m_numOfParticipant = numOfParticipant; }
+	void setDuration(int duration) { m_duration = duration; }
+	void setLoadInLoadOutTime(int loadInLoadOutTime) { m_loadInLoadOutTime = loadInLoadOutTime; }
+	void setLightingDesigner(const Crew& lightingDesigner) { m_lightingDesigner = lightingDesigner; }
+	void setSoundDesigner(const Crew& soundDesigner) { m_soundDesigner = soundDesigner; }
+	void setSetDesigner(const Crew& setDesigner) { m_setDesigner = setDesigner; }
+	void setTicketPrice(int ticketPrice) { m_ticketPrice = ticketPrice; }
+	void setNumOfShows(int numOfShows) { m_numOfShows = numOfShows; }
+	void setNumOfParticipant(int numOfParticipant) { m_numOfParticipant = numOfParticipant; }
 
 	const char* getName() const { return m_name; }
 	int getDuration() const { return m_duration; }
@@ -54,12 +52,10 @@ public:
 	int getNumOfParticipant() const { return m_numOfParticipant; }
 
 	const Show& operator=(const Show& other);
-	bool operator==(const Show& other) const;
-	bool operator!=(const Show& other) const;
+	bool operator==(const Show& other) const { return (strcmp(this->getName(), other.getName()) == 0) && (this->getDuration() == other.getDuration()); }
+	bool operator!=(const Show& other) const { return !(*this == other); }
 	friend ostream& operator<<(ostream& os, const Show& show);
 	friend istream& operator>>(istream& in, Show& show);
-
-	
 };
 
 #endif

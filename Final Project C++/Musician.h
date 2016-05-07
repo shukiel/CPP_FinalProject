@@ -8,14 +8,19 @@ private:
 	char* m_instrument;
 
 public:
-	Musician(Employee& emp, char* part, char * instrument) : Participator(emp, part, 0), m_instrument(NULL) { setInstrument(instrument); }
+	Musician(Participator& participator, char * instrument) : Participator(participator), m_instrument(NULL) { setInstrument(instrument); }
+	Musician(const Musician& other) : Participator(other), m_instrument(NULL) { setInstrument(other.getInstrument()); };
+	virtual ~Musician() { delete[] m_instrument; }
 
 	void setInstrument(const char* instrument);
 
 	const char* getInstrument() const { return m_instrument; }
 
-	virtual void toOs(ostream& os) const; 
-	void doPartInShow();
+	const Musician& operator=(const Musician& other);
+	friend istream& operator>>(istream& in, Musician& musician);
+
+	virtual void doPartInShow() const;
+	virtual void toOs(ostream& os) const;
 };
 
 #endif //__MUSICIAN__H

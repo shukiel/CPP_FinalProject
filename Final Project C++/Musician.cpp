@@ -3,7 +3,7 @@
 void Musician::setInstrument(const char* instrument)
 { 
 	delete []m_instrument;
-	m_instrument = strdup(instrument);
+	m_instrument = _strdup(instrument);
 }
 
 void Musician::toOs(ostream& os) const
