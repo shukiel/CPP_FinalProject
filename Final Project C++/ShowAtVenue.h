@@ -3,14 +3,14 @@
 
 
 #include <iostream>
-#include "Show.h"
-#include "Contact.h"
-#include "Venue.h"
 #include "Exceptions.h"
 
 
 using namespace std;
-//class Venue;			//Forward declaration 
+
+class Contact;			//Forward declaretion
+class Venue;			//Forward declaration 
+class Show;				//Forward declaration
 
 class ShowAtVenue
 {
@@ -28,17 +28,19 @@ private:
 public:
 	ShowAtVenue (const Show *show, const Venue *venue, const char* date, int ticketPrice);
 	ShowAtVenue (const ShowAtVenue& other);
+	ShowAtVenue() { }
 	~ShowAtVenue();
 
 	void setShow(const Show* show);
 	void setDate(const char* date);
 
+	int getNumOfPeopleInAudience() { return m_numOfPeople; } const
+
 	const Show& getShow() const { return *m_show; }
 	const char* getDate() const { return m_date; }
-	int getNumOfPeopleInAudience(){ return m_numOfPeople;} const;
-
 
 	int GetTotalSalesValue() const;
+
 	void AddSeats(int numOfTickets, const Contact *customer);
 	void RemoveSeats(Contact* customer);
 	const Contact** getAllCustumers() const;  //Will return a array of pointers to all the customers in the show FREE
@@ -47,6 +49,6 @@ public:
 	const ShowAtVenue& operator=(const ShowAtVenue& other);
 	friend ostream& operator<<(ostream& os, const ShowAtVenue& show);
 	friend istream& operator>>(istream& in, ShowAtVenue& show);
-}
+};
 
 #endif

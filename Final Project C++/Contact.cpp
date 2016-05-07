@@ -29,7 +29,7 @@
 	void Contact::setAddress(const char* address)
 	{
 		delete[] m_address;
-		m_address = strdup(address);
+		m_address = _strdup(address);
 	}
 
 	const Contact& Contact::operator=(const Contact& other)

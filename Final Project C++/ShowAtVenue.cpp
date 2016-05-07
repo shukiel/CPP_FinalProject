@@ -1,5 +1,7 @@
 #include "ShowAtVenue.h"
+#include "Venue.h"
 #include "Contact.h"
+#include "Show.h"
 
 ShowAtVenue::ShowAtVenue (const Show *show, const Venue *venue, const char* date, int ticketPrice) 
 {
@@ -8,11 +10,11 @@ ShowAtVenue::ShowAtVenue (const Show *show, const Venue *venue, const char* date
 	m_venue = venue;
 	m_numOfPeople = 0;
 
-	m_seatArr = new Contact**[venue->getNumOfRows()]; //Dynamic allocate the Seats array ROWS
+	m_seatArr = const_cast<const Contact***>( new Contact**[venue->getNumOfRows()]); //Dynamic allocate the Seats array ROWS
 
 	for (int i = 0; i < venue->getNumOfRows(); i++)
 	{
-		m_seatArr[i] = new Contact*[venue->getNumOfSeatsPerRow()];
+		m_seatArr[i] = const_cast<const Contact**>(new Contact*[venue->getNumOfSeatsPerRow()]);
 		for (int j = 0; j < venue->getNumOfSeatsPerRow(); j++)
 		{
 			m_seatArr[i][j] = NULL;					//If seat is not taken the value is NULL
@@ -40,7 +42,7 @@ void ShowAtVenue::setDate(const char* date)
 	this->m_date = _strdup(date);
 }
 
-int		ShowAtVenue::GetTotalSalesValue() const
+int	ShowAtVenue::GetTotalSalesValue() const
 {
 	return m_numOfPeople * m_show->getTicketPrice();
 }
@@ -91,7 +93,7 @@ void ShowAtVenue::RemoveSeats(Contact* customer)
 
 const Contact** ShowAtVenue::getAllCustumers() const
 {
-	const Contact ** temp = new Contact*[m_numOfPeople];
+	Contact ** temp = new Contact*[m_numOfPeople];	
 	int count =0;
 	for (int i = 0; i < m_venue->getNumOfRows(); i++)
 	{
@@ -99,11 +101,11 @@ const Contact** ShowAtVenue::getAllCustumers() const
 		{
 			if (m_seatArr)
 			{
-				temp[count] = m_seatArr[i][j];
+				temp[count] = const_cast<Contact*>(m_seatArr[i][j]);
 			}
 		}
 	}
-	return temp;
+	return const_cast<const Contact**>(temp);
 }
 
 
@@ -123,13 +125,13 @@ const ShowAtVenue& ShowAtVenue::operator=(const ShowAtVenue& other)
 
 	for (int i = 0; i < other.m_venue->getNumOfRows(); i++)
 	{
-		m_seatArr[i] = new Contact*[other.m_venue->getNumOfSeatsPerRow()];
+		m_seatArr[i] = const_cast<const Contact**>(new Contact*[other.m_venue->getNumOfSeatsPerRow()]);
 		for (int j = 0; j < other.m_venue->getNumOfSeatsPerRow(); j++)
 		{
 			m_seatArr[i][j] = other.m_seatArr[i][j];					//Copys the Array content
 		}
 	}
-
+	return *this;
 }
 
 void ShowAtVenue::freeAlloc() const
@@ -148,8 +150,9 @@ bool ShowAtVenue::isFreeSpace(int numOfTickets) const
 ostream& operator<<(ostream& os, const ShowAtVenue& show)
 {
 	os << "Show Name :" << show.m_show->getName() << " | At Venue : " << show.m_venue->getVenueName() << endl;
+	return os;
 }
 istream& operator>>(istream& in, ShowAtVenue& show)
 {
-
+	return in;
 }

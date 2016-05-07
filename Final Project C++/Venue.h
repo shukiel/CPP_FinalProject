@@ -2,7 +2,9 @@
 #define __VENUE_H
 
 #include "Contact.h"
-#include "ShowAtVenue.h"
+
+class ShowAtVenue;	//Forward declaration
+class Show;			//Forward Declarations
 
 class Venue{
 private:
@@ -11,10 +13,15 @@ private:
 	int			 m_capacity;
 	int			 m_numOfRows;
 	int			 m_numOfSeatsPerRow;
-	ShowAtVenue* m_showAtVenue; 
+	int			 m_numOfShows;
+	ShowAtVenue* m_showAtVenue;				//Array Of shows 
+
+	const int MAX_NUM_OF_SHOWS = 100;
+
+	void copyEverythingButContact(const Venue& other);
 
 public:
-	Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, const ShowAtVenue* showAtVenue, char* name);
+	Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, char* name);
 	Venue(const Venue& other);
 	~Venue();
 

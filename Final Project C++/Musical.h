@@ -18,5 +18,5 @@ public:
 	const Musical& operator=(const Musical& other);
 	friend ostream& operator<<(ostream& os, const Musical& show);
 	friend istream& operator>>(istream& in, Musical& show);
-}
+};
 #endif

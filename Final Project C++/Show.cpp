@@ -1,6 +1,5 @@
-#define DELIMITER ";"
 #include "Show.h"
- 
+#include <string>
 
 Show::Show(const char* name, int duration, int loadInLoadOutTime,
 	const Crew& lightingDesigner, const Crew& soundDesigner, const Crew& setDesigner,
@@ -66,8 +65,8 @@ ostream& operator<<(ostream& os, const Show& show)
 
 istream& operator>>(istream& in, Show& show)
 {
-	in >> show.m_name >> ";" >> show.m_duration >> DELIMITER >> show.m_loadInLoadOutTime >> DELIMITER
-		>> show.m_lightingDesigner >> DELIMITER >> show.m_soundDesigner >> DELIMITER >> show.m_setDesigner >> DELIMITER
-		>> show.m_ticketPrice >> DELIMITER >> show.getNumOfShows >> DELIMITER >> show.m_numOfParticipant;
+	in >> show.m_name >> show.m_duration >> show.m_loadInLoadOutTime 
+		>> show.m_lightingDesigner >> show.m_soundDesigner >> show.m_setDesigner 
+		>> show.m_ticketPrice >> show.getNumOfShows >> show.m_numOfParticipant;
 	return in;
 }	

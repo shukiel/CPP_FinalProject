@@ -6,6 +6,12 @@
 #include <fstream>
 #include "Contact.h"
 
+
+//Forward declarations
+class ShowAtVenue;
+class Contact;
+
+
 class Exception //Abstract class - > Super class for all exceptions
 {
 public :
@@ -18,9 +24,7 @@ class NoMoreRoomException : public Exception
 {
 public:
 	const Contact* m_customer;
-	NoMoreRoomException(const Contact* customer) : m_customer(customer)
-	{
-	}
+	NoMoreRoomException(const Contact* customer) : m_customer(customer){}
 
 	void printErrorToConsole()
 	{
@@ -33,6 +37,14 @@ public:
 		log << "This Customer have no free spot -> " << *m_customer << endl;
 		log.close();
 	}
+};
+
+class TooMuchShowsException : public Exception
+{
+private:
+	ShowAtVenue show;
+public:
+
 };
 
 
