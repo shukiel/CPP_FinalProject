@@ -2,38 +2,35 @@
 #define __THEATERSHOW_H
 
 #include "Show.h"
-#include "Participator.h"
+#include "Actor.h"
 
 #define MAX_NUM_OF_ACTORS 20
-
-class Actor;	//forward declaration
 
 class TheaterShow : public Show
 {
 private:
-	Actor**	 m_actors; 
+	//Actor**	 m_actors; 
 	Crew	m_director;
 
 public:
-	TheaterShow(const Show& other, const Crew& director);
-	TheaterShow(const TheaterShow& other);
-	~TheaterShow();
+	TheaterShow(const Show& other, const Crew& director) : Show(other), m_director(director) { }
+	//TheaterShow(const TheaterShow& other);
+	//~TheaterShow();
 
-	void setDirector(const Crew& director);
+	void setDirector(const Crew& director) { m_director = director; }
 
-	Actor** getActors() const { return m_actors; }
+	//Actor** getActors() const { return m_actors; }
 	const Crew& getDirector() const { return m_director; }
 
 	const TheaterShow& operator=(const TheaterShow& other);
 	friend istream& operator>>(istream& in, TheaterShow& show);
 
 	virtual void toOs(ostream& os) const;
+	virtual void addParticipator(Actor& actor);
 
-	bool isShowPossible();
-	void talkWithProducer();
-	float getCost();
-	void addActor(Actor& actor);
-	void makeShow();
+	virtual void makeShow()			const;
+	virtual bool isShowPossible()	const;
+	virtual void talkWithProducer();
 };
 
 #endif

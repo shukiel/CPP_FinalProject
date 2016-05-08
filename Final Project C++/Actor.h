@@ -11,7 +11,7 @@ private:
 
 public:
 	Actor(Participator& participator, const char* line) : Participator(participator), m_line(NULL) { setLine(line); }
-	Actor(const Actor& other) : Participator(other), m_line(NULL) { setLine(other.getLine()); };
+	Actor(const Actor& other) : Participator(other), m_line(NULL) { *this = other; }
 	virtual ~Actor() { delete[] m_line; }
 
 	void setLine(const char* line);
@@ -21,7 +21,7 @@ public:
 	const Actor& operator=(const Actor& other);
 	friend istream& operator>>(istream& in, Actor& actor);
 
-	void makeDrama() ;		//Ego might go up!
+	void makeDrama();		//Ego might go up!
 
 	virtual void doPartInShow() const;
 	virtual void toOs(ostream& os) const;

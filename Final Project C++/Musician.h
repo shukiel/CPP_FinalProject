@@ -9,7 +9,7 @@ private:
 
 public:
 	Musician(Participator& participator, char * instrument) : Participator(participator), m_instrument(NULL) { setInstrument(instrument); }
-	Musician(const Musician& other) : Participator(other), m_instrument(NULL) { setInstrument(other.getInstrument()); };
+	Musician(const Musician& other) : Participator(other), m_instrument(NULL) { *this = other; }
 	virtual ~Musician() { delete[] m_instrument; }
 
 	void setInstrument(const char* instrument);

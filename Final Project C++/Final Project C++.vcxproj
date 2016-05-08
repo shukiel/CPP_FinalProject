@@ -96,8 +96,10 @@
     <ClInclude Include="Venue.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Actor.cpp" />
     <ClCompile Include="Contact.cpp" />
     <ClCompile Include="Crew.cpp" />
+    <ClCompile Include="Dancer.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Musician.cpp" />

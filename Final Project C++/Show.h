@@ -4,6 +4,8 @@
 #include "Participator.h"
 #include "Crew.h"
 
+#define MAX_NUM_OF_PARTICIPATORS 50
+
 class Show
 {
 protected:
@@ -13,7 +15,7 @@ protected:
 	Crew	m_lightingDesigner;
 	Crew	m_soundDesigner;
 	Crew	m_setDesigner;
-	Participator **m_participators;
+	Participator** m_participators;
 	int		m_ticketPrice;
 	int		m_numOfShows;
 	int		m_numOfParticipant;
@@ -21,17 +23,18 @@ protected:
 public:
 	Show(const char* name, int duration, int loadInLoadOutTime, 
 		 const Crew& lightingDesigner, const Crew& soundDesigner, const Crew& setDesigner, 
-		 int ticketPrice, int numOfShows, int numOfParticipant);
+		 int ticketPrice, int numOfShows);
 	Show(const Show& other);
 	virtual ~Show() { delete[] m_name; }
 
 	virtual void makeShow()			const = 0;
 	virtual bool isShowPossible()	const = 0;
-	virtual void talkWithProducer()	const = 0;
-	virtual float getCost()			const = 0;
+	virtual void talkWithProducer() = 0;
 
-	virtual void addPerformance(const Participator& participator) = 0;
 	virtual void toOs(ostream& os) const;
+	virtual void addParticipator(Participator& participator);
+
+	float getCost() const;
 
 	void setDuration(int duration) { m_duration = duration; }
 	void setLoadInLoadOutTime(int loadInLoadOutTime) { m_loadInLoadOutTime = loadInLoadOutTime; }
@@ -51,13 +54,8 @@ public:
 	int getTicketPrice() const { return m_ticketPrice; }
 	int getNumOfShows() const { return m_numOfShows; }
 	int getNumOfParticipant() const { return m_numOfParticipant; }
+	Participator** getParticipators() const { return m_participators; }
 
-
-	void addParticipator(Participator*)
-	{
-
-	}
-	
 	const Show& operator=(const Show& other);
 	bool operator==(const Show& other) const { return (strcmp(this->getName(), other.getName()) == 0) && (this->getDuration() == other.getDuration()); }
 	bool operator!=(const Show& other) const { return !(*this == other); }
