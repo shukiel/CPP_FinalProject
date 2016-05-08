@@ -6,6 +6,7 @@
 #include <fstream>
 #include "Contact.h"
 
+#define LOG_FILE_NAME "log.txt"
 
 //Forward declarations
 class ShowAtVenue;
@@ -17,8 +18,6 @@ class Exception //Abstract class - > Super class for all exceptions
 public :
 	virtual void printErrorToConsole() = 0;
 	virtual void printErrorToLogFile() = 0;
-protected:
-	const char* LOG_FILE_NAME = "log.txt";
 };
 class NoMoreRoomException : public Exception
 {
@@ -48,13 +47,13 @@ public:
 
 	void printErrorToConsole()
 	{
-		cout << "This Show have no free spot -> " << *m_show << endl;
+		cout << "This Show have no free spot -> " << m_show << endl;
 	}
 
 	void printErrorToLogFile()
 	{
 		ofstream log(LOG_FILE_NAME, ios::app);
-		log << "This Show have no free spot -> " << *m_show << endl;
+		log << "This Show have no free spot -> " << m_show << endl;
 		log.close();
 	}
 

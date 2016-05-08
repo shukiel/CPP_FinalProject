@@ -3,6 +3,8 @@
 
 #include "Contact.h"
 
+#define MAX_NUM_OF_SHOWS 100
+
 class ShowAtVenue;	//Forward declaration
 class Show;			//Forward Declarations
 
@@ -15,8 +17,6 @@ private:
 	int			 m_numOfSeatsPerRow;
 	int			 m_numOfShows;
 	ShowAtVenue* m_showAtVenue;				//Array Of shows 
-
-	const int MAX_NUM_OF_SHOWS = 100;
 
 	void copyEverythingButContact(const Venue& other);
 
@@ -42,8 +42,8 @@ public:
 	bool operator==(const Venue& other) const;
 	bool operator!=(const Venue& other) const;
 
-	void operator+=(const ShowAtVenue show);	//adds a show to the venue
-	void operator-=(const ShowAtVenue show);	//removes a show from a venue
+	void operator+=(const ShowAtVenue& show);	//adds a show to the venue
+	void operator-=(const ShowAtVenue& show);	//removes a show from a venue
 
 
 	bool operator>(const Venue& other) const;
@@ -55,7 +55,7 @@ public:
 	friend istream& operator>>(istream& in, Venue& venue);
 
 	bool AddShow(const ShowAtVenue& show) { *this += show; };
-	bool RemoveShow(const ShowAtVenue& show){ *this += show; };
+	bool RemoveShow(const ShowAtVenue& show){ *this -= show; };
 
 	int getSalesRevenue() const;
 };

@@ -38,6 +38,7 @@ const Venue& Venue::operator=(const Venue& other)
 {
 	this->copyEverythingButContact(other);
 	this->m_contactDetails = other.m_contactDetails;
+	return *this;
 }
 bool Venue::operator==(const Venue& other) const
 {
@@ -46,7 +47,7 @@ bool Venue::operator==(const Venue& other) const
 
 bool Venue::operator!=(const Venue& other) const
 {
-	return *this != other;
+	return !(*this == other);
 }
 
 //bool operator>(const Venue& other) const;
@@ -54,7 +55,7 @@ bool Venue::operator!=(const Venue& other) const
 //bool operator>=(const Venue& other) const;
 //bool operator<=(const Venue& other) const;
 
-void Venue::operator+=(const ShowAtVenue show) throw (TooMuchShowsException)	//adds a show to the venue
+void Venue::operator+=(const ShowAtVenue& show) throw (TooMuchShowsException)	//adds a show to the venue
 {
 	if (!(m_numOfShows + 1 > MAX_NUM_OF_SHOWS)) //Have room for one more show
 	{
@@ -64,7 +65,7 @@ void Venue::operator+=(const ShowAtVenue show) throw (TooMuchShowsException)	//a
 		throw(TooMuchShowsException(show));
 }
 
-void Venue::operator-=(const ShowAtVenue show) 
+void Venue::operator-=(const ShowAtVenue& show) 
 {
 	int i;
 	for (i = 0; i < m_numOfShows; i++)
@@ -88,7 +89,8 @@ ostream& operator<<(ostream& os, const Venue& venue)
 }
 istream& operator>>(istream& in, Venue& venue)
 {
-
+	in >> venue.m_name >> (Contact&)venue.m_contactDetails >> venue.m_capacity >> venue.m_numOfRows >> venue.m_numOfSeatsPerRow;
+	return in;
 }
 
 int	Venue::getSalesRevenue() const //Gets the profit of the show

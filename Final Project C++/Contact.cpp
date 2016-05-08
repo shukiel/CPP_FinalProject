@@ -45,7 +45,7 @@
 
 	ostream& operator<<(ostream& os, const Contact& contact)
 	{
-		os << "Name: " << contact.getName() << ", Phone number: " << contact.getPhoneNum() << ", Address: " << contact.getAddress() << endl;
+		contact.toOs(os);
 		return os;
 	}
 
@@ -53,4 +53,9 @@
 	{
 		in >> contact.m_name >> contact.m_phoneNum >> contact.m_address;
 		return in;
+	}
+
+	void Contact::toOs(ostream& os) const
+	{
+		os << "Name: " << getName() << ", Phone number: " << getPhoneNum() << ", Address: " << getAddress() << endl;
 	}

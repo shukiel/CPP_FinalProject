@@ -31,7 +31,7 @@ public:
 	virtual float getCost()			const = 0;
 
 	virtual void addPerformance(const Participator& participator) = 0;
-	virtual void toOs(ostream& os) const = 0;
+	virtual void toOs(ostream& os) const;
 
 	void setDuration(int duration) { m_duration = duration; }
 	void setLoadInLoadOutTime(int loadInLoadOutTime) { m_loadInLoadOutTime = loadInLoadOutTime; }

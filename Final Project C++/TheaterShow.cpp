@@ -8,7 +8,7 @@ TheaterShow::TheaterShow(const Show& other, const Crew& director) : Show(other),
 
 TheaterShow::TheaterShow(const TheaterShow& other) : Show(other), m_director(other.m_director)
 {
-	m_actors = new Actor*[other.MAX_NUM_OF_ACTORS];
+	m_actors = new Actor*[MAX_NUM_OF_ACTORS];
 	for (int i = 0; m_numOfParticipant; i++)
 	{
 		m_actors[i] = other.m_actors[i];
@@ -29,12 +29,13 @@ const TheaterShow& TheaterShow::operator=(const TheaterShow& other)
 	{
 		(Show&)(*this) = other; //Call - operator of the parent
 
-		m_actors = new Actor*[other.MAX_NUM_OF_ACTORS];
+		m_actors = new Actor*[MAX_NUM_OF_ACTORS];
 		for (int i = 0; m_numOfParticipant; i++)
 		{
 			m_actors[i] = other.m_actors[i];
 		}
 	}
+	return *this;
 }
 
 void TheaterShow::addActor(Actor& actor)
@@ -46,15 +47,16 @@ void TheaterShow::addActor(Actor& actor)
 	throw "No more room for this actor :(";
 }
 
-ostream& operator<<(ostream& os, const TheaterShow& show)
+void TheaterShow::toOs(ostream& os) const
 {
-	Show::toOs(os);		//?!?! Why is it not working?! worked fine in Employee
-	os << show.getDirector();
-	return os;
+	Show::toOs(os);	
+	os << getDirector();
 }
+
 istream& operator>>(istream& in, TheaterShow& show)
 {
-
+	in >> (Crew&)show.m_director;
+	return in;
 }
 
 void TheaterShow::makeShow()
@@ -68,7 +70,12 @@ void TheaterShow::makeShow()
 
 bool TheaterShow::isShowPossible()
 {//Checks if all actors dont have too high Ego Level! And if the Crew is not too drunk
-
+	if(m_director.getNumOfBeersDrank() > 3)
+		return false;
+	for(int i = 0; i < getNumOfParticipant(); i++)
+		if(m_actors[i]->getEgoLevel() > 5)
+			return false;
+	return true;
 }
 void TheaterShow::talkWithProducer()
 {//Set All Ego Back to 0 for the participator And number of beers drank to 

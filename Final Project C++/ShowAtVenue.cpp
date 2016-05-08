@@ -44,7 +44,7 @@ void ShowAtVenue::setDate(const char* date)
 
 float	ShowAtVenue::GetTotalSalesValue() const
 {
-	return m_numOfPeople * m_show->getTicketPrice();
+	return (float) m_numOfPeople * m_show->getTicketPrice();
 }
 
 

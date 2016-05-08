@@ -50,7 +50,6 @@ const Show& Show::operator=(const Show& other)
 
 ostream& operator<<(ostream& os, const Show& show)
 {
-	os << "Show Name : " << show.m_name << " | Duration : " << show.m_duration;
 	show.toOs(os);
 	return os;
 }
@@ -62,3 +61,8 @@ istream& operator>>(istream& in, Show& show)
 		>> show.m_ticketPrice >> show.m_numOfParticipant >> show.m_numOfParticipant;
 	return in;
 }	
+
+void Show::toOs(ostream& os) const
+{
+	os << "Show Name : " << m_name << " | Duration : " << m_duration;
+}
