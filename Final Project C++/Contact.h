@@ -21,13 +21,14 @@ public:
 	void setPhoneNum(const char* phoneNum);
 	void setAddress(const char* address);
 
-	const char* getName() const { return m_name; }
-	const char* getPhoneNum() const { return m_phoneNum; }
-	const char* getAddress() const { return m_address; }
+	const char* getName()		const { return m_name; }
+	const char* getPhoneNum()	const { return m_phoneNum; }
+	const char* getAddress()	const { return m_address; }
 
-	const Contact& operator=(const Contact& other);
 	bool operator==(const Contact& other) const { return ((strcmp(this->getName(), other.getName()) == 0) && (strcmp(this->getPhoneNum(), other.getPhoneNum()) == 0)); }
 	bool operator!=(const Contact& other) const { return !(*this == other); }
+
+	const Contact& operator=(const Contact& other);
 	friend ostream& operator<<(ostream& os, const Contact& contact);
 	friend istream& operator>>(istream& in, Contact& contact);
 	

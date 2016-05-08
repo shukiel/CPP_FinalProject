@@ -6,7 +6,7 @@
 
 #define MAX_NUM_OF_ACTORS 20
 
-class TheaterShow : public Show
+class TheaterShow : public virtual Show
 {
 private:
 	//Actor**	 m_actors; 
@@ -22,15 +22,15 @@ public:
 	//Actor** getActors() const { return m_actors; }
 	const Crew& getDirector() const { return m_director; }
 
-	const TheaterShow& operator=(const TheaterShow& other);
+	//const TheaterShow& operator=(const TheaterShow& other);
 	friend istream& operator>>(istream& in, TheaterShow& show);
 
-	virtual void toOs(ostream& os) const;
 	virtual void addParticipator(Actor& actor);
+	virtual void talkWithProducer();
 
+	virtual void toOs(ostream& os)	const;
 	virtual void makeShow()			const;
 	virtual bool isShowPossible()	const;
-	virtual void talkWithProducer();
 };
 
 #endif

@@ -8,23 +8,15 @@
 class Musical : public DanceShow, MusicShow, TheaterShow
 {
 public:
-	Musical(char* name, int duration, int loadInLoadOutTime, 
-		 Crew lightingDesigner, Crew soundDesigner, Crew setDesigner, 
-		 int ticketPrice, int numOfShows, int numOfParticipant,
-		 Crew director, Crew musicalManger, int soundCheckTime, Crew choreograph, 
-		 Participator* musicians, Actor* actors, Dancer* dancers);
-	Musical(const Musical& other);
+	Musical(const DanceShow& dance, const MusicShow& music, const TheaterShow& theater) : DanceShow(dance), MusicShow(music), TheaterShow(theater) { }
 
-
-	void makeShow();
-	bool isShowPossible();
-	void talkWithProducer();
-	float getCost();
-
-
-
-	const Musical& operator=(const Musical& other);
-	friend ostream& operator<<(ostream& os, const Musical& show);
 	friend istream& operator>>(istream& in, Musical& show);
+
+	virtual void toOs(ostream& os) const;
+	virtual void addParticipator(Participator& participator);
+
+	virtual void makeShow()			const;
+	virtual bool isShowPossible()	const;
+	virtual void talkWithProducer();
 };
 #endif

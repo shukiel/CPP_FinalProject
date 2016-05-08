@@ -14,15 +14,15 @@
 //	delete[] m_actors;
 //}
 
-const TheaterShow& TheaterShow::operator=(const TheaterShow& other)
-{
-	if (this != &other)
-	{
-		(Show&)(*this) = other; //Call - operator of the parent
-		setDirector(other.getDirector());
-	}
-	return *this;
-}
+//const TheaterShow& TheaterShow::operator=(const TheaterShow& other)
+//{
+//	if (this != &other)
+//	{
+//		(Show&)(*this) = other; //Call - operator of the parent
+//		setDirector(other.getDirector());
+//	}
+//	return *this;
+//}
 
 void TheaterShow::addParticipator(Actor& actor)
 {
@@ -37,35 +37,33 @@ void TheaterShow::addParticipator(Actor& actor)
 void TheaterShow::toOs(ostream& os) const
 {
 	Show::toOs(os);	
-	os << getDirector();
+	os << "Director: " << getDirector() << endl;
 }
 
 istream& operator>>(istream& in, TheaterShow& show)
 {
-	in >> (Crew&)show.m_director;
+	in >> (Show&)show >> (Crew&)show.m_director;
 	return in;
 }
 
 void TheaterShow::makeShow() const
 {
-	cout << "The Show " << m_name << "Is now starting please turn off your phones\n";
-	for (int i = 0; i < getNumOfParticipant(); i++)
-		m_participators[i]->doPartInShow();
+	Show::makeShow();
+	for(int i = 0; i < m_numOfParticipant; i++)
+	{
+		Actor* temp = dynamic_cast<Actor*>(m_participators[i]);
+		if(temp)
+			temp->makeDrama();
+	}
 }
 
 bool TheaterShow::isShowPossible() const
 {//Checks if all actors dont have too high Ego Level! And if the Crew is not too drunk
-	if(m_director.getNumOfBeersDrank() > 3)
-		return false;
-	for(int i = 0; i < getNumOfParticipant(); i++)
-		if(m_participators[i]->getEgoLevel() > 5)
-			return false;
-	return true;
+	return Show::isShowPossible() && m_director.getNumOfBeersDrank() > 3;
 }
 
 void TheaterShow::talkWithProducer()
 {//Set All Ego Back to 0 for the participator And number of beers drank to 
+	Show::talkWithProducer();
 	m_director.soberUp();
-	for(int i = 0; i < getNumOfParticipant(); i++)
-		m_participators[i]->resetEgoLevel();
 }

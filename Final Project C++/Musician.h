@@ -2,6 +2,7 @@
 #define __MUSICIAN__H
 
 #include "Participator.h"
+
 class Musician : public Participator
 {
 private:
@@ -19,8 +20,10 @@ public:
 	const Musician& operator=(const Musician& other);
 	friend istream& operator>>(istream& in, Musician& musician);
 
-	virtual void doPartInShow() const;
-	virtual void toOs(ostream& os) const;
+	void makeSolo();		//Ego might go up!
+
+	virtual void doPartInShow()		const;
+	virtual void toOs(ostream& os)	const;
 };
 
 #endif //__MUSICIAN__H

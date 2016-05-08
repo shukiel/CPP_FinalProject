@@ -15,8 +15,8 @@ public:
 	void setSalaryPerHour(float salaryPerHour)		 { m_salaryPerHour = salaryPerHour; }
 	void setNumOfWorkingHours(int numOfWorkingHours) { m_numOfWorkingHours = numOfWorkingHours; }
 
-	float getSalaryPerHour() const	 { return m_salaryPerHour; }
-	int getNumOfWorkingHours() const { return m_numOfWorkingHours; }
+	float getSalaryPerHour()	const { return m_salaryPerHour; }
+	int getNumOfWorkingHours()	const { return m_numOfWorkingHours; }
 
 	friend istream& operator>>(istream& in, Employee& employee);
 

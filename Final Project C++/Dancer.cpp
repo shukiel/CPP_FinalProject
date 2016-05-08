@@ -22,3 +22,8 @@ void Dancer::toOs(ostream& os) const
 	else
 		os << "False." << endl;
 }
+
+void Dancer::makeAcrobatics()
+{
+
+}

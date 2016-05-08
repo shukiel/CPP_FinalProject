@@ -1,36 +1,66 @@
-#ifndef __MUSICSHOW_H
-#define __MUSICSHOW_H
+#include "MusicShow.h"
 
-#include "Show.h"
-#include "Participator.h"
+//const MusicShow& MusicShow::operator=(const MusicShow& other)
+//{
+//	if (this != &other)
+//	{
+//		(Show&)(*this) = other; //Call - operator of the parent
+//		setMusicalManager(other.getMusicalManager());
+//		setSoundCheckTime(other.getSoundCheckTime());
+//	}
+//	return *this;
+//}
 
-class MusicShow : public Show
+istream& operator>>(istream& in, MusicShow& show)
 {
-private:
-	Participator* m_musicians;
-	Crew m_musicalManger;
-	int m_soundCheckTime;
+	in >> (Show&)show >> (Crew&)show.m_musicalManager >> show.m_soundCheckTime;
+	return in;
+}
 
-public:
-	MusicShow(const Show& other, const Crew& musicalManger, int soundCheckTime, const Participator* musicians = NULL);
-	MusicShow(const MusicShow& other);
-	~MusicShow();
+void MusicShow::toOs(ostream& os) const
+{
+	Show::toOs(os);	
+	os << "Musical manager: " << getMusicalManager() << ", Sound check time: " << getSoundCheckTime() << endl;
+}
 
-	void setDirector(const Crew& director);
-	void setSoundCheckTime(int soundCheckTime) { this->m_soundCheckTime = soundCheckTime; }
+void MusicShow::addParticipator(Musician& musician)
+{
+	if (!(m_numOfParticipant + 1 > MAX_NUM_OF_MUSICIANS))
+	{
+		musician.setNumOfWorkingHours(m_duration + m_soundCheckTime);
+		Show::addParticipator(musician);
+	}
+	throw "No more room for this musician :(";
+}
 
-	const Participator* getMusicians() const { return m_musicians; }
-	const Crew& getMusicalManger() const { return m_musicalManger; }
-	int getSoundCheckTime() const { return m_soundCheckTime; }
+void MusicShow::makeShow() const
+{
+	Show::makeShow();
+	for(int i = 0; i < m_numOfParticipant; i++)
+	{
+		Musician* temp = dynamic_cast<Musician*>(m_participators[i]);
+		if(temp)
+			temp->makeSolo();
+	}
+}
 
-	const MusicShow& operator=(const MusicShow& other);
-	friend ostream& operator<<(ostream& os, const MusicShow& show);
-	friend istream& operator>>(istream& in, MusicShow& show);
+bool MusicShow::isShowPossible() const
+{
+	return Show::isShowPossible() && m_musicalManager.getNumOfBeersDrank() > 3;
+}
 
-	void makeShow() const;
-	void encore() const;
-	void drinkBeerAndSmokeCiggarettes();
-	bool addMusician(const Participator& musician);
-};
+void MusicShow::talkWithProducer()
+{
+	Show::talkWithProducer();
+	m_musicalManager.soberUp();
+}
 
-#endif
+void MusicShow::encore() const
+{
+
+}
+
+void MusicShow::drinkBeerAndSmokeCiggarettes()
+{
+
+}

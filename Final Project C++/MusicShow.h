@@ -4,31 +4,33 @@
 #include "Show.h"
 #include "Musician.h"
 
-class MusicShow : public Show
+#define MAX_NUM_OF_MUSICIANS 20 
+
+class MusicShow : public virtual Show
 {
 private:
 	//Musician** m_musicians; 
-	Crew m_musicalManger;
+	Crew m_musicalManager;
 	int m_soundCheckTime;
 
 public:
-	MusicShow(const Show& other, const Crew& musicalManger, int soundCheckTime);
+	MusicShow(const Show& other, const Crew& musicalManager, int soundCheckTime) : Show(other), m_musicalManager(musicalManager), m_soundCheckTime(soundCheckTime) { }
 	//MusicShow(const MusicShow& other);
 	//~MusicShow();
 
-	void setDirector(const Crew& director);
-	void setSoundCheckTime(int soundCheckTime) { this->m_soundCheckTime = soundCheckTime; }
+	void setMusicalManager(const Crew& musicalManager) { m_musicalManager = musicalManager; }
+	void setSoundCheckTime(int soundCheckTime) { m_soundCheckTime = soundCheckTime; }
 
 	//const Musician** getMusicians() const { return m_musicians; }
-	const Crew& getMusicalManger() const { return m_musicalManger; }
+	const Crew& getMusicalManager() const { return m_musicalManager; }
 	int getSoundCheckTime() const { return m_soundCheckTime; }
 
-	const MusicShow& operator=(const MusicShow& other);
+	//const MusicShow& operator=(const MusicShow& other);
 	//friend ostream& operator<<(ostream& os, const MusicShow& show);
 	friend istream& operator>>(istream& in, MusicShow& show);
 
 	virtual void toOs(ostream& os) const;
-	virtual void addParticipator(Actor& actor);
+	virtual void addParticipator(Musician& musician);
 
 	virtual void makeShow()			const;
 	virtual bool isShowPossible()	const;

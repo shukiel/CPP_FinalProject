@@ -18,9 +18,10 @@ public:
 	friend istream& operator>>(istream& in, Dancer& dancer);
 	
 	void makeInjury() { setIsInjured(true); }
+	void makeAcrobatics();		//Ego might go up!
 
-	virtual void doPartInShow() const;
-	virtual void toOs(ostream& os) const; 
+	virtual void doPartInShow()		const;
+	virtual void toOs(ostream& os)	const; 
 };
 
 #endif// __DANCER__H

@@ -32,3 +32,8 @@ void Musician::doPartInShow() const
 {
 	cout << getName() << " plays the " << getInstrument() << endl;
 }
+
+void Musician::makeSolo()
+{
+
+}

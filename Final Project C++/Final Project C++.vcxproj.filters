@@ -104,5 +104,11 @@
     <ClCompile Include="Dancer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DanceShow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Musical.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -98,3 +98,24 @@ void Show::addParticipator(Participator& participator)
 	else
 		cout << "No more room for this participator." << endl;
 }
+
+void Show::makeShow() const
+{
+	cout << "The Show " << m_name << "Is now starting please turn off your phones\n";
+	for (int i = 0; i < m_numOfParticipant; i++)
+		m_participators[i]->doPartInShow();
+}
+
+bool Show::isShowPossible() const
+{
+	for(int i = 0; i < getNumOfParticipant(); i++)
+		if(m_participators[i]->getEgoLevel() > 5)
+			return false;
+	return true;
+}
+
+void Show::talkWithProducer()
+{
+	for(int i = 0; i < m_numOfParticipant; i++)
+		m_participators[i]->resetEgoLevel();
+}

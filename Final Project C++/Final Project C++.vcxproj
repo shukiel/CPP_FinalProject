@@ -100,8 +100,10 @@
     <ClCompile Include="Contact.cpp" />
     <ClCompile Include="Crew.cpp" />
     <ClCompile Include="Dancer.cpp" />
+    <ClCompile Include="DanceShow.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Musical.cpp" />
     <ClCompile Include="Musician.cpp" />
     <ClCompile Include="MusicShow.cpp" />
     <ClCompile Include="Participator.cpp" />
