@@ -1,4 +1,5 @@
 #include "Dancer.h"
+#include <time.h>
 
 istream& operator>>(istream& in, Dancer& dancer)
 {
@@ -8,9 +9,14 @@ istream& operator>>(istream& in, Dancer& dancer)
 	return in;
 }
 
-void Dancer::doPartInShow() const
+void Dancer::doPartInShow()
 {
-	cout << getName() << " dancing..." << endl;
+	srand(time(NULL));
+	cout << getName() << ": **dancing**..." << endl;
+	if (rand() > CHANCE_TO_ACROBATICS)
+	{
+		makeAcrobatics();
+	}
 }
 
 void Dancer::toOs(ostream& os) const
@@ -25,5 +31,13 @@ void Dancer::toOs(ostream& os) const
 
 void Dancer::makeAcrobatics()
 {
-
+	cout << m_name << "Making Acrobatics !" <<endl;
+	if (rand() > CHANCE_TO_INJURE)
+	{
+		setIsInjured(true);
+	}
+	else
+	{
+		m_egoLevel += ADDITION_TO_EGO;
+	}
 }

@@ -49,12 +49,6 @@ istream& operator>>(istream& in, TheaterShow& show)
 void TheaterShow::makeShow() const
 {
 	Show::makeShow();
-	for(int i = 0; i < m_numOfParticipant; i++)
-	{
-		Actor* temp = dynamic_cast<Actor*>(m_participators[i]);
-		if(temp)
-			temp->makeDrama();
-	}
 }
 
 bool TheaterShow::isShowPossible() const

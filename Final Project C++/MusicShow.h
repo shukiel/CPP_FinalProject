@@ -36,8 +36,7 @@ public:
 	virtual bool isShowPossible()	const;
 	virtual void talkWithProducer();
 
-	void encore() const;
-	void drinkBeerAndSmokeCiggarettes();
+	void encore() ;
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "Actor.h"
+#include<time.h>
 
 void Actor::setLine(const char* line)
 {
@@ -24,12 +25,18 @@ istream& operator>>(istream& in, Actor& actor)
 
 void Actor::makeDrama()
 {
-
+	cout << m_name << " :" << " PFFFF! I can't work like this !";
+	m_egoLevel += ADDITION_TO_EGO;
 }
 
-void Actor::doPartInShow() const
+void Actor::doPartInShow() 
 {
+	srand(time(NULL));
 	cout << getName() << ": " << getLine() << endl;
+	if (rand() > CHANCE_TO_DRAMA)
+	{
+		this->makeDrama();
+	}
 }
 
 void Actor::toOs(ostream& os) const

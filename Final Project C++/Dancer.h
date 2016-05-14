@@ -7,6 +7,8 @@ class Dancer : public Participator
 {
 private:
 	bool m_isInjured;
+	const float CHANCE_TO_ACROBATICS = 0.2f;
+	const float CHANCE_TO_INJURE = 0.1f;
 
 public:
 	Dancer(Participator& participator, bool isInjured = false) : Participator(participator), m_isInjured(isInjured) { };
@@ -20,8 +22,10 @@ public:
 	void makeInjury() { setIsInjured(true); }
 	void makeAcrobatics();		//Ego might go up!
 
-	virtual void doPartInShow()		const;
+	virtual void doPartInShow()	;
 	virtual void toOs(ostream& os)	const; 
+
+	bool isCanPerform() const { return Participator::isCanPerform() && !m_isInjured; }
 };
 
 #endif// __DANCER__H

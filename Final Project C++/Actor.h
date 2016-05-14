@@ -8,6 +8,7 @@ class Actor : public Participator
 {
 private:
 	char* m_line;
+	const float CHANCE_TO_DRAMA = 0.2f;
 
 public:
 	Actor(Participator& participator, const char* line) : Participator(participator), m_line(NULL) { setLine(line); }
@@ -23,7 +24,7 @@ public:
 
 	void makeDrama();		//Ego might go up!
 
-	virtual void doPartInShow()		const;
+	virtual void doPartInShow()	;
 	virtual void toOs(ostream& os)	const;
 };
 

@@ -37,7 +37,7 @@ void MusicShow::makeShow() const
 {
 	Show::makeShow();
 	for(int i = 0; i < m_numOfParticipant; i++)
-	{
+	{	//Why not just use Show::makeShow()???
 		Musician* temp = dynamic_cast<Musician*>(m_participators[i]);
 		if(temp)
 			temp->makeSolo();
@@ -55,12 +55,8 @@ void MusicShow::talkWithProducer()
 	m_musicalManager.soberUp();
 }
 
-void MusicShow::encore() const
+void MusicShow::encore() 
 {
-
-}
-
-void MusicShow::drinkBeerAndSmokeCiggarettes()
-{
-
+	cout << "Thank you so much you guys are amazing audience!";
+	this->makeShow();
 }

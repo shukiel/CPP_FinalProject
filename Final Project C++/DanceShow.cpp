@@ -35,7 +35,7 @@ void DanceShow::makeShow() const
 
 bool DanceShow::isShowPossible() const
 {
-	return Show::isShowPossible() && m_choreograph.getNumOfBeersDrank() > 3;
+	return Show::isShowPossible() && m_choreograph.isTooDrunk() ;
 }
 
 void DanceShow::talkWithProducer()

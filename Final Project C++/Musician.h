@@ -7,6 +7,7 @@ class Musician : public Participator
 {
 private:
 	char* m_instrument;
+	const float CHANCE_TO_SOLO = 0.3f;
 
 public:
 	Musician(Participator& participator, char * instrument) : Participator(participator), m_instrument(NULL) { setInstrument(instrument); }
@@ -22,8 +23,9 @@ public:
 
 	void makeSolo();		//Ego might go up!
 
-	virtual void doPartInShow()		const;
+	virtual void doPartInShow()		;
 	virtual void toOs(ostream& os)	const;
+
 };
 
 #endif //__MUSICIAN__H

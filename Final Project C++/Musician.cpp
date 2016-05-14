@@ -1,4 +1,5 @@
 #include "Musician.h"
+#include <time.h>
 
 void Musician::setInstrument(const char* instrument)
 { 
@@ -28,12 +29,18 @@ istream& operator>>(istream& in, Musician& musician)
 	return in;
 }
 
-void Musician::doPartInShow() const
+void Musician::doPartInShow() 
 {
+	srand(time(NULL));
 	cout << getName() << " plays the " << getInstrument() << endl;
+	if (rand() > CHANCE_TO_SOLO)
+	{
+		makeSolo();
+	}
 }
 
 void Musician::makeSolo()
 {
-
+	cout << m_name << ": Is making a maginificant solo on his " << m_instrument << endl;
+	m_egoLevel += ADDITION_TO_EGO;
 }

@@ -1,28 +1,8 @@
-﻿Build started 08/05/2016 12:05:35.
-     1>Project "C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Final Project C++\Final Project C++.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ShowAtVenue.cpp Venue.cpp
-         ShowAtVenue.cpp
-     1>c:\users\aviadzini\desktop\cpp\cpp_finalproject\final project c++\showatvenue.h(39): warning C4114: same type qualifier used more than once
-     1>c:\users\aviadzini\desktop\cpp\cpp_finalproject\final project c++\showatvenue.cpp(51): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         Venue.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Debug\Final Project C++.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Debug\Final Project C++.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Debug\Final Project C++.lib" /MACHINE:X86 Debug\Contact.obj
-         Debug\Crew.obj
-         Debug\Employee.obj
-         Debug\main.obj
-         Debug\Musician.obj
-         Debug\MusicShow.obj
-         Debug\Participator.obj
-         Debug\Show.obj
-         Debug\ShowAtVenue.obj
-         Debug\TheaterShow.obj
-         Debug\Venue.obj
-         Final Project C++.vcxproj -> C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Debug\Final Project C++.exe
-     1>Done Building Project "C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Final Project C++\Final Project C++.vcxproj" (Build target(s)).
+﻿Build started 5/14/16 2:56:54 PM.
+     1>Project "W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Final Project C++\Final Project C++.vcxproj" on node 2 (Rebuild target(s)).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.Cpp.Platform.targets(64,5): error MSB8020: The build tools for Visual Studio 2012 (Platform Toolset = 'v110') cannot be found. To build using the v110 build tools, please install Visual Studio 2012 build tools.  Alternatively, you may upgrade to the current Visual Studio tools by selecting the Project menu or right-click the solution, and then selecting "Upgrade Solution...".
+     1>Done Building Project "W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Final Project C++\Final Project C++.vcxproj" (Rebuild target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:01.54
+Time Elapsed 00:00:00.07

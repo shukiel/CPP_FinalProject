@@ -20,6 +20,8 @@ protected:
 	int				m_numOfShows;
 	int				m_numOfParticipant;
 
+	const float EGO_TRESHOLD = 0.7f;
+
 public:
 	Show(const char* name, int duration, int loadInLoadOutTime, 
 		 const Crew& lightingDesigner, const Crew& soundDesigner, const Crew& setDesigner, 

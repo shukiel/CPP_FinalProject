@@ -101,6 +101,10 @@ void Show::addParticipator(Participator& participator)
 
 void Show::makeShow() const
 {
+	if (this->isShowPossible())
+	{
+		throw "This Show is not possible!";
+	}
 	cout << "The Show " << m_name << "Is now starting please turn off your phones\n";
 	for (int i = 0; i < m_numOfParticipant; i++)
 		m_participators[i]->doPartInShow();
@@ -109,9 +113,9 @@ void Show::makeShow() const
 bool Show::isShowPossible() const
 {
 	for(int i = 0; i < getNumOfParticipant(); i++)
-		if(m_participators[i]->getEgoLevel() > 5)
+		if(m_participators[i]->isCanPerform())
 			return false;
-	return true;
+	return true && m_lightingDesigner.isTooDrunk() && m_setDesigner.isTooDrunk() && m_soundDesigner.isTooDrunk();
 }
 
 void Show::talkWithProducer()
