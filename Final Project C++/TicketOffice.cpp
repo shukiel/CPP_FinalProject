@@ -27,6 +27,20 @@ TicketOffice::~TicketOffice()
 
 void TicketOffice::NotifyAllCustomer(const ShowAtVenue& show, const char* message) const
 {
+	const Venue* temp = show.getVenue();
+	int index = getVenueIndex(*temp);
+	if (index == -1)
+	{
+		throw "No Such Venue in the Ticket Office";
+	}
+	
+	const Contact** allCustomers;
+	allCustomers = show.getAllCustumers();
+
+	for (int i = 0; i < show.getNumOfPeopleInAudience(); i++)
+	{
+		cout << "to :" << *allCustomers[i] << message << endl;
+	}
 }
 
 void TicketOffice::setContactDetails(const Contact& contactDetails)
@@ -55,27 +69,49 @@ const ShowAtVenue* TicketOffice::ReserveShow(Venue* venue, const Show* show, con
 	return temp;
 }
 
-bool TicketOffice::CancelShow(ShowAtVenue& show)
+void TicketOffice::CancelShow(ShowAtVenue& show)
 {
-
-	if (getVenueIndex(*show.getVenue()) != -1)
+	int index = getVenueIndex(*show.getVenue());
+	if (index == -1)
 	{
-
+		throw "Venue Does not exist in the Ticket Office";
+	}
+	else
+	{
+		*m_venues[index] -= show;
 	}
 }
-bool TicketOffice::BuyTicket(const ShowAtVenue& show, int numOfTickets, const Contact& customer)
+void TicketOffice::BuyTicket(ShowAtVenue& show, int numOfTickets, const Contact& customer)
 {
-
+	const Venue* temp = show.getVenue();
+	int index = getVenueIndex(*temp);
+	if (index == -1)
+	{
+		throw "No Such Venue in the Ticket Office";
+	}
+	show.AddSeats(numOfTickets, &customer);
 }
 
-bool TicketOffice::cancelTicket(const ShowAtVenue& show, const Contact& customer)
+bool TicketOffice::cancelTicket(ShowAtVenue& show, const Contact& customer)
 {
-
+	const Venue* temp = show.getVenue();
+	int index = getVenueIndex(*temp);
+	if (index == -1)
+	{
+		throw "No Such Venue in the Ticket Office";
+	}
+	show.RemoveSeats(&customer);
 }
 
-void TicketOffice::ChangeShowTime(const ShowAtVenue& show, const char* newDate)
+void TicketOffice::ChangeShowTime(ShowAtVenue& show, const char* newDate)
 {
-
+	const Venue* temp = show.getVenue();
+	int index = getVenueIndex(*temp);
+	if (index == -1)
+	{
+		throw "No Such Venue in the Ticket Office";
+	}
+	show.setDate(newDate);
 }
 
 int TicketOffice::getVenueIndex(const Venue& venue) const 

@@ -34,7 +34,7 @@ public:
 	void setShow(const Show* show);
 	void setDate(const char* date);
 
-	int getNumOfPeopleInAudience() { return m_numOfPeople; } const
+	int getNumOfPeopleInAudience() const { return m_numOfPeople; } 
 
 	const Show& getShow() const { return *m_show; }
 	const char* getDate() const { return m_date; }
@@ -45,7 +45,7 @@ public:
 
 
 	void AddSeats(int numOfTickets, const Contact *customer);
-	void RemoveSeats(Contact* customer);
+	void RemoveSeats(const Contact* customer);
 	const Contact** getAllCustumers() const;  //Will return a array of pointers to all the customers in the show FREE
 
 	const bool operator==(const ShowAtVenue& other)

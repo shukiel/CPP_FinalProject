@@ -62,7 +62,7 @@ void	ShowAtVenue::AddSeats(int numOfTickets, const Contact* customer) throw (NoM
 	}
 }
 
-void ShowAtVenue::RemoveSeats(Contact* customer)
+void ShowAtVenue::RemoveSeats(const Contact* customer)
 {
 	for (int i = 0; i < m_venue->getNumOfRows(); i++)
 	{
@@ -125,6 +125,7 @@ float ShowAtVenue::getProfit() const
 {
 	return GetTotalSalesValue() - m_show->getCost();
 }
+
 
 void ShowAtVenue::freeAlloc() const
 {
