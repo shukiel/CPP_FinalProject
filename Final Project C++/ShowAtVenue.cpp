@@ -22,21 +22,11 @@ ShowAtVenue::ShowAtVenue (const Show *show, const Venue *venue, const char* date
 	}
 }
 
-ShowAtVenue::ShowAtVenue(const ShowAtVenue& other)
-{
-	*this = other;
-}
-
-
-ShowAtVenue::~ShowAtVenue()
-{
-	freeAlloc();
-}
-
 void ShowAtVenue::setShow(const Show* show)
 {
 	this->m_show = show;
 }
+
 void ShowAtVenue::setDate(const char* date)
 {
 	this->m_date = _strdup(date);
@@ -90,7 +80,6 @@ void ShowAtVenue::RemoveSeats(Contact* customer)
 	}
 }
 
-
 const Contact** ShowAtVenue::getAllCustumers() const
 {
 	Contact ** temp = new Contact*[m_numOfPeople];	
@@ -107,7 +96,6 @@ const Contact** ShowAtVenue::getAllCustumers() const
 	}
 	return const_cast<const Contact**>(temp);
 }
-
 
 const ShowAtVenue& ShowAtVenue::operator=(const ShowAtVenue& other)
 {

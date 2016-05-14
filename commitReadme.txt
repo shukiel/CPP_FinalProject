@@ -10,9 +10,9 @@ TODO :: Musician.cpp method makeSolo()    DONE
 TODO :: Dancer.cpp method makeAcrobatics()   DONE
 
 Show holds all participants, so I changed TheaterShow, MusicShow and DanceShow.
-TODO :: MusicShow.cpp methods encore() and drinkBeerAndSmokeCiggarettes()
+TODO :: MusicShow.cpp methods encore() and drinkBeerAndSmokeCiggarettes() //DONE
 TODO :: before dancer running the method makeShow() we need to check if the dancer has been injured - there is a isShowPossible //DONE added a check in Show::makeShow -> is the show is not possible it throws an exception!
-TODO :: Musical.cpp a lot of duplications // Enosh - What We should do with that????
+TODO :: Musical.cpp a lot of duplications // Enosh - What We should do with that???? //DONE
 
 Show::getCost() now using Employee::calcSalary()
 TheaterShow, MusicShow and DanceShow now using Show::getCost() to calculate the salaries
@@ -38,7 +38,7 @@ added bool Paticipator::isCanPerform() // Also done for Dancer
 added bool Crew::isTooDrunk()
 
 
-TODO :: Need to add a place where the Crew drinks, maybe in makeShow()?
-TODO :: Fix Musical... I have no Idea what to do there...
+TODO :: Need to add a place where the Crew drinks, maybe in makeShow()? //DONE
+TODO :: Fix Musical... I have no Idea what to do there... //DONE
 TODO :: TicketOffice.CPP   (Enosh - Hopefully i'll get that later today....)
 TODO :: Main !!!!

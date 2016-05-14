@@ -22,20 +22,9 @@ void DanceShow::addParticipator(Dancer& dancer)
 	throw "No more room for this dancer :(";
 }
 
-void DanceShow::makeShow() const
-{
-	Show::makeShow();
-	for(int i = 0; i < m_numOfParticipant; i++)
-	{
-		Dancer* temp = dynamic_cast<Dancer*>(m_participators[i]);
-		if(temp)
-			temp->makeAcrobatics();
-	}
-}
-
 bool DanceShow::isShowPossible() const
 {
-	return Show::isShowPossible() && m_choreograph.isTooDrunk() ;
+	return Show::isShowPossible() && !(m_choreograph.isTooDrunk());
 }
 
 void DanceShow::talkWithProducer()
@@ -53,4 +42,10 @@ void DanceShow::dancerInjured(Dancer& dancer)
 			if(*temp == dancer)
 				temp->makeInjury();
 	}
+}
+
+void DanceShow::loadInTime()
+{
+	Show::loadInTime();
+	m_choreograph.drinkBeers();
 }

@@ -1,16 +1,5 @@
 #include "MusicShow.h"
 
-//const MusicShow& MusicShow::operator=(const MusicShow& other)
-//{
-//	if (this != &other)
-//	{
-//		(Show&)(*this) = other; //Call - operator of the parent
-//		setMusicalManager(other.getMusicalManager());
-//		setSoundCheckTime(other.getSoundCheckTime());
-//	}
-//	return *this;
-//}
-
 istream& operator>>(istream& in, MusicShow& show)
 {
 	in >> (Show&)show >> (Crew&)show.m_musicalManager >> show.m_soundCheckTime;
@@ -33,20 +22,9 @@ void MusicShow::addParticipator(Musician& musician)
 	throw "No more room for this musician :(";
 }
 
-void MusicShow::makeShow() const
-{
-	Show::makeShow();
-	for(int i = 0; i < m_numOfParticipant; i++)
-	{	//Why not just use Show::makeShow()???
-		Musician* temp = dynamic_cast<Musician*>(m_participators[i]);
-		if(temp)
-			temp->makeSolo();
-	}
-}
-
 bool MusicShow::isShowPossible() const
 {
-	return Show::isShowPossible() && m_musicalManager.getNumOfBeersDrank() > 3;
+	return Show::isShowPossible() && !(m_musicalManager.isTooDrunk());
 }
 
 void MusicShow::talkWithProducer()
@@ -59,4 +37,10 @@ void MusicShow::encore()
 {
 	cout << "Thank you so much you guys are amazing audience!";
 	this->makeShow();
+}
+
+void MusicShow::loadInTime()
+{
+	Show::loadInTime();
+	m_musicalManager.drinkBeers();
 }

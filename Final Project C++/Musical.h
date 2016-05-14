@@ -8,15 +8,16 @@
 class Musical : public DanceShow, MusicShow, TheaterShow
 {
 public:
-	Musical(const DanceShow& dance, const MusicShow& music, const TheaterShow& theater) : DanceShow(dance), MusicShow(music), TheaterShow(theater) { }
+	Musical(const Show& show, const Crew& director, const Crew& choreograph, const Crew& musicalManager, int soundCheckTime) 
+		: Show(show), DanceShow(show, choreograph), TheaterShow(show, director), MusicShow(show, musicalManager, soundCheckTime) { }
 
 	friend istream& operator>>(istream& in, Musical& show);
 
-	virtual void toOs(ostream& os) const;
-	virtual void addParticipator(Participator& participator);
-
-	virtual void makeShow()			const;
+	virtual void toOs(ostream& os)	const;
 	virtual bool isShowPossible()	const;
+
+	virtual void addParticipator(Participator& participator);
 	virtual void talkWithProducer();
+	virtual void loadInTime();
 };
 #endif

@@ -27,9 +27,9 @@ private:
 
 public:
 	ShowAtVenue (const Show *show, const Venue *venue, const char* date, int ticketPrice);
-	ShowAtVenue (const ShowAtVenue& other);
+	ShowAtVenue (const ShowAtVenue& other) { *this = other; }
 	ShowAtVenue() { }
-	~ShowAtVenue();
+	~ShowAtVenue() { freeAlloc(); }
 
 	void setShow(const Show* show);
 	void setDate(const char* date);
