@@ -41,6 +41,7 @@ public:
 
 	float GetTotalSalesValue() const;
 	float getProfit() const;
+	const Venue* getVenue() const { return m_venue; }
 
 
 	void AddSeats(int numOfTickets, const Contact *customer);
