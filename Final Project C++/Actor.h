@@ -14,9 +14,10 @@ private:
 public:
 	Actor(Participator& participator, const char* line) : Participator(participator), m_line(NULL) { setLine(line); }
 	Actor(const Actor& other) : Participator(other), m_line(NULL) { *this = other; }
+	Actor() { }
 	virtual ~Actor() { delete[] m_line; }
 
-	void setLine(const char* line);
+	void setLine(const char* line) { m_line = _strdup(line); }
 
 	const char* getLine() const { return m_line; }
 

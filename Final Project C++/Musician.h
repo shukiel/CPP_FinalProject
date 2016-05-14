@@ -13,9 +13,10 @@ private:
 public:
 	Musician(Participator& participator, char * instrument) : Participator(participator), m_instrument(NULL) { setInstrument(instrument); }
 	Musician(const Musician& other) : Participator(other), m_instrument(NULL) { *this = other; }
+	Musician() { }
 	virtual ~Musician() { delete[] m_instrument; }
 
-	void setInstrument(const char* instrument);
+	void setInstrument(const char* instrument) { m_instrument = _strdup(instrument); }
 
 	const char* getInstrument() const { return m_instrument; }
 

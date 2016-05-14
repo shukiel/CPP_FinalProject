@@ -1,12 +1,6 @@
 #include "Actor.h"
 #include <time.h>
 
-void Actor::setLine(const char* line)
-{
-	delete []m_line;
-	m_line = _strdup(line);
-}
-
 const Actor& Actor::operator=(const Actor& other)
 {
 	if (this != &other)
@@ -19,7 +13,15 @@ const Actor& Actor::operator=(const Actor& other)
 
 istream& operator>>(istream& in, Actor& actor)
 {
-	in >> (Participator&)actor >> actor.m_line;
+	char temp[50];
+
+	in >> (Participator&)actor;
+	
+	cout << "Please insert the actor's line: ";
+	in.ignore();
+	in.getline(temp, 25);
+	actor.setLine(temp);
+
 	return in;
 }
 

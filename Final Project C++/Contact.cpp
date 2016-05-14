@@ -14,24 +14,6 @@ Contact::~Contact()
 	delete []m_address;
 }
 
-void Contact::setName(const char* name)
-{
-	delete[] m_name;
-	m_name = _strdup(name);
-}
-
-void Contact::setPhoneNum(const char* phoneNum)
-{
-	delete[] m_phoneNum;
-	m_phoneNum = _strdup(phoneNum);
-}
-
-void Contact::setAddress(const char* address)
-{
-	delete[] m_address;
-	m_address = _strdup(address);
-}
-
 const Contact& Contact::operator=(const Contact& other)
 {
 	if (this != &other)
@@ -51,7 +33,20 @@ ostream& operator<<(ostream& os, const Contact& contact)
 
 istream& operator>>(istream& in, Contact& contact)
 {
-	in >> contact.m_name >> contact.m_phoneNum >> contact.m_address;
+	char temp[50];
+
+	cout << "Please insert the contact's name: ";
+	in.getline(temp, 25);
+	contact.setName(temp);
+
+	cout << "Please insert the contact's phone number: ";
+	in.getline(temp, 25);
+	contact.setPhoneNum(temp);
+
+	cout << "Please insert the contact's address: ";
+	in.getline(temp, 25);
+	contact.setAddress(temp);
+
 	return in;
 }
 

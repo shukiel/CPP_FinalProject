@@ -3,7 +3,11 @@
 
 istream& operator>>(istream& in, Crew& crew)
 {
-	in >> (Employee&) crew >> crew.m_numOfBeersDrank;
+	in >> (Employee&) crew;
+
+	cout << "Please insert the crew's num of beers drank: ";
+	in >> crew.m_numOfBeersDrank;
+
 	return in;
 }
 

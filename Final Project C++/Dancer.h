@@ -13,6 +13,7 @@ private:
 
 public:
 	Dancer(Participator& participator, bool isInjured = false) : Participator(participator), m_isInjured(isInjured) { };
+	Dancer() { }
 
 	void setIsInjured(bool isInjured) { m_isInjured = isInjured; }
 

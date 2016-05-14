@@ -1,12 +1,6 @@
 #include "Musician.h"
 #include <time.h>
 
-void Musician::setInstrument(const char* instrument)
-{ 
-	delete []m_instrument;
-	m_instrument = _strdup(instrument);
-}
-
 void Musician::toOs(ostream& os) const
 {
 	Participator::toOs(os);
@@ -25,7 +19,15 @@ const Musician& Musician::operator=(const Musician& other)
 
 istream& operator>>(istream& in, Musician& musician)
 {
-	in >> (Participator&)musician >> musician.m_instrument;
+	char temp[50];
+
+	in >> (Participator&)musician;
+	
+	cout << "Please insert the musician's instrument: ";
+	in.ignore();
+	in.getline(temp, 25);
+	musician.setInstrument(temp);
+
 	return in;
 }
 

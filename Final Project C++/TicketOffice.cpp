@@ -93,7 +93,7 @@ void TicketOffice::BuyTicket(ShowAtVenue& show, int numOfTickets, const Contact&
 	show.AddSeats(numOfTickets, &customer);
 }
 
-bool TicketOffice::cancelTicket(ShowAtVenue& show, const Contact& customer)
+void TicketOffice::cancelTicket(ShowAtVenue& show, const Contact& customer)
 {
 	const Venue* temp = show.getVenue();
 	int index = getVenueIndex(*temp);

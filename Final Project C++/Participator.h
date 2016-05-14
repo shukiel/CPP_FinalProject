@@ -14,6 +14,7 @@ protected:
 
 public:
 	Participator(const Employee& other, const char* part, float egoLevel = 0) : Employee(other), m_egoLevel(egoLevel) { }
+	Participator() { }
 
 	float getEgoLevel() const { return m_egoLevel; }
 

@@ -11,15 +11,15 @@ protected:
 	char* m_phoneNum;
 	char* m_address;
 
-
 public:
 	Contact(const char* name, const char* phoneNum, const char* address);
 	Contact(const Contact& other) : m_name(NULL), m_phoneNum(NULL), m_address(NULL) { *this = other; }
+	Contact() { }
 	virtual ~Contact();
 
-	void setName(const char* name);
-	void setPhoneNum(const char* phoneNum);
-	void setAddress(const char* address);
+	void setName(const char* name)			{ m_name = _strdup(name); }
+	void setPhoneNum(const char* phoneNum)	{ m_phoneNum = _strdup(phoneNum); }
+	void setAddress(const char* address)	{ m_address = _strdup(address); }
 
 	const char* getName()		const { return m_name; }
 	const char* getPhoneNum()	const { return m_phoneNum; }

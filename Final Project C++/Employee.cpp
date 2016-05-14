@@ -2,7 +2,14 @@
 
 istream& operator>>(istream& in, Employee& employee)
 {
-	in >> (Contact&) employee >> employee.m_salaryPerHour >> employee.m_numOfWorkingHours;
+	in >> (Contact&) employee;
+
+	cout << "Please insert the employee's salary per hour: ";
+	in >> employee.m_salaryPerHour;
+
+	cout << "Please insert the employee's num of working hours: ";
+	in >> employee.m_numOfWorkingHours;
+
 	return in;
 }
 

@@ -3,12 +3,9 @@
 
 istream& operator>>(istream& in, Dancer& dancer)
 {
-	int inj;
-	in >> (Participator&)dancer >> inj;
-	if(inj)
-		dancer.setIsInjured(false);
-	else
-		dancer.setIsInjured(true);
+	in >> (Participator&)dancer;
+	dancer.setIsInjured(false);
+
 	return in;
 }
 

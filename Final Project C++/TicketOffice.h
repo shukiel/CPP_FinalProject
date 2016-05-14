@@ -33,7 +33,7 @@ public:
 	const ShowAtVenue* ReserveShow(Venue* venue, const Show* show, const char* date, int ticketPrice);
 	void CancelShow(ShowAtVenue& show);
 	void BuyTicket(ShowAtVenue& show, int numOfTickets, const Contact& customer);
-	bool cancelTicket(ShowAtVenue& show, const Contact& customer);
+	void cancelTicket(ShowAtVenue& show, const Contact& customer);
 	void ChangeShowTime(ShowAtVenue& show, const char* newDate);
 };
 
