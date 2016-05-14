@@ -55,6 +55,7 @@ ostream& operator<<(ostream& os, const TicketOffice& ticketOffice)
 	{
 		cout << *ticketOffice.m_venues[i];
 	}
+	return os;
 }
 
 const ShowAtVenue* TicketOffice::ReserveShow(Venue* venue, const Show* show, const char* date, int ticketPrice)

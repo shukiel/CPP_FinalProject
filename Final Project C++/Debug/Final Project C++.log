@@ -1,14 +1,13 @@
-﻿Build started 14/05/2016 21:53:30.
-     1>Project "C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Final Project C++\Final Project C++.vcxproj" on node 2 (Rebuild target(s)).
+﻿Build started 5/14/16 11:30:45 PM.
+     1>Project "W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Final Project C++\Final Project C++.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Actor.cpp Contact.cpp Crew.cpp Dancer.cpp DanceShow.cpp Employee.cpp main.cpp Musical.cpp Musician.cpp MusicShow.cpp Participator.cpp Show.cpp ShowAtVenue.cpp TheaterShow.cpp Venue.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Actor.cpp Contact.cpp Crew.cpp Dancer.cpp DanceShow.cpp Employee.cpp main.cpp Musical.cpp Musician.cpp MusicShow.cpp Participator.cpp Show.cpp ShowAtVenue.cpp TheaterShow.cpp TicketOffice.cpp Venue.cpp
          Venue.cpp
-     1>c:\users\aviadzini\desktop\cpp\cpp_finalproject\final project c++\showatvenue.h(39): warning C4114: same type qualifier used more than once
-     1>c:\users\aviadzini\desktop\cpp\cpp_finalproject\final project c++\venue.cpp(46): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>w:\לימודים\אפקה\3rd year\cpp\project\final project c++\final project c++\venue.cpp(46): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         TicketOffice.cpp
          TheaterShow.cpp
          ShowAtVenue.cpp
-     1>c:\users\aviadzini\desktop\cpp\cpp_finalproject\final project c++\showatvenue.h(39): warning C4114: same type qualifier used more than once
-     1>c:\users\aviadzini\desktop\cpp\cpp_finalproject\final project c++\showatvenue.cpp(41): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>w:\לימודים\אפקה\3rd year\cpp\project\final project c++\final project c++\showatvenue.cpp(41): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
          Show.cpp
          Participator.cpp
          MusicShow.cpp
@@ -22,8 +21,9 @@
          Contact.cpp
          Actor.cpp
          Generating Code...
+     1>w:\לימודים\אפקה\3rd year\cpp\project\final project c++\final project c++\ticketoffice.cpp(105): warning C4715: 'TicketOffice::cancelTicket' : not all control paths return a value
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Debug\Final Project C++.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Debug\Final Project C++.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Debug\Final Project C++.lib" /MACHINE:X86 Debug\Actor.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Debug\Final Project C++.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Debug\Final Project C++.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Debug\Final Project C++.lib" /MACHINE:X86 Debug\Actor.obj
          Debug\Contact.obj
          Debug\Crew.obj
          Debug\Dancer.obj
@@ -37,10 +37,11 @@
          Debug\Show.obj
          Debug\ShowAtVenue.obj
          Debug\TheaterShow.obj
+         Debug\TicketOffice.obj
          Debug\Venue.obj
-         Final Project C++.vcxproj -> C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Debug\Final Project C++.exe
-     1>Done Building Project "C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Final Project C++\Final Project C++.vcxproj" (Rebuild target(s)).
+         Final Project C++.vcxproj -> W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Debug\Final Project C++.exe
+     1>Done Building Project "W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Final Project C++\Final Project C++.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:13.05
+Time Elapsed 00:00:07.37

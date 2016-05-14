@@ -24,7 +24,7 @@ public:
 	void setContactDetails(const Contact& contactDetails);
 
 	const Contact& getContactDetails() const { return m_contactDetails; }
-	const Venue** getVenues() const { return m_venues; }
+	Venue** const getVenues() const { return m_venues; }
 
 	const TicketOffice& operator=(const TicketOffice& other);
 	friend ostream& operator<<(ostream& os, const TicketOffice& ticketOffice);
@@ -37,3 +37,4 @@ public:
 	void ChangeShowTime(ShowAtVenue& show, const char* newDate);
 };
 
+#endif

@@ -53,8 +53,8 @@ public:
 	friend ostream& operator<<(ostream& os, const Venue& venue);
 	friend istream& operator>>(istream& in, Venue& venue);
 
-	bool AddShow(const ShowAtVenue& show) { *this += show; };
-	bool RemoveShow(const ShowAtVenue& show){ *this -= show; };
+	void AddShow(const ShowAtVenue& show) { *this += show; };
+	void RemoveShow(const ShowAtVenue& show){ *this -= show; };
 
 	float getSalesRevenue() const;
 };
