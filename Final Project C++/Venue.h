@@ -21,21 +21,21 @@ private:
 	void copyEverythingButContact(const Venue& other);
 
 public:
-	Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, char* name);
+	Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, const char* name);
 	Venue(const Venue& other);
 	~Venue();
 
-	void setContactDetails(const Contact& contactDetails);
-	void setCapacity(int capacity) { this->m_capacity = capacity; }
-	void setNumOfRows(int numOfRows) { this->m_numOfRows = numOfRows; }
-	void setNumOfSeatsPerRow(int numOfSeatsPerRow) { this->m_numOfSeatsPerRow = numOfSeatsPerRow; }
+	void setContactDetails(const Contact& contactDetails)	{ m_contactDetails = contactDetails; }
+	void setCapacity(int capacity)							{ m_capacity = capacity; }
+	void setNumOfRows(int numOfRows)						{ m_numOfRows = numOfRows; }
+	void setNumOfSeatsPerRow(int numOfSeatsPerRow)			{ m_numOfSeatsPerRow = numOfSeatsPerRow; }
 
-	const Contact& getContactDetails() const { return m_contactDetails; }
-	int getCapacity() const { return m_capacity; }
-	int getNumOfRows() const { return m_numOfRows; }
-	int getNumOfSeatsPerRow() const { return m_numOfSeatsPerRow; }
-	const char* getVenueName() const { return m_name; }
-	const ShowAtVenue* getShowAtVenue() const { return m_showAtVenue; }
+	const Contact& getContactDetails()		const { return m_contactDetails; }
+	int getCapacity()						const { return m_capacity; }
+	int getNumOfRows()						const { return m_numOfRows; }
+	int getNumOfSeatsPerRow()				const { return m_numOfSeatsPerRow; }
+	const char* getVenueName()				const { return m_name; }
+	const ShowAtVenue* getShowAtVenue()		const { return m_showAtVenue; }
 
 
 	const Venue& operator=(const Venue& other);
@@ -44,7 +44,6 @@ public:
 
 	void operator+=(const ShowAtVenue& show);	//adds a show to the venue
 	void operator-=(const ShowAtVenue& show);	//removes a show from a venue
-
 
 	bool operator>(const Venue& other) const;
 	bool operator<(const Venue& other) const;
@@ -57,7 +56,7 @@ public:
 	bool AddShow(const ShowAtVenue& show) { *this += show; };
 	bool RemoveShow(const ShowAtVenue& show){ *this -= show; };
 
-	int getSalesRevenue() const;
+	float getSalesRevenue() const;
 };
 
 #endif

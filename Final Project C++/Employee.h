@@ -10,7 +10,7 @@ protected:
 	int		m_numOfWorkingHours;
 
 public:
-	Employee(const Contact& other, float salaryPerHour, int numOfWorkingHours = 0) : Contact(other), m_salaryPerHour(salaryPerHour), m_numOfWorkingHours(numOfWorkingHours) {}
+	Employee(const Contact& other, float salaryPerHour, int numOfWorkingHours = 0) : Contact(other), m_salaryPerHour(salaryPerHour), m_numOfWorkingHours(numOfWorkingHours) { }
 
 	void setSalaryPerHour(float salaryPerHour)		 { m_salaryPerHour = salaryPerHour; }
 	void setNumOfWorkingHours(int numOfWorkingHours) { m_numOfWorkingHours = numOfWorkingHours; }

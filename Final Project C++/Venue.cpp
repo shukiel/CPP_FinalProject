@@ -1,18 +1,8 @@
 #include "Venue.h"
 #include "ShowAtVenue.h"
 
-
-
-	//char*		 m_name;
-	//Contact		 m_contactDetails;
-	//int			 m_capacity;
-	//int			 m_numOfRows;
-	//int			 m_numOfSeatsPerRow;
-	//ShowAtVenue* m_showAtVenue;
-
-
-Venue::Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, char* name) :
-m_contactDetails(contactDetails), m_capacity(capacity), m_numOfRows(numOfRows), m_numOfSeatsPerRow(m_numOfSeatsPerRow)
+Venue::Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, const char* name) :
+	m_contactDetails(contactDetails), m_capacity(capacity), m_numOfRows(numOfRows), m_numOfSeatsPerRow(m_numOfSeatsPerRow)
 {
 	m_numOfShows = 0;
 	this->m_showAtVenue = new ShowAtVenue[MAX_NUM_OF_SHOWS];
@@ -29,15 +19,13 @@ Venue::~Venue()
 	delete[] m_showAtVenue;
 }
 
-void Venue::setContactDetails(const Contact& contactDetails)
-{
-	m_contactDetails = contactDetails;
-}
-
 const Venue& Venue::operator=(const Venue& other)
 {
-	this->copyEverythingButContact(other);
-	this->m_contactDetails = other.m_contactDetails;
+	if (this != &other)
+	{
+		this->copyEverythingButContact(other);
+		this->m_contactDetails = other.m_contactDetails;
+	}
 	return *this;
 }
 bool Venue::operator==(const Venue& other) const
@@ -93,7 +81,7 @@ istream& operator>>(istream& in, Venue& venue)
 	return in;
 }
 
-int	Venue::getSalesRevenue() const //Gets the profit of the show
+float	Venue::getSalesRevenue() const //Gets the profit of the show
 {
 	float sum = 0 ;
 	for (int i = 0; i < m_numOfShows; i++)
@@ -102,7 +90,6 @@ int	Venue::getSalesRevenue() const //Gets the profit of the show
 	}
 	return sum;
 }
-
 
 void Venue::copyEverythingButContact(const Venue& other)
 {

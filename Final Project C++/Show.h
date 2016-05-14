@@ -20,8 +20,6 @@ protected:
 	int				m_numOfShows;
 	int				m_numOfParticipant;
 
-	const float EGO_TRESHOLD = 0.7f;
-
 public:
 	Show(const char* name, int duration, int loadInLoadOutTime, 
 		 const Crew& lightingDesigner, const Crew& soundDesigner, const Crew& setDesigner, 
@@ -58,10 +56,12 @@ public:
 
 	virtual void talkWithProducer();
 	virtual void addParticipator(Participator& participator);
+	virtual void loadInTime();
 
 	virtual bool isShowPossible()	const;
 	virtual void toOs(ostream& os)	const;
-	virtual void makeShow()			const;
+
+	void makeShow();
 
 	float getCost() const;
 };

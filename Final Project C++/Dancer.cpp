@@ -5,13 +5,16 @@ istream& operator>>(istream& in, Dancer& dancer)
 {
 	int inj;
 	in >> (Participator&)dancer >> inj;
-	dancer.setIsInjured(inj);
+	if(inj)
+		dancer.setIsInjured(false);
+	else
+		dancer.setIsInjured(true);
 	return in;
 }
 
 void Dancer::doPartInShow()
 {
-	srand(time(NULL));
+	srand((unsigned int) time(NULL));
 	cout << getName() << ": **dancing**..." << endl;
 	if (rand() > CHANCE_TO_ACROBATICS)
 	{

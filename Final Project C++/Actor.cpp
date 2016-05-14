@@ -1,5 +1,5 @@
 #include "Actor.h"
-#include<time.h>
+#include <time.h>
 
 void Actor::setLine(const char* line)
 {
@@ -31,7 +31,7 @@ void Actor::makeDrama()
 
 void Actor::doPartInShow() 
 {
-	srand(time(NULL));
+	srand((unsigned int) time(NULL));
 	cout << getName() << ": " << getLine() << endl;
 	if (rand() > CHANCE_TO_DRAMA)
 	{

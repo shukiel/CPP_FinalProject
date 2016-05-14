@@ -99,8 +99,10 @@ void Show::addParticipator(Participator& participator)
 		cout << "No more room for this participator." << endl;
 }
 
-void Show::makeShow() const
+void Show::makeShow()
 {
+	loadInTime();
+
 	if (this->isShowPossible())
 	{
 		throw "This Show is not possible!";
@@ -115,11 +117,21 @@ bool Show::isShowPossible() const
 	for(int i = 0; i < getNumOfParticipant(); i++)
 		if(m_participators[i]->isCanPerform())
 			return false;
-	return true && m_lightingDesigner.isTooDrunk() && m_setDesigner.isTooDrunk() && m_soundDesigner.isTooDrunk();
+	return true && !(m_lightingDesigner.isTooDrunk()) && !(m_setDesigner.isTooDrunk()) && !(m_soundDesigner.isTooDrunk());
 }
 
 void Show::talkWithProducer()
 {
 	for(int i = 0; i < m_numOfParticipant; i++)
 		m_participators[i]->resetEgoLevel();
+	m_lightingDesigner.soberUp();
+	m_setDesigner.soberUp();
+	m_soundDesigner.soberUp();
+}
+
+void Show::loadInTime()
+{
+	m_lightingDesigner.drinkBeers();
+	m_setDesigner.drinkBeers();
+	m_soundDesigner.drinkBeers();
 }

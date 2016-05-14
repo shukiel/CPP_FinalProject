@@ -31,7 +31,7 @@ istream& operator>>(istream& in, Musician& musician)
 
 void Musician::doPartInShow() 
 {
-	srand(time(NULL));
+	srand((unsigned int) time(NULL));
 	cout << getName() << " plays the " << getInstrument() << endl;
 	if (rand() > CHANCE_TO_SOLO)
 	{
