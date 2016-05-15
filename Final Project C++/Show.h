@@ -27,6 +27,7 @@ public:
 		 const Crew& lightingDesigner, const Crew& soundDesigner, const Crew& setDesigner, 
 		 int ticketPrice, int numOfShows);
 	Show(const Show& other);
+	Show() { }
 	virtual ~Show() { delete[] m_name; }
 
 	void setName(const char* name)							{ m_name = _strdup(name); }
@@ -50,7 +51,7 @@ public:
 	int getNumOfParticipant()			const { return m_numOfParticipant; }
 	Participator** getParticipators()	const { return m_participators; }
 
-	bool operator==(const Show& other)	const { return (strcmp(this->getName(), other.getName()) == 0) && (this->getDuration() == other.getDuration()); }
+	bool operator==(const Show& other)	const { return strcmp(getName(), other.getName()) == 0 && getDuration() == other.getDuration(); }
 	bool operator!=(const Show& other)	const { return !(*this == other); }
 
 	const Show& operator=(const Show& other);

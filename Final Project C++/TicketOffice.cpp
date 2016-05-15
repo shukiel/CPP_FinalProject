@@ -34,7 +34,7 @@ void TicketOffice::NotifyAllCustomer(const ShowAtVenue& show, const char* messag
 		throw "No Such Venue in the Ticket Office";
 	}
 	
-	const Contact** allCustomers;
+	Contact** allCustomers;
 	allCustomers = show.getAllCustumers();
 
 	for (int i = 0; i < show.getNumOfPeopleInAudience(); i++)
@@ -90,7 +90,7 @@ void TicketOffice::BuyTicket(ShowAtVenue& show, int numOfTickets, const Contact&
 	{
 		throw "No Such Venue in the Ticket Office";
 	}
-	show.AddSeats(numOfTickets, &customer);
+	show.AddSeats(numOfTickets, customer);
 }
 
 void TicketOffice::cancelTicket(ShowAtVenue& show, const Contact& customer) throw (const char*)
@@ -101,7 +101,7 @@ void TicketOffice::cancelTicket(ShowAtVenue& show, const Contact& customer) thro
 	{
 		throw "No Such Venue in the Ticket Office";
 	}
-	show.RemoveSeats(&customer);
+	show.RemoveSeats(customer);
 }
 
 void TicketOffice::ChangeShowTime(ShowAtVenue& show, const char* newDate) throw (const char*)

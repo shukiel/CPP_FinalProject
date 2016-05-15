@@ -1,8 +1,3 @@
-#include "Venue.h"
-#include "Crew.h"
-#include "Actor.h"
-#include "Musician.h"
-#include "Dancer.h"
 #include "Musical.h"
 #include "ShowAtVenue.h"
 
@@ -75,11 +70,50 @@ void main()
 	Venue v(con, 500, 5, 100, "Habima");
 
 	ShowAtVenue sav(th, v, "06/04/2016");
-	sav.AddSeats(8, &con);
-	sav.AddSeats(45, &con1);
-	sav.AddSeats(2, &con2);
 
-	v.AddShow(sav);
+	try
+	{
+		sav.AddSeats(8, con);
+		sav.AddSeats(45, con1);
+		sav.AddSeats(2, con2);
+	}
+	catch (NoMoreRoomException e)
+	{
+		e.printErrorToConsole();
+	}
 
-	cout << v;
+	//cout << sav << "Profit: " << sav.getProfit() << endl;
+
+	//sav.RemoveSeats(con1);
+
+	//cout << sav << endl;
+
+	//ShowAtVenue sav1 = sav;
+
+	//if (sav != sav1)
+	//	cout << "wow" << endl;
+	//else
+	//	cout << "not wow" << endl;
+
+	try
+	{
+		v.AddShow(sav);
+	}
+	catch (TooMuchShowsException e)
+	{
+		e.printErrorToConsole();
+	}
+
+	//cout << v;
+
+	//Venue v1 = v;
+
+	//if (v != v1)
+	//	cout << "wow" << endl;
+	//else
+	//	cout << "not wow" << endl;
+
+	//v.RemoveShow(sav);
+
+	//cout << v;
 }

@@ -48,7 +48,8 @@ const Show& Show::operator=(const Show& other)
 {
 	if (this != &other)
 	{
-		delete []m_name;
+		if (!m_name)
+			delete[] m_name;
 		m_name = _strdup(other.m_name);
 		setDuration(other.m_duration);
 		setLoadInLoadOutTime(other.m_loadInLoadOutTime);

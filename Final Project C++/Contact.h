@@ -25,7 +25,7 @@ public:
 	const char* getPhoneNum()	const { return m_phoneNum; }
 	const char* getAddress()	const { return m_address; }
 
-	bool operator==(const Contact& other) const { return ((strcmp(this->getName(), other.getName()) == 0) && (strcmp(this->getPhoneNum(), other.getPhoneNum()) == 0)); }
+	bool operator==(const Contact& other) const { return strcmp(getName(), other.getName()) == 0 && strcmp(getPhoneNum(), other.getPhoneNum()) == 0; }
 	bool operator!=(const Contact& other) const { return !(*this == other); }
 
 	const Contact& operator=(const Contact& other);

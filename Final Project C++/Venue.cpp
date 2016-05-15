@@ -16,8 +16,9 @@ Venue::Venue(const Venue& other) : m_contactDetails(other.m_contactDetails), m_s
 
 Venue::~Venue()
 {
-	delete[] m_name;
-	if (m_numOfShows > 0)
+	if (!m_name)
+		delete[] m_name;
+	if (!m_showAtVenue)
 		delete[] m_showAtVenue;
 }
 
@@ -29,15 +30,6 @@ const Venue& Venue::operator=(const Venue& other)
 		this->m_contactDetails = other.m_contactDetails;
 	}
 	return *this;
-}
-bool Venue::operator==(const Venue& other) const
-{
-	return (strcmp(this->m_name, other.m_name) && m_contactDetails == other.getContactDetails());
-}
-
-bool Venue::operator!=(const Venue& other) const
-{
-	return !(*this == other);
 }
 
 //bool operator>(const Venue& other) const;
@@ -75,6 +67,12 @@ void Venue::operator-=(const ShowAtVenue& show)
 ostream& operator<<(ostream& os, const Venue& venue)
 {
 	os << "Venue Name : " << venue.m_name << ", Capacity: " << venue.m_capacity << endl << "Contact " << venue.m_contactDetails << endl;
+	if (venue.m_numOfShows > 0)
+	{
+		os << "Shows at venue: " << endl;
+		for (int i = 0; i < venue.m_numOfShows; i++)
+			os << venue.m_showAtVenue[i] << endl;
+	}
 	return os;
 }
 
@@ -84,7 +82,7 @@ istream& operator>>(istream& in, Venue& venue)
 	return in;
 }
 
-float	Venue::getSalesRevenue() const //Gets the profit of the show
+float Venue::getSalesRevenue() const //Gets the profit of the show
 {
 	float sum = 0 ;
 	for (int i = 0; i < m_numOfShows; i++)
@@ -97,12 +95,13 @@ float	Venue::getSalesRevenue() const //Gets the profit of the show
 void Venue::copyEverythingButContact(const Venue& other)
 {
 	m_capacity = other.m_capacity;
+	if (!m_name)
+		delete[] m_name;
 	m_name = _strdup(other.m_name);
 	m_numOfRows = other.getNumOfRows();
 	m_numOfSeatsPerRow = other.getNumOfSeatsPerRow();
 	m_numOfShows = other.m_numOfShows;
 
-	delete[] m_showAtVenue;
 	m_showAtVenue = new ShowAtVenue[MAX_NUM_OF_SHOWS];
 
 	for (int i = 0; i < other.m_numOfShows;i++)

@@ -2,7 +2,6 @@
 #define __CREW_H
 
 #include "Employee.h"
-#include "Exceptions.h"
 
 #define MAX_NUM_OF_BEERS 10
 #define CHANCE_TO_DRINK_BEER 0.2f

@@ -22,6 +22,7 @@ private:
 public:
 	Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, const char* name);
 	Venue(const Venue& other);
+	Venue() { }
 	~Venue();
 
 	void setContactDetails(const Contact& contactDetails)	{ m_contactDetails = contactDetails; }
@@ -38,8 +39,9 @@ public:
 
 
 	const Venue& operator=(const Venue& other);
-	bool operator==(const Venue& other) const;
-	bool operator!=(const Venue& other) const;
+	bool operator==(const Venue& other) const 
+		{ return strcmp(getVenueName(), other.getVenueName()) == 0 && getContactDetails() == other.getContactDetails(); }
+	bool operator!=(const Venue& other) const { return !(*this == other); }
 
 	void operator+=(const ShowAtVenue& show);	//adds a show to the venue
 	void operator-=(const ShowAtVenue& show);	//removes a show from a venue
@@ -52,8 +54,8 @@ public:
 	friend ostream& operator<<(ostream& os, const Venue& venue);
 	friend istream& operator>>(istream& in, Venue& venue);
 
-	void AddShow(const ShowAtVenue& show) { *this += show; };
-	void RemoveShow(const ShowAtVenue& show){ *this -= show; };
+	void AddShow(const ShowAtVenue& show)		{ *this += show; }
+	void RemoveShow(const ShowAtVenue& show)	{ *this -= show; }
 
 	float getSalesRevenue() const;
 };

@@ -15,11 +15,11 @@ protected:
 public:
 	MusicShow(const Show& other, const Crew& musicalManager, int soundCheckTime) : Show(other), m_musicalManager(musicalManager), m_soundCheckTime(soundCheckTime) { }
 
-	void setMusicalManager(const Crew& musicalManager) { m_musicalManager = musicalManager; }
-	void setSoundCheckTime(int soundCheckTime) { m_soundCheckTime = soundCheckTime; }
+	void setMusicalManager(const Crew& musicalManager)	{ m_musicalManager = musicalManager; }
+	void setSoundCheckTime(int soundCheckTime)			{ m_soundCheckTime = soundCheckTime; }
 
 	const Crew& getMusicalManager() const { return m_musicalManager; }
-	int getSoundCheckTime() const { return m_soundCheckTime; }
+	int getSoundCheckTime()			const { return m_soundCheckTime; }
 
 	friend istream& operator>>(istream& in, MusicShow& show);
 
@@ -27,7 +27,7 @@ public:
 	virtual void addParticipator(Musician& musician);
 	virtual void loadInTime();
 
-	virtual bool isShowPossible()	const;
+	virtual bool isShowPossible() const;
 	virtual void talkWithProducer();
 
 	void encore() ;
