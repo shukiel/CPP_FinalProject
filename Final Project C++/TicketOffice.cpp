@@ -1,7 +1,7 @@
 #include "TicketOffice.h"
 #include "ShowAtVenue.h"
 
-
+#pragma warning( disable : 4290 )
 
 TicketOffice::TicketOffice(const Contact& contactDetails) : 
 							m_contactDetails(contactDetails)
@@ -25,11 +25,11 @@ TicketOffice::~TicketOffice()
 	delete[] m_venues;
 }
 
-void TicketOffice::NotifyAllCustomer(const ShowAtVenue& show, const char* message) const
+void TicketOffice::NotifyAllCustomer(const ShowAtVenue& show, const char* message) const throw (const char*)
 {
-	const Venue* temp = show.getVenue();
-	int index = getVenueIndex(*temp);
-	if (index == -1)
+	const Venue temp = show.getVenue();
+	int index = getVenueIndex(temp);
+	if (index < 0)
 	{
 		throw "No Such Venue in the Ticket Office";
 	}
@@ -58,21 +58,21 @@ ostream& operator<<(ostream& os, const TicketOffice& ticketOffice)
 	return os;
 }
 
-const ShowAtVenue* TicketOffice::ReserveShow(Venue* venue, const Show* show, const char* date, int ticketPrice)
+const ShowAtVenue* TicketOffice::ReserveShow(Venue& venue, const Show& show, const char* date)
 {
-	if (getVenueIndex(*venue) == -1)
+	if (getVenueIndex(venue) == -1)
 	{
-		addVenue(*venue);
+		addVenue(venue);
 	}
 
-	ShowAtVenue* temp = new ShowAtVenue(show, venue, date, ticketPrice);
-	venue->AddShow(*temp);
+	ShowAtVenue* temp = new ShowAtVenue(show, venue, date);
+	venue.AddShow(*temp);
 	return temp;
 }
 
-void TicketOffice::CancelShow(ShowAtVenue& show)
+void TicketOffice::CancelShow(ShowAtVenue& show) throw (const char*)
 {
-	int index = getVenueIndex(*show.getVenue());
+	int index = getVenueIndex(show.getVenue());
 	if (index == -1)
 	{
 		throw "Venue Does not exist in the Ticket Office";
@@ -82,10 +82,10 @@ void TicketOffice::CancelShow(ShowAtVenue& show)
 		*m_venues[index] -= show;
 	}
 }
-void TicketOffice::BuyTicket(ShowAtVenue& show, int numOfTickets, const Contact& customer)
+void TicketOffice::BuyTicket(ShowAtVenue& show, int numOfTickets, const Contact& customer) throw (const char*)
 {
-	const Venue* temp = show.getVenue();
-	int index = getVenueIndex(*temp);
+	const Venue temp = show.getVenue();
+	int index = getVenueIndex(temp);
 	if (index == -1)
 	{
 		throw "No Such Venue in the Ticket Office";
@@ -93,10 +93,10 @@ void TicketOffice::BuyTicket(ShowAtVenue& show, int numOfTickets, const Contact&
 	show.AddSeats(numOfTickets, &customer);
 }
 
-void TicketOffice::cancelTicket(ShowAtVenue& show, const Contact& customer)
+void TicketOffice::cancelTicket(ShowAtVenue& show, const Contact& customer) throw (const char*)
 {
-	const Venue* temp = show.getVenue();
-	int index = getVenueIndex(*temp);
+	const Venue temp = show.getVenue();
+	int index = getVenueIndex(temp);
 	if (index == -1)
 	{
 		throw "No Such Venue in the Ticket Office";
@@ -104,10 +104,10 @@ void TicketOffice::cancelTicket(ShowAtVenue& show, const Contact& customer)
 	show.RemoveSeats(&customer);
 }
 
-void TicketOffice::ChangeShowTime(ShowAtVenue& show, const char* newDate)
+void TicketOffice::ChangeShowTime(ShowAtVenue& show, const char* newDate) throw (const char*)
 {
-	const Venue* temp = show.getVenue();
-	int index = getVenueIndex(*temp);
+	const Venue temp = show.getVenue();
+	int index = getVenueIndex(temp);
 	if (index == -1)
 	{
 		throw "No Such Venue in the Ticket Office";
@@ -125,7 +125,7 @@ int TicketOffice::getVenueIndex(const Venue& venue) const
 	return -1;
 }
 
-void TicketOffice::addVenue(Venue& venue) 
+void TicketOffice::addVenue(Venue& venue)  throw (const char*)
 {
 	if (m_numOfVenues >= MAX_NUM_OF_VENUES)
 	{

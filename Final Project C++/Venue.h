@@ -6,17 +6,16 @@
 #define MAX_NUM_OF_SHOWS 100
 
 class ShowAtVenue;	//Forward declaration
-class Show;			//Forward Declarations
 
 class Venue{
 private:
-	char*		 m_name;
-	Contact		 m_contactDetails;
-	int			 m_capacity;
-	int			 m_numOfRows;
-	int			 m_numOfSeatsPerRow;
-	int			 m_numOfShows;
-	ShowAtVenue* m_showAtVenue;				//Array Of shows 
+	char*			m_name;
+	Contact			m_contactDetails;
+	int				m_capacity;
+	int				m_numOfRows;
+	int				m_numOfSeatsPerRow;
+	int				m_numOfShows;
+	ShowAtVenue*	m_showAtVenue;				//Array Of shows 
 
 	void copyEverythingButContact(const Venue& other);
 
@@ -45,10 +44,10 @@ public:
 	void operator+=(const ShowAtVenue& show);	//adds a show to the venue
 	void operator-=(const ShowAtVenue& show);	//removes a show from a venue
 
-	bool operator>(const Venue& other) const;
-	bool operator<(const Venue& other) const;
-	bool operator>=(const Venue& other) const;
-	bool operator<=(const Venue& other) const;
+	//bool operator>(const Venue& other) const;
+	//bool operator<(const Venue& other) const;
+	//bool operator>=(const Venue& other) const;
+	//bool operator<=(const Venue& other) const;
 
 	friend ostream& operator<<(ostream& os, const Venue& venue);
 	friend istream& operator>>(istream& in, Venue& venue);

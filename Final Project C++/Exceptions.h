@@ -59,5 +59,4 @@ public:
 
 };
 
-
 #endif //__EXCEPTIONS_H

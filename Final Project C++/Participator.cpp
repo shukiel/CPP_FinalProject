@@ -15,3 +15,8 @@ istream& operator>>(istream& in, Participator& participator)
 
 	return in;
 }
+
+void Participator::doPartInShow()
+{
+	cout << getName() << ": ";
+}

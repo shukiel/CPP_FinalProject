@@ -4,6 +4,8 @@
 #include "Participator.h"
 #include "Crew.h"
 
+#pragma warning( disable : 4290 )
+
 #define MAX_NUM_OF_PARTICIPATORS 50
 
 class Show
@@ -27,6 +29,7 @@ public:
 	Show(const Show& other);
 	virtual ~Show() { delete[] m_name; }
 
+	void setName(const char* name)							{ m_name = _strdup(name); }
 	void setDuration(int duration)							{ m_duration = duration; }
 	void setLoadInLoadOutTime(int loadInLoadOutTime)		{ m_loadInLoadOutTime = loadInLoadOutTime; }
 	void setLightingDesigner(const Crew& lightingDesigner)	{ m_lightingDesigner = lightingDesigner; }

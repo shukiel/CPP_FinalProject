@@ -27,7 +27,8 @@ public:
 
 	virtual void doPartInShow();
 
-	virtual void toOs(ostream& os) const;
+	virtual void toOs(ostream& os)	const;
+	virtual bool isCanPerform()		const { return Participator::isCanPerform(); }
 };
 
 #endif //__MUSICIAN__H

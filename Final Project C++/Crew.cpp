@@ -28,6 +28,6 @@ void Crew::drinkBeers()
 	srand((unsigned int) time(NULL));
 	if (rand() > CHANCE_TO_DRINK_BEER)
 	{
-		*this += rand() % MAX_NUM_OF_BEERS + 1;
+		*this += (rand() % MAX_NUM_OF_BEERS) + 1;
 	}
 }

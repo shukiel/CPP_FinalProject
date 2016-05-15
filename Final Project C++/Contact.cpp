@@ -52,5 +52,5 @@ istream& operator>>(istream& in, Contact& contact)
 
 void Contact::toOs(ostream& os) const
 {
-	os << "Name: " << getName() << ", Phone number: " << getPhoneNum() << ", Address: " << getAddress() << endl;
+	os << "Name: " << m_name << ", Phone number: " << m_phoneNum << ", Address: " << m_address << endl;
 }

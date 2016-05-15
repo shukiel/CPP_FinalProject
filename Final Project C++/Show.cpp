@@ -85,10 +85,20 @@ istream& operator>>(istream& in, Show& show)
 
 void Show::toOs(ostream& os) const
 {
-	os << "Show Name : " << m_name << " | Duration : " << m_duration;
+	os << "Show Name : " << m_name << " | Duration : " << m_duration << ", Load in and load out time: " << m_loadInLoadOutTime << endl;
+	os << endl << "Lighting Designer: " << endl << m_lightingDesigner << endl;
+	os << "Set Designer: " << endl << m_setDesigner << endl;
+	os << "Sound Designer: " << endl << m_soundDesigner << endl;
+	os << "Ticket price: " << m_ticketPrice << ", Num of shows: " << m_numOfShows << endl;
+	if (m_numOfParticipant > 0)
+	{
+		os << endl << "Participant:" << endl;
+		for (int i = 0; i < m_numOfParticipant; i++)
+			os << "#" << i+1 << ": " << *(m_participators[i]) << endl;
+	}
 }
 
-void Show::addParticipator(Participator& participator)
+void Show::addParticipator(Participator& participator) throw (const char*)
 {
 	if(m_numOfParticipant < MAX_NUM_OF_PARTICIPATORS)
 	{
@@ -99,15 +109,16 @@ void Show::addParticipator(Participator& participator)
 		cout << "No more room for this participator." << endl;
 }
 
-void Show::makeShow()
+void Show::makeShow() throw (const char*)
 {
 	loadInTime();
 
-	if (this->isShowPossible())
+	if (!isShowPossible())
 	{
 		throw "This Show is not possible!";
 	}
-	cout << "The Show " << m_name << "Is now starting please turn off your phones\n";
+
+	cout << "The Show " << m_name << " Is now starting please turn off your phones.\n";
 	for (int i = 0; i < m_numOfParticipant; i++)
 		m_participators[i]->doPartInShow();
 }
@@ -115,7 +126,7 @@ void Show::makeShow()
 bool Show::isShowPossible() const
 {
 	for(int i = 0; i < getNumOfParticipant(); i++)
-		if(m_participators[i]->isCanPerform())
+		if(!(m_participators[i]->isCanPerform()))
 			return false;
 	return true && !(m_lightingDesigner.isTooDrunk()) && !(m_setDesigner.isTooDrunk()) && !(m_soundDesigner.isTooDrunk());
 }

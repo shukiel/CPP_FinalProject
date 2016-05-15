@@ -13,7 +13,7 @@ protected:
 	float m_egoLevel;
 
 public:
-	Participator(const Employee& other, const char* part, float egoLevel = 0) : Employee(other), m_egoLevel(egoLevel) { }
+	Participator(const Employee& other, float egoLevel = 0) : Employee(other), m_egoLevel(egoLevel) { }
 	Participator() { }
 
 	float getEgoLevel() const { return m_egoLevel; }
@@ -22,11 +22,11 @@ public:
 
 	virtual void toOs(ostream& os) const;
 
-	virtual void doPartInShow() = 0;
+	virtual void doPartInShow();
 
 	void resetEgoLevel() { m_egoLevel = 0; }
 
-	virtual bool isCanPerform() const { return m_egoLevel < EGO_TRESHOLD ;} 
+	virtual bool isCanPerform() const { return m_egoLevel < EGO_TRESHOLD; } 
 };
 
 #endif

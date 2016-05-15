@@ -11,7 +11,7 @@ const Musician& Musician::operator=(const Musician& other)
 {
 	if (this != &other)
 	{
-		(Participator&)(*this) = other;
+		Participator::operator=(other);
 		setInstrument(other.getInstrument());
 	}
 	return *this;
@@ -34,7 +34,8 @@ istream& operator>>(istream& in, Musician& musician)
 void Musician::doPartInShow() 
 {
 	srand((unsigned int) time(NULL));
-	cout << getName() << " plays the " << getInstrument() << endl;
+	Participator::doPartInShow();
+	cout << "plays the " << getInstrument() << endl;
 	if (rand() > CHANCE_TO_SOLO)
 	{
 		makeSolo();

@@ -5,7 +5,7 @@ const Actor& Actor::operator=(const Actor& other)
 {
 	if (this != &other)
 	{
-		(Participator&)(*this) = other;
+		Participator::operator=(other);
 		setLine(other.getLine());
 	}
 	return *this;
@@ -27,14 +27,15 @@ istream& operator>>(istream& in, Actor& actor)
 
 void Actor::makeDrama()
 {
-	cout << m_name << " :" << " PFFFF! I can't work like this !";
+	cout << m_name << " : PFFFF! I can't work like this !" << endl;
 	m_egoLevel += ADDITION_TO_EGO;
 }
 
 void Actor::doPartInShow() 
 {
 	srand((unsigned int) time(NULL));
-	cout << getName() << ": " << getLine() << endl;
+	Participator::doPartInShow();
+	cout << getLine() << endl;
 	if (rand() > CHANCE_TO_DRAMA)
 	{
 		this->makeDrama();

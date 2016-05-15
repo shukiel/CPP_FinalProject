@@ -12,14 +12,16 @@ void DanceShow::toOs(ostream& os) const
 	os << "Choregraph: " << getChoreograph() << endl;
 }
 
-void DanceShow::addParticipator(Dancer& dancer)
+void DanceShow::addParticipator(Dancer& dancer) throw (const char*)
 {
-	if (!(m_numOfParticipant + 1 > MAX_NUM_OF_DANCERS))
+	if (m_numOfParticipant < MAX_NUM_OF_DANCERS)
 	{
 		dancer.setNumOfWorkingHours(m_duration);
 		Show::addParticipator(dancer);
 	}
-	throw "No more room for this dancer :(";
+
+	else
+		throw "No more room for this dancer :(";
 }
 
 bool DanceShow::isShowPossible() const

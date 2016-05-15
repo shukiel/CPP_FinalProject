@@ -2,12 +2,13 @@
 #include "ShowAtVenue.h"
 
 Venue::Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, const char* name) :
-	m_contactDetails(contactDetails), m_capacity(capacity), m_numOfRows(numOfRows), m_numOfSeatsPerRow(m_numOfSeatsPerRow)
+	m_contactDetails(contactDetails), m_capacity(capacity), m_numOfRows(numOfRows), m_numOfSeatsPerRow(numOfSeatsPerRow)
 {
 	m_numOfShows = 0;
 	this->m_showAtVenue = new ShowAtVenue[MAX_NUM_OF_SHOWS];
 	m_name = _strdup(name);
 }
+
 Venue::Venue(const Venue& other) : m_contactDetails(other.m_contactDetails), m_showAtVenue(NULL)
 {
 	this->copyEverythingButContact(other);
@@ -16,7 +17,8 @@ Venue::Venue(const Venue& other) : m_contactDetails(other.m_contactDetails), m_s
 Venue::~Venue()
 {
 	delete[] m_name;
-	delete[] m_showAtVenue;
+	if (m_numOfShows > 0)
+		delete[] m_showAtVenue;
 }
 
 const Venue& Venue::operator=(const Venue& other)
@@ -45,9 +47,9 @@ bool Venue::operator!=(const Venue& other) const
 
 void Venue::operator+=(const ShowAtVenue& show) throw (TooMuchShowsException)	//adds a show to the venue
 {
-	if (!(m_numOfShows + 1 > MAX_NUM_OF_SHOWS)) //Have room for one more show
+	if (m_numOfShows < MAX_NUM_OF_SHOWS) //Have room for one more show
 	{
-		m_showAtVenue[m_numOfShows++] = *(new ShowAtVenue(show));
+		m_showAtVenue[m_numOfShows++] = show;
 	}
 	else 
 		throw(TooMuchShowsException(show));
@@ -72,9 +74,10 @@ void Venue::operator-=(const ShowAtVenue& show)
 
 ostream& operator<<(ostream& os, const Venue& venue)
 {
-	os << "Venue Name : " << venue.m_name << "Contact : " << venue.m_contactDetails;
+	os << "Venue Name : " << venue.m_name << ", Capacity: " << venue.m_capacity << endl << "Contact " << venue.m_contactDetails << endl;
 	return os;
 }
+
 istream& operator>>(istream& in, Venue& venue)
 {
 	in >> venue.m_name >> (Contact&)venue.m_contactDetails >> venue.m_capacity >> venue.m_numOfRows >> venue.m_numOfSeatsPerRow;
@@ -104,6 +107,6 @@ void Venue::copyEverythingButContact(const Venue& other)
 
 	for (int i = 0; i < other.m_numOfShows;i++)
 	{
-		m_showAtVenue = other.m_showAtVenue;
+		m_showAtVenue[i] = other.m_showAtVenue[i];
 	}
 }

@@ -9,17 +9,19 @@ istream& operator>>(istream& in, MusicShow& show)
 void MusicShow::toOs(ostream& os) const
 {
 	Show::toOs(os);	
-	os << "Musical manager: " << getMusicalManager() << ", Sound check time: " << getSoundCheckTime() << endl;
+	os << "Musical manager: " << getMusicalManager() << "Sound check time: " << getSoundCheckTime() << endl;
 }
 
-void MusicShow::addParticipator(Musician& musician)
+void MusicShow::addParticipator(Musician& musician) throw (const char*)
 {
-	if (!(m_numOfParticipant + 1 > MAX_NUM_OF_MUSICIANS))
+	if (m_numOfParticipant < MAX_NUM_OF_MUSICIANS)
 	{
 		musician.setNumOfWorkingHours(m_duration + m_soundCheckTime);
 		Show::addParticipator(musician);
 	}
-	throw "No more room for this musician :(";
+
+	else
+		throw "No more room for this musician :(";
 }
 
 bool MusicShow::isShowPossible() const
@@ -35,7 +37,7 @@ void MusicShow::talkWithProducer()
 
 void MusicShow::encore() 
 {
-	cout << "Thank you so much you guys are amazing audience!";
+	cout << "Thank you so much you guys are amazing audience!" << endl;
 	this->makeShow();
 }
 

@@ -1,13 +1,15 @@
 #include "TheaterShow.h"
 
-void TheaterShow::addParticipator(Actor& actor)
+void TheaterShow::addParticipator(Actor& actor) throw (const char*)
 {
-	if (!(m_numOfParticipant + 1 > MAX_NUM_OF_ACTORS))
+	if (m_numOfParticipant < MAX_NUM_OF_ACTORS)
 	{
 		actor.setNumOfWorkingHours(m_duration);
 		Show::addParticipator(actor);
 	}
-	throw "No more room for this actor :(";
+
+	else
+		throw "No more room for this actor :(";
 }
 
 void TheaterShow::toOs(ostream& os) const

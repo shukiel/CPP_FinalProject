@@ -21,14 +21,15 @@ public:
 
 	friend istream& operator>>(istream& in, Dancer& dancer);
 	
-	void makeInjury() { setIsInjured(true); }
+	void makeInjury() { cout << "OMG! " << getName() << " have been injured!" << endl; setIsInjured(true); }
+	void recover() { cout << "Thank goodness! " << getName() << " have recovered from his injury!" << endl; setIsInjured(false); }
 	void makeAcrobatics();		//Ego might go up!
 
 	virtual void doPartInShow();
 
 	virtual void toOs(ostream& os) const; 
 
-	bool isCanPerform() const { return Participator::isCanPerform() && !m_isInjured; }
+	virtual bool isCanPerform() const { return Participator::isCanPerform() && !m_isInjured; }
 };
 
 #endif// __DANCER__H
