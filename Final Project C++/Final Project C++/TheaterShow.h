@@ -13,9 +13,7 @@ protected:
 
 public:
 	TheaterShow(const Show& other, const Crew& director) : Show(other), m_director(director) 
-	{
-		m_director.setNumOfWorkingHours(m_loadInLoadOutTime + m_duration);
-	}
+		{ m_director.setNumOfWorkingHours(m_loadInLoadOutTime + m_duration); }
 
 	void setDirector(const Crew& director) { m_director = director; }
 
@@ -23,15 +21,13 @@ public:
 
 	friend istream& operator>>(istream& in, TheaterShow& show);
 
-	virtual void addParticipator(Actor& actor);
+	virtual void toOs(ostream& os)	const;
+	virtual bool isShowPossible()	const { return Show::isShowPossible() && !(m_director.isTooDrunk()); }
+	virtual float getCost()			const {	return Show::getCost() + m_director.calcSalary(); }
+
+	virtual void addParticipator(Participator& participator);
 	virtual void talkWithProducer();
 	virtual void loadInTime();
-
-	virtual void toOs(ostream& os)	const;
-	virtual bool isShowPossible()	const;
-
-	virtual float getCost() const;
-
 };
 
 #endif

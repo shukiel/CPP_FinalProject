@@ -19,9 +19,9 @@ public:
 
 	int getNumOfBeersDrank() const { return m_numOfBeersDrank; }
 
-	friend istream& operator>>(istream& in, Crew& crew);
-
 	const Crew& operator+=(int num);
+
+	friend istream& operator>>(istream& in, Crew& crew);
 
 	virtual void toOs(ostream& os) const;
 	

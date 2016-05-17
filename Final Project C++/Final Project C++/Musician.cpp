@@ -37,9 +37,7 @@ void Musician::doPartInShow()
 	Participator::doPartInShow();
 	cout << "plays the " << getInstrument() << endl;
 	if (rand() > CHANCE_TO_SOLO)
-	{
 		makeSolo();
-	}
 }
 
 void Musician::makeSolo()

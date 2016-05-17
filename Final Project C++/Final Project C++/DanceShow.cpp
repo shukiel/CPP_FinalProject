@@ -12,21 +12,19 @@ void DanceShow::toOs(ostream& os) const
 	os << "Choregraph: " << getChoreograph() << endl;
 }
 
-void DanceShow::addParticipator(Dancer& dancer) throw (const char*)
+void DanceShow::addParticipator(Participator& participator) throw (const char*)
 {
 	if (m_numOfParticipant < MAX_NUM_OF_DANCERS)
 	{
-		dancer.setNumOfWorkingHours(m_duration);
-		Show::addParticipator(dancer);
+		if (typeid(participator) == typeid(Dancer))
+			Show::addParticipator(participator);
+
+		else
+			throw "The participant is not a dancer.";
 	}
 
 	else
 		throw "No more room for this dancer :(";
-}
-
-bool DanceShow::isShowPossible() const
-{
-	return Show::isShowPossible() && !(m_choreograph.isTooDrunk());
 }
 
 void DanceShow::talkWithProducer()
@@ -50,9 +48,4 @@ void DanceShow::loadInTime()
 {
 	Show::loadInTime();
 	m_choreograph.drinkBeers();
-}
-
-float DanceShow::getCost() const
-{
-	return Show::getCost() + m_choreograph.calcSalary();
 }

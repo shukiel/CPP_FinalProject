@@ -1,11 +1,14 @@
 #include "TheaterShow.h"
 
-void TheaterShow::addParticipator(Actor& actor) throw (const char*)
+void TheaterShow::addParticipator(Participator& participator) throw (const char*)
 {
 	if (m_numOfParticipant < MAX_NUM_OF_ACTORS)
 	{
-		actor.setNumOfWorkingHours(m_duration);  //Why is that?!
-		Show::addParticipator(actor);
+		if (typeid(participator) == typeid(Actor))
+			Show::addParticipator(participator);
+
+		else
+			throw "The participant is not an actor.";
 	}
 
 	else
@@ -24,11 +27,6 @@ istream& operator>>(istream& in, TheaterShow& show)
 	return in;
 }
 
-bool TheaterShow::isShowPossible() const
-{//Checks if all actors dont have too high Ego Level! And if the Crew is not too drunk
-	return Show::isShowPossible() && !(m_director.isTooDrunk());
-}
-
 void TheaterShow::talkWithProducer()
 {//Set All Ego Back to 0 for the participator And number of beers drank to 
 	Show::talkWithProducer();
@@ -39,9 +37,4 @@ void TheaterShow::loadInTime()
 {
 	Show::loadInTime();
 	m_director.drinkBeers();
-}
-
-float TheaterShow::getCost() const
-{
-	return Show::getCost() + m_director.calcSalary();
 }

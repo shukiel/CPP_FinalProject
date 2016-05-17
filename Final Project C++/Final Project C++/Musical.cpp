@@ -15,28 +15,14 @@ void Musical::toOs(ostream& os) const
 
 void Musical::addParticipator(Participator& participator)
 {
-	Dancer* tempD = dynamic_cast<Dancer*>(&participator);
-	if(tempD)
-	{
-		DanceShow::addParticipator(*tempD);
-		return;
-	}
+	if (typeid(participator) == typeid(Dancer))
+		DanceShow::addParticipator(participator);
 
-	Musician* tempM = dynamic_cast<Musician*>(&participator);
-	if(tempM)
-	{
-		MusicShow::addParticipator(*tempM);
-		return;
-	}
+	else if (typeid(participator) == typeid(Musician))
+		MusicShow::addParticipator(participator);
 
-	Actor* tempA = dynamic_cast<Actor*>(&participator);
-	if(tempA)
-		TheaterShow::addParticipator(*tempA);
-}
-
-bool Musical::isShowPossible() const
-{
-	return DanceShow::isShowPossible() && !(m_musicalManager.isTooDrunk()) && !(m_director.isTooDrunk());
+	else
+		TheaterShow::addParticipator(participator);
 }
 
 void Musical::talkWithProducer()
@@ -51,9 +37,4 @@ void Musical::loadInTime()
 	DanceShow::loadInTime();
 	m_musicalManager.drinkBeers();
 	m_director.drinkBeers();
-}
-
-float Musical::getCost() const 
-{
-	return TheaterShow::getCost() + m_choreograph.calcSalary() + m_musicalManager.calcSalary();
 }

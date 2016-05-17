@@ -37,9 +37,7 @@ void Actor::doPartInShow()
 	Participator::doPartInShow();
 	cout << getLine() << endl;
 	if (rand() > CHANCE_TO_DRAMA)
-	{
-		this->makeDrama();
-	}
+		makeDrama();
 }
 
 void Actor::toOs(ostream& os) const

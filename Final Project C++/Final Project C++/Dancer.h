@@ -20,16 +20,16 @@ public:
 	bool getIsInjured() const { return m_isInjured; }
 
 	friend istream& operator>>(istream& in, Dancer& dancer);
-	
-	void makeInjury() { cout << "OMG! " << getName() << " have been injured!" << endl; setIsInjured(true); }
-	void recover() { cout << "Thank goodness! " << getName() << " have recovered from his injury!" << endl; setIsInjured(false); }
-	void makeAcrobatics();		//Ego might go up!
 
+	virtual void toOs(ostream& os)	const;
+	virtual bool isCanPerform()		const { return Participator::isCanPerform() && !m_isInjured; }
+	
 	virtual void doPartInShow();
 
-	virtual void toOs(ostream& os) const; 
-
-	virtual bool isCanPerform() const { return Participator::isCanPerform() && !m_isInjured; }
+	void makeInjury()	{ cout << "OMG! " << getName() << " have been injured!" << endl; setIsInjured(true); }
+	void recover()		{ cout << "Thank goodness! " << getName() << " have recovered from his injury!" << endl; setIsInjured(false); }
+	
+	void makeAcrobatics();		//Ego might go up!
 };
 
 #endif// __DANCER__H

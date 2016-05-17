@@ -12,21 +12,22 @@ void MusicShow::toOs(ostream& os) const
 	os << "Musical manager: " << getMusicalManager() << "Sound check time: " << getSoundCheckTime() << endl;
 }
 
-void MusicShow::addParticipator(Musician& musician) throw (const char*)
+void MusicShow::addParticipator(Participator& participator) throw (const char*)
 {
 	if (m_numOfParticipant < MAX_NUM_OF_MUSICIANS)
 	{
-		musician.setNumOfWorkingHours(m_duration + m_soundCheckTime);
-		Show::addParticipator(musician);
+		if (typeid(participator) == typeid(Musician))
+		{
+			participator.setNumOfWorkingHours(m_soundCheckTime);
+			Show::addParticipator(participator);
+		}
+
+		else
+			throw "The participant is not a musician.";
 	}
 
 	else
 		throw "No more room for this musician :(";
-}
-
-bool MusicShow::isShowPossible() const
-{
-	return Show::isShowPossible() && !(m_musicalManager.isTooDrunk());
 }
 
 void MusicShow::talkWithProducer()
@@ -38,16 +39,11 @@ void MusicShow::talkWithProducer()
 void MusicShow::encore() 
 {
 	cout << "Thank you so much you guys are amazing audience!" << endl;
-	this->makeShow();
+	makeShow();
 }
 
 void MusicShow::loadInTime()
 {
 	Show::loadInTime();
 	m_musicalManager.drinkBeers();
-}
-
-float MusicShow::getCost() const
-{
-	return Show::getCost() + m_musicalManager.calcSalary();
 }

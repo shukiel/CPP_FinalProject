@@ -2,16 +2,11 @@
 #include "ShowAtVenue.h"
 
 Venue::Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, const char* name) :
-	m_contactDetails(contactDetails), m_capacity(capacity), m_numOfRows(numOfRows), m_numOfSeatsPerRow(numOfSeatsPerRow)
+m_contactDetails(contactDetails), m_capacity(capacity), m_numOfRows(numOfRows), m_numOfSeatsPerRow(numOfSeatsPerRow), m_name(NULL)
 {
 	m_numOfShows = 0;
-	this->m_showAtVenue = new ShowAtVenue[MAX_NUM_OF_SHOWS];
+	m_showAtVenue = new ShowAtVenue[MAX_NUM_OF_SHOWS];
 	m_name = _strdup(name);
-}
-
-Venue::Venue(const Venue& other) : m_contactDetails(other.m_contactDetails), m_showAtVenue(NULL)
-{
-	this->copyEverythingButContact(other);
 }
 
 Venue::~Venue()
@@ -26,23 +21,16 @@ const Venue& Venue::operator=(const Venue& other)
 {
 	if (this != &other)
 	{
-		this->copyEverythingButContact(other);
-		this->m_contactDetails = other.m_contactDetails;
+		copyEverythingButContact(other);
+		m_contactDetails = other.m_contactDetails;
 	}
 	return *this;
 }
 
-//bool operator>(const Venue& other) const;
-//bool operator<(const Venue& other) const;
-//bool operator>=(const Venue& other) const;
-//bool operator<=(const Venue& other) const;
-
 void Venue::operator+=(const ShowAtVenue& show) throw (TooMuchShowsException)	//adds a show to the venue
 {
 	if (m_numOfShows < MAX_NUM_OF_SHOWS) //Have room for one more show
-	{
 		m_showAtVenue[m_numOfShows++] = show;
-	}
 	else 
 		throw(TooMuchShowsException(show));
 }
@@ -58,10 +46,9 @@ void Venue::operator-=(const ShowAtVenue& show)
 			break;
 		}
 	}
+
 	for (; i < m_numOfShows; i++)	//close the holes
-	{
 		m_showAtVenue[i] = m_showAtVenue[i + 1];
-	}
 }//removes a show from a venue
 
 ostream& operator<<(ostream& os, const Venue& venue)
@@ -86,9 +73,7 @@ float Venue::getSalesRevenue() const //Gets the profit of the show
 {
 	float sum = 0 ;
 	for (int i = 0; i < m_numOfShows; i++)
-	{
 		sum += m_showAtVenue[i].getProfit();
-	}
 	return sum;
 }
 
@@ -105,7 +90,11 @@ void Venue::copyEverythingButContact(const Venue& other)
 	m_showAtVenue = new ShowAtVenue[MAX_NUM_OF_SHOWS];
 
 	for (int i = 0; i < other.m_numOfShows;i++)
-	{
 		m_showAtVenue[i] = other.m_showAtVenue[i];
-	}
+}
+
+void Venue::makeShow()
+{
+	for (int i = 0; i < m_numOfShows; i++)
+		m_showAtVenue[i].makeShow();
 }

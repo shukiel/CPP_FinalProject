@@ -2,14 +2,16 @@
 
 Show::Show(const char* name, int duration, int loadInLoadOutTime,
 	 Crew& lightingDesigner,  Crew& soundDesigner,  Crew& setDesigner,
-	int ticketPrice, int numOfShows):
-	m_duration(duration), m_loadInLoadOutTime(loadInLoadOutTime), m_lightingDesigner(lightingDesigner), 
-	m_soundDesigner(soundDesigner), m_setDesigner(setDesigner), m_ticketPrice(ticketPrice), m_numOfShows(numOfShows)
+	 int ticketPrice, int numOfShows) :
+	 m_duration(duration), m_loadInLoadOutTime(loadInLoadOutTime), m_lightingDesigner(lightingDesigner), 
+	 m_soundDesigner(soundDesigner), m_setDesigner(setDesigner), m_ticketPrice(ticketPrice), m_numOfShows(numOfShows)
 {
 	m_name = _strdup(name);
-	m_numOfParticipant = 0;
 	m_numOfShows = 0;
+
+	m_numOfParticipant = 0;
 	m_participators = new Participator*[MAX_NUM_OF_PARTICIPATORS];
+
 	m_lightingDesigner.setNumOfWorkingHours(m_loadInLoadOutTime + m_duration);
 	m_setDesigner.setNumOfWorkingHours(m_loadInLoadOutTime);
 	m_soundDesigner.setNumOfWorkingHours(m_loadInLoadOutTime + m_duration);
@@ -21,6 +23,7 @@ Show::Show(const Show& other) : m_lightingDesigner(other.getLightingDesigner()),
 		m_ticketPrice(other.m_ticketPrice), m_numOfShows(other.m_numOfShows)
 {
 	m_name = _strdup(other.m_name);
+
 	m_numOfParticipant = 0;
 	m_participators = new Participator*[MAX_NUM_OF_PARTICIPATORS];
 	if(other.getNumOfParticipant() > 0)
@@ -29,9 +32,16 @@ Show::Show(const Show& other) : m_lightingDesigner(other.getLightingDesigner()),
 		for(int i = 0; i < other.getNumOfParticipant(); i++)
 			addParticipator(*temp[i]);
 	}
+
 	m_lightingDesigner.setNumOfWorkingHours(m_loadInLoadOutTime + m_duration);
 	m_setDesigner.setNumOfWorkingHours(m_loadInLoadOutTime);
 	m_soundDesigner.setNumOfWorkingHours(m_loadInLoadOutTime + m_duration);
+}
+
+Show::~Show()
+{ 
+	delete[] m_name; 
+	delete[] m_participators;
 }
 
 float Show::getCost() const
@@ -104,11 +114,13 @@ void Show::addParticipator(Participator& participator) throw (const char*)
 {
 	if(m_numOfParticipant < MAX_NUM_OF_PARTICIPATORS)
 	{
+		participator.setNumOfWorkingHours(participator.getNumOfWorkingHours() + m_duration);
 		m_participators[m_numOfParticipant] = &participator;
 		m_numOfParticipant++;
 	}
+
 	else
-		cout << "No more room for this participator." << endl;
+		throw "No more room for this participator.";
 }
 
 void Show::makeShow() throw (const char*)
@@ -116,9 +128,7 @@ void Show::makeShow() throw (const char*)
 	loadInTime();
 
 	if (!isShowPossible())
-	{
 		throw "This Show is not possible!";
-	}
 
 	cout << "The Show " << m_name << " Is now starting please turn off your phones.\n";
 	for (int i = 0; i < m_numOfParticipant; i++)

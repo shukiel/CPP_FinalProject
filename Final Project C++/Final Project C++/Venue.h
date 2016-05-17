@@ -21,7 +21,7 @@ private:
 
 public:
 	Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, const char* name);
-	Venue(const Venue& other);
+	Venue(const Venue& other) : m_contactDetails(other.m_contactDetails), m_showAtVenue(NULL) { copyEverythingButContact(other); }
 	Venue() { }
 	~Venue();
 
@@ -34,28 +34,24 @@ public:
 	int getCapacity()						const { return m_capacity; }
 	int getNumOfRows()						const { return m_numOfRows; }
 	int getNumOfSeatsPerRow()				const { return m_numOfSeatsPerRow; }
+	int getNumOfShows()						const { return m_numOfShows; }
 	const char* getVenueName()				const { return m_name; }
-	const ShowAtVenue* getShowAtVenue()		const { return m_showAtVenue; }
+	ShowAtVenue* getShowAtVenue()			const { return m_showAtVenue; }
 
-
-	const Venue& operator=(const Venue& other);
 	bool operator==(const Venue& other) const 
 		{ return strcmp(getVenueName(), other.getVenueName()) == 0 && getContactDetails() == other.getContactDetails(); }
 	bool operator!=(const Venue& other) const { return !(*this == other); }
 
+	const Venue& operator=(const Venue& other);
 	void operator+=(const ShowAtVenue& show);	//adds a show to the venue
 	void operator-=(const ShowAtVenue& show);	//removes a show from a venue
-
-	//bool operator>(const Venue& other) const;
-	//bool operator<(const Venue& other) const;
-	//bool operator>=(const Venue& other) const;
-	//bool operator<=(const Venue& other) const;
 
 	friend ostream& operator<<(ostream& os, const Venue& venue);
 	friend istream& operator>>(istream& in, Venue& venue);
 
 	void AddShow(const ShowAtVenue& show)		{ *this += show; }
 	void RemoveShow(const ShowAtVenue& show)	{ *this -= show; }
+	void makeShow();
 
 	float getSalesRevenue() const;
 };

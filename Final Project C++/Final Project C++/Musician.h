@@ -23,12 +23,12 @@ public:
 	const Musician& operator=(const Musician& other);
 	friend istream& operator>>(istream& in, Musician& musician);
 
-	void makeSolo();		//Ego might go up!
+	virtual void toOs(ostream& os)	const;
+	virtual bool isCanPerform()		const { return Participator::isCanPerform(); }
 
 	virtual void doPartInShow();
 
-	virtual void toOs(ostream& os)	const;
-	virtual bool isCanPerform()		const { return Participator::isCanPerform(); }
+	void makeSolo();		//Ego might go up!
 };
 
 #endif //__MUSICIAN__H

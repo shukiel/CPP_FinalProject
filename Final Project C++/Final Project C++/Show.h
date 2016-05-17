@@ -28,7 +28,7 @@ public:
 		 int ticketPrice, int numOfShows);
 	Show(const Show& other);
 	Show() { }
-	virtual ~Show() { delete[] m_name; }
+	virtual ~Show();
 
 	void setName(const char* name)							{ m_name = _strdup(name); }
 	void setDuration(int duration)							{ m_duration = duration; }
@@ -64,10 +64,9 @@ public:
 
 	virtual bool isShowPossible()	const;
 	virtual void toOs(ostream& os)	const;
+	virtual float getCost()			const;
 
 	void makeShow();
-
-	virtual float getCost() const;
 };
 
 #endif

@@ -14,9 +14,7 @@ protected:
 
 public:
 	MusicShow(const Show& other, const Crew& musicalManager, int soundCheckTime) : Show(other), m_musicalManager(musicalManager), m_soundCheckTime(soundCheckTime) 
-	{
-		m_musicalManager.setNumOfWorkingHours(m_soundCheckTime + m_duration + m_loadInLoadOutTime);
-	}
+		{ m_musicalManager.setNumOfWorkingHours(m_soundCheckTime + m_duration + m_loadInLoadOutTime); }
 
 	void setMusicalManager(const Crew& musicalManager)	{ m_musicalManager = musicalManager; }
 	void setSoundCheckTime(int soundCheckTime)			{ m_soundCheckTime = soundCheckTime; }
@@ -26,15 +24,15 @@ public:
 
 	friend istream& operator>>(istream& in, MusicShow& show);
 
-	virtual void toOs(ostream& os) const;
-	virtual void addParticipator(Musician& musician);
+	virtual void toOs(ostream& os)	const;
+	virtual bool isShowPossible()	const { return Show::isShowPossible() && !(m_musicalManager.isTooDrunk()); }
+	virtual float getCost()			const {	return Show::getCost() + m_musicalManager.calcSalary(); }
+
+	virtual void addParticipator(Participator& participator);
 	virtual void loadInTime();
-
-	virtual bool isShowPossible() const;
 	virtual void talkWithProducer();
-	virtual float getCost() const;
 
-	void encore() ;
+	void encore();
 };
 
 #endif

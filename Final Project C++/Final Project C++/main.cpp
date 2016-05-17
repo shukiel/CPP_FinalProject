@@ -51,7 +51,7 @@ void main()
 	shows[0] = new TheaterShow(Show("Hair", 120, 600, *c[0], *c[1], *c[3], 200, 0), *c[4]);
 	shows[1] = new DanceShow(Show("Swan Lake", 120, 600, *c[4], *c[3], *c[2], 200, 0), *c[1]);
 	shows[2] = new MusicShow(Show("U2", 120, 600, *c[2], *c[1], *c[4], 200, 0), *c[3], 150);
-	shows[3] = new Musical(Show("Hair", 120, 600, *c[0], *c[1], *c[3], 200, 0), *c[4], *c[3], *c[2], 300);
+	shows[3] = new Musical(Show("Hair- the musical", 120, 600, *c[0], *c[1], *c[3], 200, 0), *c[4], *c[3], *c[2], 300);
 
 
 
@@ -75,28 +75,44 @@ void main()
 
 	ShowAtVenue** shoAtVen = new ShowAtVenue*[4];
 
-	shoAtVen[1] = new ShowAtVenue(*shows[1], *ven[0], "1/3/2017");
-	shoAtVen[2] = new ShowAtVenue(*shows[2], *ven[1], "4/8/1988");
-	shoAtVen[3] = new ShowAtVenue(*shows[3], *ven[2], "4/11/1995");
-	shoAtVen[0] = new ShowAtVenue(*shows[0], *ven[1], "12/2/1988");
-
-
-	for (int i = 0; i < 4; i++)
-	{
-		ticketOffice->ReserveShow(*shoAtVen[i]);
-	}
-
+	shoAtVen[0] = new ShowAtVenue(ticketOffice->ReserveShow(*ven[0], *shows[0], "01/03/2017"));
+	shoAtVen[1] = new ShowAtVenue(ticketOffice->ReserveShow(*ven[1], *shows[1], "04/08/1988"));
+	shoAtVen[2] = new ShowAtVenue(ticketOffice->ReserveShow(*ven[2], *shows[2], "04/11/1995"));
+	shoAtVen[3] = new ShowAtVenue(ticketOffice->ReserveShow(*ven[0], *shows[3], "12/02/1988"));
 
 	try{
-		ticketOffice->BuyTicket(*shoAtVen[0], 40, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(*shoAtVen[0], 20, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(*shoAtVen[0], 15, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(*shoAtVen[0], 1, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(*shoAtVen[0], 44, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[0], 40, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[0], 20, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[0], 15, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[0], 1, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[0], 44, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+
+		ticketOffice->BuyTicket(shoAtVen[1], 50, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[1], 72, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[1], 15, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[1], 61, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[1], 28, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+
+		ticketOffice->BuyTicket(shoAtVen[2], 48, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[2], 30, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[2], 11, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[2], 102, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[2], 11, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+
+		ticketOffice->BuyTicket(shoAtVen[3], 100, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[3], 19, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[3], 17, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[3], 2, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(shoAtVen[3], 32, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
 	}
+
 	catch (char * message)
 	{
 		cout << "\n\n ERROR :: " << message << "\n\n";
 	}
+
+	cout << *ticketOffice << endl;
+
+	ticketOffice->makeShows();
 }
 																															
