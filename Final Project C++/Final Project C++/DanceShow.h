@@ -21,9 +21,11 @@ public:
 
 	friend istream& operator>>(istream& in, DanceShow& show);
 
+	void makeShow();
+
 	virtual void toOs(ostream& os)	const;
 	virtual bool isShowPossible()	const { return Show::isShowPossible() && !(m_choreograph.isTooDrunk()); }
-	virtual float getCost()			const {	return Show::getCost() + m_choreograph.calcSalary(); }
+	virtual int getCost()			const {	return Show::getCost() + m_choreograph.calcSalary(); }
 
 	virtual void addParticipator(Participator& participator);
 	virtual void loadInTime();

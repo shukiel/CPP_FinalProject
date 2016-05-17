@@ -1,4 +1,5 @@
 #include "MusicShow.h"
+#include "Exceptions.h"
 
 istream& operator>>(istream& in, MusicShow& show)
 {
@@ -12,7 +13,7 @@ void MusicShow::toOs(ostream& os) const
 	os << "Musical manager: " << getMusicalManager() << "Sound check time: " << getSoundCheckTime() << endl;
 }
 
-void MusicShow::addParticipator(Participator& participator) throw (const char*)
+void MusicShow::addParticipator(Participator& participator) throw (GenericException)
 {
 	if (m_numOfParticipant < MAX_NUM_OF_MUSICIANS)
 	{
@@ -23,11 +24,11 @@ void MusicShow::addParticipator(Participator& participator) throw (const char*)
 		}
 
 		else
-			throw "The participant is not a musician.";
+			 new GenericException( "The participant is not a musician.");
 	}
 
 	else
-		throw "No more room for this musician :(";
+		 new GenericException( "No more room for this musician :(");
 }
 
 void MusicShow::talkWithProducer()
@@ -46,4 +47,10 @@ void MusicShow::loadInTime()
 {
 	Show::loadInTime();
 	m_musicalManager.drinkBeers();
+}
+
+void MusicShow::makeShow()
+{
+	Show::makeShow();
+	m_musicalManager.setNumOfWorkingHours(m_musicalManager.getNumOfWorkingHours() + m_duration);
 }

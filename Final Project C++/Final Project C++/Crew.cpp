@@ -23,9 +23,18 @@ const Crew& Crew::operator+=(int num)
 	return *this;
 }
 
+ostream& operator<<(ostream& os, Crew& crew)
+{
+	crew.toOs(os);
+	return os;
+}
+
 void Crew::drinkBeers()
 {
-	srand((unsigned int) time(NULL));
-	if (rand() > CHANCE_TO_DRINK_BEER)
-		*this += (rand() % MAX_NUM_OF_BEERS) + 1;
+	if (rand() % 100 > CHANCE_TO_DRINK_BEER)
+		*this += rand() % 5;
+	if (m_numOfBeersDrank > MAX_NUM_OF_BEERS)
+	{
+		cout << "************** >>" << m_name << ": Oh shot I think I'm too drunk" << endl;
+	}
 }

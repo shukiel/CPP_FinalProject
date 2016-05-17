@@ -3,13 +3,12 @@
 
 #include "Participator.h"
 
-#define CHANCE_TO_SOLO 0.3f
 
 class Musician : public Participator
 {
 private:
 	char* m_instrument;
-
+	const int CHANCE_TO_SOLO = 30;
 public:
 	Musician(Participator& participator, char * instrument) : Participator(participator), m_instrument(NULL) { setInstrument(instrument); }
 	Musician(const Musician& other) : Participator(other), m_instrument(NULL) { *this = other; }

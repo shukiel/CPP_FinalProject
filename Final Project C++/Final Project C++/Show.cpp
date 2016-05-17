@@ -1,4 +1,5 @@
 #include "Show.h"
+#include "Exceptions.h"
 
 Show::Show(const char* name, int duration, int loadInLoadOutTime,
 	 Crew& lightingDesigner,  Crew& soundDesigner,  Crew& setDesigner,
@@ -44,7 +45,7 @@ Show::~Show()
 	delete[] m_participators;
 }
 
-float Show::getCost() const
+int Show::getCost() const
 {
 	float sum = 0;
 	sum += m_lightingDesigner.calcSalary();
@@ -101,7 +102,7 @@ void Show::toOs(ostream& os) const
 	os << endl << "Lighting Designer: " << endl << m_lightingDesigner << endl;
 	os << "Set Designer: " << endl << m_setDesigner << endl;
 	os << "Sound Designer: " << endl << m_soundDesigner << endl;
-	os << "Ticket price: " << m_ticketPrice << ", Num of shows: " << m_numOfShows << endl;
+	os << "Ticket price: " << m_ticketPrice << ", Num of shows: " << m_numOfShows <<" Show Cost: "<<getCost()<<endl;
 	if (m_numOfParticipant > 0)
 	{
 		os << endl << "Participant:" << endl;
@@ -110,7 +111,7 @@ void Show::toOs(ostream& os) const
 	}
 }
 
-void Show::addParticipator(Participator& participator) throw (const char*)
+void Show::addParticipator(Participator& participator) throw (GenericException)
 {
 	if(m_numOfParticipant < MAX_NUM_OF_PARTICIPATORS)
 	{
@@ -123,16 +124,23 @@ void Show::addParticipator(Participator& participator) throw (const char*)
 		throw "No more room for this participator.";
 }
 
-void Show::makeShow() throw (const char*)
+void Show::makeShow() throw (GenericException)
 {
-	loadInTime();
 
 	if (!isShowPossible())
-		throw "This Show is not possible!";
+		throw GenericException("This Show is not possible`!");
+	loadInTime();
 
 	cout << "The Show " << m_name << " Is now starting please turn off your phones.\n";
 	for (int i = 0; i < m_numOfParticipant; i++)
+	{
 		m_participators[i]->doPartInShow();
+		m_participators[i]->setNumOfWorkingHours(m_participators[i]->getNumOfWorkingHours() + m_duration);
+	}
+	m_lightingDesigner.setNumOfWorkingHours(m_lightingDesigner.getNumOfWorkingHours() + m_duration + m_loadInLoadOutTime);
+	m_soundDesigner.setNumOfWorkingHours(m_soundDesigner.getNumOfWorkingHours() + m_duration + m_loadInLoadOutTime);
+	m_setDesigner.setNumOfWorkingHours(m_setDesigner.getNumOfWorkingHours() + m_duration + m_loadInLoadOutTime);
+	cout << "\n------------------------The End------------------------------------\n\n\n";
 	m_numOfShows++;
 }
 
@@ -141,7 +149,7 @@ bool Show::isShowPossible() const
 	for(int i = 0; i < getNumOfParticipant(); i++)
 		if(!(m_participators[i]->isCanPerform()))
 			return false;
-	return true && !(m_lightingDesigner.isTooDrunk()) && !(m_setDesigner.isTooDrunk()) && !(m_soundDesigner.isTooDrunk());
+	return !(m_lightingDesigner.isTooDrunk()) && !(m_setDesigner.isTooDrunk()) && !(m_soundDesigner.isTooDrunk());
 }
 
 void Show::talkWithProducer()

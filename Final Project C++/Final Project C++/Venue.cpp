@@ -27,12 +27,12 @@ const Venue& Venue::operator=(const Venue& other)
 	return *this;
 }
 
-void Venue::operator+=(const ShowAtVenue& show) throw (TooMuchShowsException)	//adds a show to the venue
+void Venue::operator+=(const ShowAtVenue& show) throw (GenericException)	//adds a show to the venue
 {
 	if (m_numOfShows < MAX_NUM_OF_SHOWS) //Have room for one more show
 		m_showAtVenue[m_numOfShows++] = show;
 	else 
-		throw(TooMuchShowsException(show));
+		throw GenericException("TooMuchShowsException");
 }
 
 void Venue::operator-=(const ShowAtVenue& show) 
@@ -69,9 +69,9 @@ istream& operator>>(istream& in, Venue& venue)
 	return in;
 }
 
-float Venue::getSalesRevenue() const //Gets the profit of the show
+int Venue::getSalesRevenue() const //Gets the profit of the show
 {
-	float sum = 0 ;
+	int sum = 0 ;
 	for (int i = 0; i < m_numOfShows; i++)
 		sum += m_showAtVenue[i].getProfit();
 	return sum;

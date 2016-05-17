@@ -23,10 +23,12 @@ public:
 	int getSoundCheckTime()			const { return m_soundCheckTime; }
 
 	friend istream& operator>>(istream& in, MusicShow& show);
+	
+	void makeShow();
 
 	virtual void toOs(ostream& os)	const;
 	virtual bool isShowPossible()	const { return Show::isShowPossible() && !(m_musicalManager.isTooDrunk()); }
-	virtual float getCost()			const {	return Show::getCost() + m_musicalManager.calcSalary(); }
+	virtual int getCost()			const {	return Show::getCost() + m_musicalManager.calcSalary(); }
 
 	virtual void addParticipator(Participator& participator);
 	virtual void loadInTime();

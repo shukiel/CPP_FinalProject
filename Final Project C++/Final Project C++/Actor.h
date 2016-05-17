@@ -4,12 +4,14 @@
 #include "Exceptions.h"
 #include "Participator.h"
 
-#define CHANCE_TO_DRAMA 0.2f
+
 
 class Actor : public Participator
 {
 private:
 	char* m_line;
+	const int CHANCE_TO_DRAMA = 15;
+
 
 public:
 	Actor(Participator& participator, const char* line) : Participator(participator), m_line(NULL) { setLine(line); }

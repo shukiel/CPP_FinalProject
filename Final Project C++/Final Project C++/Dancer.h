@@ -3,13 +3,12 @@
 
 #include "Participator.h"
 
-#define CHANCE_TO_ACROBATICS 0.2f
-#define CHANCE_TO_INJURE 0.1f
-
 class Dancer : public Participator
 {
 private:
 	bool m_isInjured;
+	const int CHANCE_TO_ACROBATICS = 30;
+	const int CHANCE_TO_INJURE = 5;
 
 public:
 	Dancer(Participator& participator, bool isInjured = false) : Participator(participator), m_isInjured(isInjured) { };

@@ -3,20 +3,20 @@
 
 #include "Employee.h"
 
-#define EGO_TRESHOLD 0.7f
-#define ADDITION_TO_EGO 0.1f
+#define EGO_TRESHOLD 10
+#define ADDITION_TO_EGO 5
 
 
 class Participator : public Employee
 {
 protected:
-	float m_egoLevel;
+	int m_egoLevel;
 
 public:
-	Participator(const Employee& other, float egoLevel = 0) : Employee(other), m_egoLevel(egoLevel) { }
+	Participator(const Employee& other, int egoLevel = 0) : Employee(other), m_egoLevel(egoLevel) { }
 	Participator() { }
 
-	float getEgoLevel() const { return m_egoLevel; }
+	int getEgoLevel() const { return m_egoLevel; }
 
 	friend istream& operator>>(istream& in, Participator& participator);
 

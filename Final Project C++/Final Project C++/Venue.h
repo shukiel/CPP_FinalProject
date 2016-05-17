@@ -53,7 +53,7 @@ public:
 	void RemoveShow(const ShowAtVenue& show)	{ *this -= show; }
 	void makeShow();
 
-	float getSalesRevenue() const;
+	int getSalesRevenue() const;
 };
 
 #endif

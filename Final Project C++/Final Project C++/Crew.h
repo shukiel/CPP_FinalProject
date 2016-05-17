@@ -4,7 +4,7 @@
 #include "Employee.h"
 
 #define MAX_NUM_OF_BEERS 10
-#define CHANCE_TO_DRINK_BEER 0.2f
+#define CHANCE_TO_DRINK_BEER 50
 
 class Crew : public Employee
 {
@@ -23,6 +23,7 @@ public:
 
 	friend istream& operator>>(istream& in, Crew& crew);
 
+	friend ostream& operator<<(ostream& os, Crew& crew);
 	virtual void toOs(ostream& os) const;
 	
 	void soberUp() { m_numOfBeersDrank = 0; }

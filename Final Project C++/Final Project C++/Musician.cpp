@@ -33,10 +33,9 @@ istream& operator>>(istream& in, Musician& musician)
 
 void Musician::doPartInShow() 
 {
-	srand((unsigned int) time(NULL));
 	Participator::doPartInShow();
 	cout << "plays the " << getInstrument() << endl;
-	if (rand() > CHANCE_TO_SOLO)
+	if (rand() % 100 < CHANCE_TO_SOLO)
 		makeSolo();
 }
 
@@ -44,4 +43,8 @@ void Musician::makeSolo()
 {
 	cout << m_name << ": Is making a maginificant solo on his " << m_instrument << endl;
 	m_egoLevel += ADDITION_TO_EGO;
+	if (m_egoLevel > EGO_TRESHOLD)
+	{
+		cout << m_name << "YOU KNOW WHAT?!? I'M TOO GOOD FOR THIS GIG!";
+	}
 }

@@ -29,14 +29,18 @@ void Actor::makeDrama()
 {
 	cout << m_name << " : PFFFF! I can't work like this !" << endl;
 	m_egoLevel += ADDITION_TO_EGO;
+	if (m_egoLevel > EGO_TRESHOLD)
+	{
+		cout << "YOU KNOW WHAT, SCREW THIS I'M GOING HOME!";
+	}
 }
 
 void Actor::doPartInShow() 
 {
-	srand((unsigned int) time(NULL));
 	Participator::doPartInShow();
 	cout << getLine() << endl;
-	if (rand() > CHANCE_TO_DRAMA)
+	int i = rand();
+	if (rand() % 100  < CHANCE_TO_DRAMA)
 		makeDrama();
 }
 

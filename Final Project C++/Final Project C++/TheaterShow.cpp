@@ -1,6 +1,6 @@
 #include "TheaterShow.h"
 
-void TheaterShow::addParticipator(Participator& participator) throw (const char*)
+void TheaterShow::addParticipator(Participator& participator) throw (GenericException)
 {
 	if (m_numOfParticipant < MAX_NUM_OF_ACTORS)
 	{
@@ -8,11 +8,11 @@ void TheaterShow::addParticipator(Participator& participator) throw (const char*
 			Show::addParticipator(participator);
 
 		else
-			throw "The participant is not an actor.";
+			throw GenericException("The participant is not an actor.");
 	}
 
 	else
-		throw "No more room for this actor :(";
+		throw GenericException("No more room for this actor :(");
 }
 
 void TheaterShow::toOs(ostream& os) const
@@ -31,6 +31,12 @@ void TheaterShow::talkWithProducer()
 {//Set All Ego Back to 0 for the participator And number of beers drank to 
 	Show::talkWithProducer();
 	m_director.soberUp();
+}
+
+void TheaterShow::makeShow()
+{
+	Show::makeShow();
+	m_director.setNumOfWorkingHours(m_director.getNumOfWorkingHours() + m_duration);
 }
 
 void TheaterShow::loadInTime()

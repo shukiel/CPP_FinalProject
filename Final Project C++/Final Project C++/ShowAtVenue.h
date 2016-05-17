@@ -38,8 +38,8 @@ public:
 	friend ostream& operator<<(ostream& os, const ShowAtVenue& show);
 	friend istream& operator>>(istream& in, ShowAtVenue& show);
 
-	float GetTotalSalesValue()	const { return (float)m_numOfPeople * m_show.getTicketPrice(); }
-	float getProfit()			const { return GetTotalSalesValue() - m_show.getCost(); }
+	int GetTotalSalesValue()	const { return (int)m_numOfPeople * m_show.getTicketPrice(); }
+	int getProfit()			const { return GetTotalSalesValue() - m_show.getCost(); }
 
 	void AddSeats(int numOfTickets, const Contact& customer);
 	void RemoveSeats(const Contact& customer);

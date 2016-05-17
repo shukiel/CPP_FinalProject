@@ -16,8 +16,8 @@ class Contact;
 class Exception //Abstract class - > Super class for all exceptions
 {
 public :
-	virtual void printErrorToConsole() = 0;
-	virtual void printErrorToLogFile() = 0;
+	virtual void printErrorToConsole(){}
+	virtual void printErrorToLogFile() {}
 };
 class NoMoreRoomException : public Exception
 {
@@ -56,7 +56,28 @@ public:
 		log << "This Show have no free spot -> " << m_show << endl;
 		log.close();
 	}
+};
 
+class GenericException : public Exception
+{
+private:
+	char* m_message;
+
+public:
+	GenericException(char *message)
+	{
+		m_message = _strdup(message);
+	}
+	void printErrorToConsole(){
+		cout << "!-------------ERROR----------------!\n "<<m_message<<"\n\n";
+	}
+
+	void printErrorToLogFile()
+	{
+		ofstream log(LOG_FILE_NAME, ios::app);
+		log << m_message << endl;
+		log.close();
+	}
 };
 
 #endif //__EXCEPTIONS_H

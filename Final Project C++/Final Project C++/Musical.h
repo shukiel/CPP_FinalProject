@@ -16,11 +16,12 @@ public:
 	virtual void toOs(ostream& os)	const;
 	virtual bool isShowPossible()	const 
 		{ return DanceShow::isShowPossible() && !(m_musicalManager.isTooDrunk()) && !(m_director.isTooDrunk()); }
-	virtual float getCost()			const 
+	virtual int getCost()			const 
 		{	return TheaterShow::getCost() + m_choreograph.calcSalary() + m_musicalManager.calcSalary(); }
 
 	virtual void addParticipator(Participator& participator);
 	virtual void talkWithProducer();
 	virtual void loadInTime();
+	virtual void makeShow();
 };
 #endif

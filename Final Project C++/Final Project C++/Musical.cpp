@@ -38,3 +38,10 @@ void Musical::loadInTime()
 	m_musicalManager.drinkBeers();
 	m_director.drinkBeers();
 }
+
+void Musical::makeShow()
+{
+	DanceShow::makeShow();
+	m_director.setNumOfWorkingHours(m_director.getNumOfWorkingHours() + m_duration);
+	m_choreograph.setNumOfWorkingHours(m_choreograph.getNumOfWorkingHours() + m_duration);
+}

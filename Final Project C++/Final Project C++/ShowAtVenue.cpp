@@ -1,4 +1,5 @@
 #include "ShowAtVenue.h"
+#include "Exceptions.h"
 
 ShowAtVenue::ShowAtVenue(const Show& show, const Venue& venue, const char* date) : m_show(show), m_venue(venue), m_date(NULL)
 {
@@ -15,7 +16,7 @@ ShowAtVenue::ShowAtVenue(const Show& show, const Venue& venue, const char* date)
 	}
 }
 
-void ShowAtVenue::AddSeats(int numOfTickets, const Contact& customer) throw (NoMoreRoomException)
+void ShowAtVenue::AddSeats(int numOfTickets, const Contact& customer) throw (GenericException)
 {//Curently work in very meh way, you probably won't seat with your buddies
 	if (isFreeSpace(numOfTickets))
 	{
@@ -30,7 +31,7 @@ void ShowAtVenue::AddSeats(int numOfTickets, const Contact& customer) throw (NoM
 				}
 	}
 	else
-		throw NoMoreRoomException(&customer);
+		throw GenericException("NoMoreRoomException");
 }
 
 void ShowAtVenue::RemoveSeats(const Contact& customer)
@@ -89,8 +90,11 @@ void ShowAtVenue::freeAlloc()
 
 ostream& operator<<(ostream& os, const ShowAtVenue& show)
 {
+	os << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << endl;
 	os << "Show Name :" << show.m_show.getName() << " | At Venue : " << show.m_venue.getVenueName() << endl;
 	os << "Number of people in Audience: " << show.getNumOfPeopleInAudience() << endl;
+	os << "Show Cost " << (show.getShow()).getCost() << " Show Income: " << show.GetTotalSalesValue() << endl;
+	os << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << endl;
 	return os;
 }
 

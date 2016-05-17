@@ -17,7 +17,8 @@ public:
 	Contact() { }
 	virtual ~Contact();
 
-	void setName(const char* name)			{ m_name = _strdup(name); }
+	void setName(const char* name)			{   m_name = new char[sizeof(*name)/sizeof(char) +1];
+												m_name = _strdup(name); }
 	void setPhoneNum(const char* phoneNum)	{ m_phoneNum = _strdup(phoneNum); }
 	void setAddress(const char* address)	{ m_address = _strdup(address); }
 

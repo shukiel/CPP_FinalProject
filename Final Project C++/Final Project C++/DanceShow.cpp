@@ -1,4 +1,5 @@
 #include "DanceShow.h"
+#include "Exceptions.h"
 
 istream& operator>>(istream& in, DanceShow& show)
 {
@@ -12,7 +13,7 @@ void DanceShow::toOs(ostream& os) const
 	os << "Choregraph: " << getChoreograph() << endl;
 }
 
-void DanceShow::addParticipator(Participator& participator) throw (const char*)
+void DanceShow::addParticipator(Participator& participator) throw (GenericException)
 {
 	if (m_numOfParticipant < MAX_NUM_OF_DANCERS)
 	{
@@ -20,11 +21,11 @@ void DanceShow::addParticipator(Participator& participator) throw (const char*)
 			Show::addParticipator(participator);
 
 		else
-			throw "The participant is not a dancer.";
+			throw GenericException ("The participant is not a dancer.");
 	}
 
 	else
-		throw "No more room for this dancer :(";
+		throw GenericException("No more room for this dancer :(");
 }
 
 void DanceShow::talkWithProducer()
@@ -42,6 +43,12 @@ void DanceShow::dancerInjured(Dancer& dancer)
 			if(*temp == dancer)
 				temp->makeInjury();
 	}
+}
+
+void DanceShow::makeShow()
+{
+	Show::makeShow();
+	m_choreograph.setNumOfWorkingHours(m_choreograph.getNumOfWorkingHours() + m_duration);
 }
 
 void DanceShow::loadInTime()

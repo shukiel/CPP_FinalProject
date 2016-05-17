@@ -64,7 +64,7 @@ public:
 
 	virtual bool isShowPossible()	const;
 	virtual void toOs(ostream& os)	const;
-	virtual float getCost()			const;
+	virtual int getCost()			const;
 
 	void makeShow();
 };

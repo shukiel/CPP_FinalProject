@@ -11,10 +11,9 @@ istream& operator>>(istream& in, Dancer& dancer)
 
 void Dancer::doPartInShow()
 {
-	srand((unsigned int) time(NULL));
 	Participator::doPartInShow();
 	cout <<  "**dancing**..." << endl;
-	if (rand() > CHANCE_TO_ACROBATICS)
+	if (rand() % 100  < CHANCE_TO_ACROBATICS)
 		makeAcrobatics();
 }
 
@@ -31,7 +30,7 @@ void Dancer::toOs(ostream& os) const
 void Dancer::makeAcrobatics()
 {
 	cout << m_name << " Making Acrobatics !" <<endl;
-	if (rand() < CHANCE_TO_INJURE)
+	if (rand() % 100 < CHANCE_TO_INJURE)
 		makeInjury();
 	else
 		m_egoLevel += ADDITION_TO_EGO;

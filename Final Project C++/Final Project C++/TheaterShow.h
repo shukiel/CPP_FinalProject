@@ -21,13 +21,16 @@ public:
 
 	friend istream& operator>>(istream& in, TheaterShow& show);
 
+	void makeShow();
+
 	virtual void toOs(ostream& os)	const;
 	virtual bool isShowPossible()	const { return Show::isShowPossible() && !(m_director.isTooDrunk()); }
-	virtual float getCost()			const {	return Show::getCost() + m_director.calcSalary(); }
+	virtual int getCost()			const {	return Show::getCost() + m_director.calcSalary(); }
 
 	virtual void addParticipator(Participator& participator);
 	virtual void talkWithProducer();
 	virtual void loadInTime();
+
 };
 
 #endif
