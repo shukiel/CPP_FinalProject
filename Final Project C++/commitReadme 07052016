@@ -1,0 +1,9 @@
+	
+	A few of things that i dont understand
+	
+	In Venue: 
+	bool operator>(const Venue& other) const;
+	bool operator<(const Venue& other) const;
+	bool operator>=(const Venue& other) const;
+	bool operator<=(const Venue& other) const;
+	What are these good for?!
