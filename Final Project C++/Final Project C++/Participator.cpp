@@ -15,3 +15,13 @@ istream& operator>>(istream& in, Participator& participator)
 
 	return in;
 }
+
+bool Participator::isCanPerform() const
+{
+	if (m_egoLevel > EGO_TRESHOLD)
+	{
+		cout << m_name << "- Ego too high!" << endl;
+		return false;
+	}
+	return true;
+}

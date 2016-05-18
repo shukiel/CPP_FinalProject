@@ -34,7 +34,15 @@ void Crew::drinkBeers()
 	if (rand() % 100 > CHANCE_TO_DRINK_BEER)
 		*this += rand() % 5;
 	if (m_numOfBeersDrank > MAX_NUM_OF_BEERS)
-	{
 		cout << "************** >>" << m_name << ": Oh shot I think I'm too drunk" << endl;
+}
+
+bool Crew::isTooDrunk() const
+{
+	if (m_numOfBeersDrank > MAX_NUM_OF_BEERS)
+	{
+		cout << m_name << "- is too drank!" << endl;
+		return true;
 	}
+	return false;
 }

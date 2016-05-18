@@ -12,7 +12,6 @@ private:
 	char* m_line;
 	const int CHANCE_TO_DRAMA = 15;
 
-
 public:
 	Actor(Participator& participator, const char* line) : Participator(participator), m_line(NULL) { setLine(line); }
 	Actor(const Actor& other) : Participator(other), m_line(NULL) { *this = other; }

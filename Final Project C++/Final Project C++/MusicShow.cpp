@@ -51,6 +51,7 @@ void MusicShow::loadInTime()
 
 void MusicShow::makeShow()
 {
+	loadInTime();
 	Show::makeShow();
 	m_musicalManager.setNumOfWorkingHours(m_musicalManager.getNumOfWorkingHours() + m_duration);
 }

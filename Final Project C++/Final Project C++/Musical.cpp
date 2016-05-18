@@ -34,13 +34,13 @@ void Musical::talkWithProducer()
 
 void Musical::loadInTime()
 {
-	DanceShow::loadInTime();
 	m_musicalManager.drinkBeers();
 	m_director.drinkBeers();
 }
 
 void Musical::makeShow()
 {
+	loadInTime();
 	DanceShow::makeShow();
 	m_director.setNumOfWorkingHours(m_director.getNumOfWorkingHours() + m_duration);
 	m_choreograph.setNumOfWorkingHours(m_choreograph.getNumOfWorkingHours() + m_duration);

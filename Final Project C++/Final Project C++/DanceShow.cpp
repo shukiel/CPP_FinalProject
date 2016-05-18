@@ -47,6 +47,7 @@ void DanceShow::dancerInjured(Dancer& dancer)
 
 void DanceShow::makeShow()
 {
+	loadInTime();
 	Show::makeShow();
 	m_choreograph.setNumOfWorkingHours(m_choreograph.getNumOfWorkingHours() + m_duration);
 }
@@ -55,4 +56,12 @@ void DanceShow::loadInTime()
 {
 	Show::loadInTime();
 	m_choreograph.drinkBeers();
+	for (int i = 0; i < m_numOfParticipant; i++)
+	{
+		Dancer* temp = dynamic_cast<Dancer*>(m_participators[i]);
+		if (temp)
+			if (temp->getIsInjured())
+				if (rand() % 100 < temp->CHANCE_TO_RECOVER)
+					temp->recover();
+	}
 }

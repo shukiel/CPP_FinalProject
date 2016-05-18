@@ -35,6 +35,7 @@ void TheaterShow::talkWithProducer()
 
 void TheaterShow::makeShow()
 {
+	loadInTime();
 	Show::makeShow();
 	m_director.setNumOfWorkingHours(m_director.getNumOfWorkingHours() + m_duration);
 }

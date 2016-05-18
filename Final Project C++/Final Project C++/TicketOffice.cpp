@@ -40,7 +40,7 @@ ostream& operator<<(ostream& os, const TicketOffice& ticketOffice)
 	return os;
 }
 
-ShowAtVenue TicketOffice::ReserveShow(Venue& venue, const Show& show, const char* date)
+ShowAtVenue TicketOffice::ReserveShow(Venue& venue, Show& show, const char* date)
 {
 	if (getVenueIndex(venue) == -1)
 		addVenue(venue);

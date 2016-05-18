@@ -1,8 +1,30 @@
 #include "ShowAtVenue.h"
 #include "Exceptions.h"
 
-ShowAtVenue::ShowAtVenue(const Show& show, const Venue& venue, const char* date) : m_show(show), m_venue(venue), m_date(NULL)
+ShowAtVenue::ShowAtVenue(Show& show, const Venue& venue, const char* date) : m_venue(venue), m_date(NULL)
 {
+	Musical* tempM = dynamic_cast<Musical*>(&show);
+	if (tempM)
+		m_show = new Musical(*tempM);
+	else
+	{
+		DanceShow* tempD = dynamic_cast<DanceShow*>(&show);
+		if (tempD)
+			m_show = new DanceShow(*tempD);
+		else
+		{
+			TheaterShow* tempT = dynamic_cast<TheaterShow*>(&show);
+			if (tempT)
+				m_show = new TheaterShow(*tempT);
+			else
+			{
+				MusicShow* temp = dynamic_cast<MusicShow*>(&show);
+				if (temp)
+					m_show = new MusicShow(*temp);
+			}
+		}
+	}
+
 	m_date = _strdup(date);
 	m_numOfPeople = 0;
 
@@ -91,7 +113,7 @@ void ShowAtVenue::freeAlloc()
 ostream& operator<<(ostream& os, const ShowAtVenue& show)
 {
 	os << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << endl;
-	os << "Show Name :" << show.m_show.getName() << " | At Venue : " << show.m_venue.getVenueName() << endl;
+	os << "Show Name :" << show.m_show->getName() << " | At Venue : " << show.m_venue.getVenueName() << endl;
 	os << "Number of people in Audience: " << show.getNumOfPeopleInAudience() << endl;
 	os << "Show Cost " << (show.getShow()).getCost() << " Show Income: " << show.GetTotalSalesValue() << endl;
 	os << "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << endl;
@@ -101,4 +123,32 @@ ostream& operator<<(ostream& os, const ShowAtVenue& show)
 istream& operator>>(istream& in, ShowAtVenue& show)
 {
 	return in;
+}
+
+void ShowAtVenue::makeShow()
+{
+	Musical* tempM = dynamic_cast<Musical*>(m_show);
+	if (tempM)
+	{
+		tempM->makeShow();
+		return;
+	}
+
+	DanceShow* tempD = dynamic_cast<DanceShow*>(m_show);
+	if (tempD)
+	{
+		tempD->makeShow();
+		return;
+	}
+
+	TheaterShow* tempT = dynamic_cast<TheaterShow*>(m_show);
+	if (tempT)
+	{
+		tempT->makeShow();
+		return;
+	}
+
+	MusicShow* temp = dynamic_cast<MusicShow*>(m_show);
+	if (temp)
+		temp->makeShow();
 }

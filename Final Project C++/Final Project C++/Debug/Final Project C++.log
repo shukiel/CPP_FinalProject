@@ -1,11 +1,16 @@
-﻿Build started 5/18/16 1:58:50 AM.
-     1>Project "W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Final Project C++\Final Project C++.vcxproj" on node 2 (Build target(s)).
+﻿Build started 18/05/2016 15:19:20.
+     1>Project "C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Final Project C++\Final Project C++\Final Project C++.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Show.cpp
-         Show.cpp
-     1>w:\לימודים\אפקה\3rd year\cpp\project\final project c++\final project c++\show.cpp(56): warning C4244: 'return' : conversion from 'float' to 'int', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ShowAtVenue.cpp TicketOffice.cpp Venue.cpp main.cpp
+         ShowAtVenue.cpp
+         Generating Code...
+         Compiling...
+         main.cpp
+         Venue.cpp
+         TicketOffice.cpp
+         Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Debug\Final Project C++.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Debug\Final Project C++.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Debug\Final Project C++.lib" /MACHINE:X86 Debug\Actor.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Final Project C++\Debug\Final Project C++.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Final Project C++\Debug\Final Project C++.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Final Project C++\Debug\Final Project C++.lib" /MACHINE:X86 Debug\Actor.obj
          Debug\Contact.obj
          Debug\Crew.obj
          Debug\Dancer.obj
@@ -21,9 +26,9 @@
          Debug\TheaterShow.obj
          Debug\TicketOffice.obj
          Debug\Venue.obj
-         Final Project C++.vcxproj -> W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Debug\Final Project C++.exe
-     1>Done Building Project "W:\לימודים\אפקה\3rd year\CPP\Project\Final Project C++\Final Project C++\Final Project C++.vcxproj" (Build target(s)).
+         Final Project C++.vcxproj -> C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Final Project C++\Debug\Final Project C++.exe
+     1>Done Building Project "C:\Users\AviadZini\Desktop\cpp\CPP_FinalProject\Final Project C++\Final Project C++\Final Project C++.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.29
+Time Elapsed 00:00:10.39

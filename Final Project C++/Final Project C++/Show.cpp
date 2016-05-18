@@ -47,7 +47,7 @@ Show::~Show()
 
 int Show::getCost() const
 {
-	float sum = 0;
+	int sum = 0;
 	sum += m_lightingDesigner.calcSalary();
 	sum += m_setDesigner.calcSalary();
 	sum += m_soundDesigner.calcSalary();
@@ -126,10 +126,11 @@ void Show::addParticipator(Participator& participator) throw (GenericException)
 
 void Show::makeShow() throw (GenericException)
 {
-
 	if (!isShowPossible())
-		throw GenericException("This Show is not possible`!");
-	loadInTime();
+	{
+		talkWithProducer();
+		throw GenericException("This Show is not possible!");
+	}
 
 	cout << "The Show " << m_name << " Is now starting please turn off your phones.\n";
 	for (int i = 0; i < m_numOfParticipant; i++)

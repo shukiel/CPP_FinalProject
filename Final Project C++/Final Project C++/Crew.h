@@ -29,7 +29,7 @@ public:
 	void soberUp() { m_numOfBeersDrank = 0; }
 	void drinkBeers();
 
-	bool isTooDrunk() const { return m_numOfBeersDrank > MAX_NUM_OF_BEERS; }
+	bool isTooDrunk() const;
 };
 
 #endif

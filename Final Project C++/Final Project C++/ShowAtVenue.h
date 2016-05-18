@@ -1,14 +1,14 @@
 #ifndef __SHOWATVENUE_H
 #define __SHOWATVENUE_H
 
-#include "Show.h"
+#include "Musical.h"
 #include "Venue.h"
 #include "Exceptions.h"
 
 class ShowAtVenue
 {
 private:
-	Show			m_show;
+	Show*			m_show;
 	Venue			m_venue;
 	char*			m_date;
 	Contact***		m_seatArr;		//2D array of pointers to Seats(Contacts)
@@ -18,7 +18,7 @@ private:
 	void freeAlloc();
 
 public:
-	ShowAtVenue(const Show& show, const Venue& venue, const char* date);
+	ShowAtVenue(Show& show, const Venue& venue, const char* date);
 	ShowAtVenue(const ShowAtVenue& other) { *this = other; }
 	ShowAtVenue() { }
 	~ShowAtVenue() { freeAlloc(); }
@@ -26,7 +26,7 @@ public:
 	void setDate(const char* date) { m_date = _strdup(date); }
 
 	int getNumOfPeopleInAudience()	const { return m_numOfPeople; }
-	const Show& getShow()			const { return m_show; }
+	const Show& getShow()			const { return *m_show; }
 	const char* getDate()			const { return m_date; }
 	const Venue& getVenue()			const { return m_venue; }
 
@@ -38,12 +38,12 @@ public:
 	friend ostream& operator<<(ostream& os, const ShowAtVenue& show);
 	friend istream& operator>>(istream& in, ShowAtVenue& show);
 
-	int GetTotalSalesValue()	const { return (int)m_numOfPeople * m_show.getTicketPrice(); }
-	int getProfit()			const { return GetTotalSalesValue() - m_show.getCost(); }
+	int GetTotalSalesValue()	const { return (int)m_numOfPeople * m_show->getTicketPrice(); }
+	int getProfit()			const { return GetTotalSalesValue() - m_show->getCost(); }
 
 	void AddSeats(int numOfTickets, const Contact& customer);
 	void RemoveSeats(const Contact& customer);
-	void makeShow() { m_show.makeShow(); }
+	void makeShow();
 
 	Contact** const getAllCustumers() const;  //Will return a array of pointers to all the customers in the show FREE
 };

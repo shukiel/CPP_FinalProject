@@ -34,4 +34,17 @@ void Dancer::makeAcrobatics()
 		makeInjury();
 	else
 		m_egoLevel += ADDITION_TO_EGO;
+
+	if (m_egoLevel > EGO_TRESHOLD)
+		cout << m_name << ": This show is so boring! I'M GOING HOME!" << endl;
+}
+
+bool Dancer::isCanPerform() const
+{
+	if (m_isInjured)
+	{
+		cout << m_name << "- is injured!" << endl;
+		return false;
+	}
+	return Participator::isCanPerform();
 }

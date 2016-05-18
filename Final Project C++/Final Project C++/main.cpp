@@ -5,7 +5,7 @@
 
 void main()
 {
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 	TicketOffice* ticketOffice = new TicketOffice(Contact("Shuki Veiss", "1234-567-8888", "roro 3 , toto"));
 
 	Actor** act = new Actor*[5];
@@ -15,7 +15,6 @@ void main()
 	act[3] = new Actor(Participator(Employee(Contact("Zipi Dripo", "054-999-9999", "Ha'Tzlaot 18, Tel Aviv"), 900)), "I Can't belive that you are my father and you never told me");
 	act[4] = new Actor(*act[3]);
 	cout << *act[4];	//Should show Zipi Dripo
-	*act[4] = *act[3];
 	act[4]->setName("Dror Keren"); act[4]->setPhoneNum("054-888-9999"); act[4]->setAddress("Ha'Meshushim 1, Tel Aviv"); act[4]->setSalaryPerHour(789); act[4]->setLine("And they lived happily ever after");
 	cout << *act[4];
 
@@ -26,7 +25,7 @@ void main()
 	mus[1] = new Musician(Participator(Employee(Contact("Yehuda Poliker", "066-555-6666", "11 Depression st. Rehovot"), 111)), "Boozooki");
 	mus[2] = new Musician(*mus[1]);
 	*mus[2] = *mus[1];
-	mus[2]->setName("Idan Raichel"); mus[2]->setPhoneNum("066-111-2222"); mus[2]->setAddress("11 Hofrim st. Natania"); mus[2]->setSalaryPerHour(111.1f); mus[2]->setInstrument("Our nerves");
+	mus[2]->setName("Idan Raichel"); mus[2]->setPhoneNum("066-111-2222"); mus[2]->setAddress("11 Hofrim st. Natania"); mus[2]->setSalaryPerHour(111); mus[2]->setInstrument("Our nerves");
 
 
 	Dancer** dan = new Dancer*[2];

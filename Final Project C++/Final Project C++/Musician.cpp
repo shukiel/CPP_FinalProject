@@ -45,6 +45,6 @@ void Musician::makeSolo()
 	m_egoLevel += ADDITION_TO_EGO;
 	if (m_egoLevel > EGO_TRESHOLD)
 	{
-		cout << m_name << "YOU KNOW WHAT?!? I'M TOO GOOD FOR THIS GIG!";
+		cout << m_name << ": YOU KNOW WHAT?!? I'M TOO GOOD FOR THIS GIG!" << endl;;
 	}
 }

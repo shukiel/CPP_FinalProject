@@ -21,7 +21,7 @@ public:
 	friend istream& operator>>(istream& in, Participator& participator);
 
 	virtual void toOs(ostream& os)	const;
-	virtual bool isCanPerform()		const { return m_egoLevel < EGO_TRESHOLD; }
+	virtual bool isCanPerform()		const;
 
 	virtual void doPartInShow() { cout << getName() << ": "; }
 

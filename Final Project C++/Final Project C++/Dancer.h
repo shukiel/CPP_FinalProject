@@ -21,7 +21,7 @@ public:
 	friend istream& operator>>(istream& in, Dancer& dancer);
 
 	virtual void toOs(ostream& os)	const;
-	virtual bool isCanPerform()		const { return Participator::isCanPerform() && !m_isInjured; }
+	virtual bool isCanPerform()		const;
 	
 	virtual void doPartInShow();
 
@@ -29,6 +29,8 @@ public:
 	void recover()		{ cout << "Thank goodness! " << getName() << " have recovered from his injury!" << endl; setIsInjured(false); }
 	
 	void makeAcrobatics();		//Ego might go up!
+
+	const int CHANCE_TO_RECOVER = 50;
 };
 
 #endif// __DANCER__H
