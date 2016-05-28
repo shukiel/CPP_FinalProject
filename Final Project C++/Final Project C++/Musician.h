@@ -3,23 +3,21 @@
 
 #include "Participator.h"
 
+#define CHANCE_TO_SOLO 30
 
 class Musician : public Participator
 {
 private:
-	char* m_instrument;
-	const int CHANCE_TO_SOLO = 30;
+	string m_instrument;
+
 public:
-	Musician(Participator& participator, char * instrument) : Participator(participator), m_instrument(NULL) { setInstrument(instrument); }
-	Musician(const Musician& other) : Participator(other), m_instrument(NULL) { *this = other; }
+	Musician(Participator& participator, string& instrument) : Participator(participator) { setInstrument(instrument); }
 	Musician() { }
-	virtual ~Musician() { delete[] m_instrument; }
+	
+	void setInstrument(const string& instrument) { m_instrument = instrument; }
 
-	void setInstrument(const char* instrument) { m_instrument = _strdup(instrument); }
+	const string& getInstrument() const { return m_instrument; }
 
-	const char* getInstrument() const { return m_instrument; }
-
-	const Musician& operator=(const Musician& other);
 	friend istream& operator>>(istream& in, Musician& musician);
 
 	virtual void toOs(ostream& os)	const;

@@ -3,6 +3,7 @@
 
 #include "Participator.h"
 #include "Crew.h"
+#include <vector>
 
 #pragma warning( disable : 4290 )
 
@@ -11,26 +12,24 @@
 class Show
 {
 protected:
-	char*			m_name;
-	int				m_duration;
-	int				m_loadInLoadOutTime;
-	Crew			m_lightingDesigner;
-	Crew			m_soundDesigner;
-	Crew			m_setDesigner;
-	Participator**	m_participators;
-	int				m_ticketPrice;
-	int				m_numOfShows;
-	int				m_numOfParticipant;
+	string					m_name;
+	int						m_duration;
+	int						m_loadInLoadOutTime;
+	Crew					m_lightingDesigner;
+	Crew					m_soundDesigner;
+	Crew					m_setDesigner;
+	vector<Participator*>	m_participators;
+	int						m_ticketPrice;
+	int						m_numOfShows;
 
 public:
-	Show(const char* name, int duration, int loadInLoadOutTime, 
+	Show(const string& name, int duration, int loadInLoadOutTime, 
 		  Crew& lightingDesigner,  Crew& soundDesigner,  Crew& setDesigner, 
-		 int ticketPrice, int numOfShows);
+		 int ticketPrice);
 	Show(const Show& other);
 	Show() { }
-	virtual ~Show();
 
-	void setName(const char* name)							{ m_name = _strdup(name); }
+	void setName(const string& name)						{ m_name = name; }
 	void setDuration(int duration)							{ m_duration = duration; }
 	void setLoadInLoadOutTime(int loadInLoadOutTime)		{ m_loadInLoadOutTime = loadInLoadOutTime; }
 	void setLightingDesigner(const Crew& lightingDesigner)	{ m_lightingDesigner = lightingDesigner; }
@@ -38,20 +37,18 @@ public:
 	void setSetDesigner(const Crew& setDesigner)			{ m_setDesigner = setDesigner; }
 	void setTicketPrice(int ticketPrice)					{ m_ticketPrice = ticketPrice; }
 	void setNumOfShows(int numOfShows)						{ m_numOfShows = numOfShows; }
-	void setNumOfParticipant(int numOfParticipant)			{ m_numOfParticipant = numOfParticipant; }
 
-	const char* getName()				const { return m_name; }
-	int getDuration()					const { return m_duration; }
-	int getLoadInLoadOutTime()			const { return m_loadInLoadOutTime; }
-	const Crew& getLightingDesigner()	const { return m_lightingDesigner; }
-	const Crew& getSoundDesigner()		const { return m_soundDesigner; }
-	const Crew& getSetDesigner()		const { return m_setDesigner; }
-	int getTicketPrice()				const { return m_ticketPrice; }
-	int getNumOfShows()					const { return m_numOfShows; }
-	int getNumOfParticipant()			const { return m_numOfParticipant; }
-	Participator** getParticipators()	const { return m_participators; }
+	const string& getName()						const { return m_name; }
+	int getDuration()							const { return m_duration; }
+	int getLoadInLoadOutTime()					const { return m_loadInLoadOutTime; }
+	const Crew& getLightingDesigner()			const { return m_lightingDesigner; }
+	const Crew& getSoundDesigner()				const { return m_soundDesigner; }
+	const Crew& getSetDesigner()				const { return m_setDesigner; }
+	int getTicketPrice()						const { return m_ticketPrice; }
+	int getNumOfShows()							const { return m_numOfShows; }
+	vector<Participator*> getParticipators()	const { return m_participators; }
 
-	bool operator==(const Show& other)	const { return strcmp(getName(), other.getName()) == 0 && getDuration() == other.getDuration(); }
+	bool operator==(const Show& other)	const { return getName().compare(other.getName()) == 0 && getDuration() == other.getDuration(); }
 	bool operator!=(const Show& other)	const { return !(*this == other); }
 
 	const Show& operator=(const Show& other);

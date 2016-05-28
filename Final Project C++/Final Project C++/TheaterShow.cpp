@@ -2,7 +2,7 @@
 
 void TheaterShow::addParticipator(Participator& participator) throw (GenericException)
 {
-	if (m_numOfParticipant < MAX_NUM_OF_ACTORS)
+	if (m_participators.size() < MAX_NUM_OF_ACTORS)
 	{
 		if (typeid(participator) == typeid(Actor))
 			Show::addParticipator(participator);

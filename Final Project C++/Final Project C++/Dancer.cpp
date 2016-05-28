@@ -1,5 +1,4 @@
 #include "Dancer.h"
-#include <time.h>
 
 istream& operator>>(istream& in, Dancer& dancer)
 {

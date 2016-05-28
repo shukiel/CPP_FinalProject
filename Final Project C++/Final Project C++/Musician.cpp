@@ -1,20 +1,9 @@
 #include "Musician.h"
-#include <time.h>
 
 void Musician::toOs(ostream& os) const
 {
 	Participator::toOs(os);
 	os << "Instrument: " << getInstrument() << endl;
-}
-
-const Musician& Musician::operator=(const Musician& other)
-{
-	if (this != &other)
-	{
-		Participator::operator=(other);
-		setInstrument(other.getInstrument());
-	}
-	return *this;
 }
 
 istream& operator>>(istream& in, Musician& musician)

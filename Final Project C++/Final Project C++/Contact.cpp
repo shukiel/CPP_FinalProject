@@ -1,30 +1,5 @@
 #include "Contact.h"
 
-Contact::Contact(const char* name, const char* phoneNum, const char* address) : m_name(NULL), m_phoneNum(NULL), m_address(NULL)
-{
-	setName(name);
-	setPhoneNum(phoneNum);
-	setAddress(address);
-}
-
-Contact::~Contact()
-{
-	delete []m_name;
-	delete []m_phoneNum;
-	delete []m_address;
-}
-
-const Contact& Contact::operator=(const Contact& other)
-{
-	if (this != &other)
-	{
-		setName(other.getName());
-		setPhoneNum(other.getPhoneNum());
-		setAddress(other.getAddress());
-	}
-	return *this;
-}
-
 ostream& operator<<(ostream& os, const Contact& contact)
 {
 	contact.toOs(os);

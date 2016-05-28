@@ -15,7 +15,7 @@ void DanceShow::toOs(ostream& os) const
 
 void DanceShow::addParticipator(Participator& participator) throw (GenericException)
 {
-	if (m_numOfParticipant < MAX_NUM_OF_DANCERS)
+	if (m_participators.size() < MAX_NUM_OF_DANCERS)
 	{
 		if (typeid(participator) == typeid(Dancer))
 			Show::addParticipator(participator);
@@ -36,9 +36,11 @@ void DanceShow::talkWithProducer()
 
 void DanceShow::dancerInjured(Dancer& dancer)
 {
-	for(int i = 0; i < m_numOfParticipant; i++)
+	vector<Participator*>::iterator it = m_participators.begin();
+	vector<Participator*>::iterator itEnd = m_participators.end();
+	for (; it != itEnd; ++it)
 	{
-		Dancer* temp = dynamic_cast<Dancer*>(m_participators[i]);
+		Dancer* temp = dynamic_cast<Dancer*>(*it);
 		if(temp)
 			if(*temp == dancer)
 				temp->makeInjury();
@@ -56,9 +58,11 @@ void DanceShow::loadInTime()
 {
 	Show::loadInTime();
 	m_choreograph.drinkBeers();
-	for (int i = 0; i < m_numOfParticipant; i++)
+	vector<Participator*>::iterator it = m_participators.begin();
+	vector<Participator*>::iterator itEnd = m_participators.end();
+	for (; it != itEnd; ++it)
 	{
-		Dancer* temp = dynamic_cast<Dancer*>(m_participators[i]);
+		Dancer* temp = dynamic_cast<Dancer*>(*it);
 		if (temp)
 			if (temp->getIsInjured())
 				if (rand() % 100 < temp->CHANCE_TO_RECOVER)

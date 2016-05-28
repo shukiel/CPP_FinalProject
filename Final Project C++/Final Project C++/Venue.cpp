@@ -1,22 +1,6 @@
 #include "Venue.h"
 #include "ShowAtVenue.h"
 
-Venue::Venue(const Contact& contactDetails, int capacity, int numOfRows, int numOfSeatsPerRow, const char* name) :
-m_contactDetails(contactDetails), m_capacity(capacity), m_numOfRows(numOfRows), m_numOfSeatsPerRow(numOfSeatsPerRow), m_name(NULL)
-{
-	m_numOfShows = 0;
-	m_showAtVenue = new ShowAtVenue[MAX_NUM_OF_SHOWS];
-	m_name = _strdup(name);
-}
-
-Venue::~Venue()
-{
-	if (!m_name)
-		delete[] m_name;
-	if (!m_showAtVenue)
-		delete[] m_showAtVenue;
-}
-
 const Venue& Venue::operator=(const Venue& other)
 {
 	if (this != &other)
@@ -29,36 +13,31 @@ const Venue& Venue::operator=(const Venue& other)
 
 void Venue::operator+=(const ShowAtVenue& show) throw (GenericException)	//adds a show to the venue
 {
-	if (m_numOfShows < MAX_NUM_OF_SHOWS) //Have room for one more show
-		m_showAtVenue[m_numOfShows++] = show;
+	if (m_showAtVenue.size() < MAX_NUM_OF_SHOWS) //Have room for one more show
+		m_showAtVenue.push_back(show);
 	else 
 		throw GenericException("TooMuchShowsException");
 }
 
 void Venue::operator-=(const ShowAtVenue& show) 
 {
-	int i;
-	for (i = 0; i < m_numOfShows; i++)
-	{
-		if (m_showAtVenue[i] == show)
-		{
-			m_numOfShows--;
-			break;
-		}
-	}
-
-	for (; i < m_numOfShows; i++)	//close the holes
-		m_showAtVenue[i] = m_showAtVenue[i + 1];
+	vector<ShowAtVenue>::iterator it = m_showAtVenue.begin();
+	vector<ShowAtVenue>::iterator itEnd = m_showAtVenue.end();
+	vector<ShowAtVenue>::iterator itFind = find(it, itEnd, show);
+	if (itFind != itEnd)
+		m_showAtVenue.erase(itFind);
 }//removes a show from a venue
 
 ostream& operator<<(ostream& os, const Venue& venue)
 {
 	os << "Venue Name : " << venue.m_name << ", Capacity: " << venue.m_capacity << endl << "Contact " << venue.m_contactDetails << endl;
-	if (venue.m_numOfShows > 0)
+	if (venue.m_showAtVenue.size() > 0)
 	{
 		os << "Shows at venue: " << endl;
-		for (int i = 0; i < venue.m_numOfShows; i++)
-			os << venue.m_showAtVenue[i] << endl;
+		vector<ShowAtVenue>::const_iterator it = venue.m_showAtVenue.begin();
+		vector<ShowAtVenue>::const_iterator itEnd = venue.m_showAtVenue.end();
+		for (; it != itEnd; ++it)
+			os << *it << endl;
 	}
 	return os;
 }
@@ -72,29 +51,41 @@ istream& operator>>(istream& in, Venue& venue)
 int Venue::getSalesRevenue() const //Gets the profit of the show
 {
 	int sum = 0 ;
-	for (int i = 0; i < m_numOfShows; i++)
-		sum += m_showAtVenue[i].getProfit();
+	vector<ShowAtVenue>::const_iterator it = m_showAtVenue.begin();
+	vector<ShowAtVenue>::const_iterator itEnd = m_showAtVenue.end();
+	for (; it != itEnd; ++it)
+		sum += (*it).getProfit();
 	return sum;
 }
 
 void Venue::copyEverythingButContact(const Venue& other)
 {
 	m_capacity = other.m_capacity;
-	if (!m_name)
-		delete[] m_name;
-	m_name = _strdup(other.m_name);
+	m_name = other.m_name;
 	m_numOfRows = other.getNumOfRows();
 	m_numOfSeatsPerRow = other.getNumOfSeatsPerRow();
-	m_numOfShows = other.m_numOfShows;
 
-	m_showAtVenue = new ShowAtVenue[MAX_NUM_OF_SHOWS];
+	m_showAtVenue.clear();
+	m_showAtVenue.reserve(other.m_showAtVenue.size());
 
-	for (int i = 0; i < other.m_numOfShows;i++)
-		m_showAtVenue[i] = other.m_showAtVenue[i];
+	vector<ShowAtVenue>::const_iterator it = other.m_showAtVenue.begin();
+	vector<ShowAtVenue>::const_iterator itEnd = other.m_showAtVenue.end();
+	for (; it != itEnd; ++it)
+		m_showAtVenue.push_back(*it);
 }
 
 void Venue::makeShow()
 {
-	for (int i = 0; i < m_numOfShows; i++)
-		m_showAtVenue[i].makeShow();
+	vector<ShowAtVenue>::iterator it = m_showAtVenue.begin();
+	vector<ShowAtVenue>::iterator itEnd = m_showAtVenue.end();
+	for (; it != itEnd; ++it)
+		(*it).makeShow();
+}
+
+vector<ShowAtVenue>::iterator Venue::findShow(const ShowAtVenue& show)
+{
+	vector<ShowAtVenue>::iterator it = m_showAtVenue.begin();
+	vector<ShowAtVenue>::iterator itEnd = m_showAtVenue.end();
+	vector<ShowAtVenue>::iterator itFind = find(it, itEnd, show);
+	return itFind;
 }

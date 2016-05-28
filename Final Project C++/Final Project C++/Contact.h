@@ -2,34 +2,31 @@
 #define __CONTACT_H
 
 #include <iostream>
+#include <string>
 using namespace std;
 
 class Contact
 {
 protected:
-	char* m_name;
-	char* m_phoneNum;
-	char* m_address;
+	string m_name;
+	string m_phoneNum;
+	string m_address;
 
 public:
-	Contact(const char* name, const char* phoneNum, const char* address);
-	Contact(const Contact& other) : m_name(NULL), m_phoneNum(NULL), m_address(NULL) { *this = other; }
+	Contact(const string& name, const string& phoneNum, const string& address) : m_name(name), m_phoneNum(phoneNum), m_address(address) { }
 	Contact() { }
-	virtual ~Contact();
 
-	void setName(const char* name)			{   m_name = new char[sizeof(*name)/sizeof(char) +1];
-												m_name = _strdup(name); }
-	void setPhoneNum(const char* phoneNum)	{ m_phoneNum = _strdup(phoneNum); }
-	void setAddress(const char* address)	{ m_address = _strdup(address); }
+	void setName(const string& name)			{ m_name = name; }
+	void setPhoneNum(const string& phoneNum)	{ m_phoneNum = phoneNum; }
+	void setAddress(const string& address)		{ m_address = address; }
 
-	const char* getName()		const { return m_name; }
-	const char* getPhoneNum()	const { return m_phoneNum; }
-	const char* getAddress()	const { return m_address; }
+	const string& getName()		const { return m_name; }
+	const string& getPhoneNum()	const { return m_phoneNum; }
+	const string& getAddress()	const { return m_address; }
 
-	bool operator==(const Contact& other) const { return strcmp(getName(), other.getName()) == 0 && strcmp(getPhoneNum(), other.getPhoneNum()) == 0; }
+	bool operator==(const Contact& other) const { return getName().compare(other.getName()) == 0 && getPhoneNum().compare(other.getPhoneNum()) == 0; }
 	bool operator!=(const Contact& other) const { return !(*this == other); }
 
-	const Contact& operator=(const Contact& other);
 	friend ostream& operator<<(ostream& os, const Contact& contact);
 	friend istream& operator>>(istream& in, Contact& contact);
 	

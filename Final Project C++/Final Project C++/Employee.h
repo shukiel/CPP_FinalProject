@@ -6,7 +6,7 @@
 class Employee : public Contact
 {
 protected:
-	int	m_salaryPerHour;
+	int		m_salaryPerHour;
 	int		m_numOfWorkingHours;
 
 public:
@@ -16,7 +16,7 @@ public:
 	void setSalaryPerHour(int salaryPerHour)		 { m_salaryPerHour = salaryPerHour; }
 	void setNumOfWorkingHours(int numOfWorkingHours) { m_numOfWorkingHours = numOfWorkingHours; }
 
-	int getSalaryPerHour()	const { return m_salaryPerHour; }
+	int getSalaryPerHour()		const { return m_salaryPerHour; }
 	int getNumOfWorkingHours()	const { return m_numOfWorkingHours; }
 
 	friend istream& operator>>(istream& in, Employee& employee);

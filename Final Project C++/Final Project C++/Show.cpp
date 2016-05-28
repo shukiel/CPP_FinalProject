@@ -1,48 +1,30 @@
 #include "Show.h"
 #include "Exceptions.h"
+#include <algorithm>
 
-Show::Show(const char* name, int duration, int loadInLoadOutTime,
+Show::Show(const string& name, int duration, int loadInLoadOutTime,
 	 Crew& lightingDesigner,  Crew& soundDesigner,  Crew& setDesigner,
-	 int ticketPrice, int numOfShows) :
+	 int ticketPrice) :
 	 m_duration(duration), m_loadInLoadOutTime(loadInLoadOutTime), m_lightingDesigner(lightingDesigner), 
-	 m_soundDesigner(soundDesigner), m_setDesigner(setDesigner), m_ticketPrice(ticketPrice), m_numOfShows(numOfShows)
+	 m_soundDesigner(soundDesigner), m_setDesigner(setDesigner), m_ticketPrice(ticketPrice), m_name(name)
 {
-	m_name = _strdup(name);
 	m_numOfShows = 0;
-
-	m_numOfParticipant = 0;
-	m_participators = new Participator*[MAX_NUM_OF_PARTICIPATORS];
-
 	m_lightingDesigner.setNumOfWorkingHours(m_loadInLoadOutTime + m_duration);
 	m_setDesigner.setNumOfWorkingHours(m_loadInLoadOutTime);
 	m_soundDesigner.setNumOfWorkingHours(m_loadInLoadOutTime + m_duration);
 }
 
-Show::Show(const Show& other) : m_lightingDesigner(other.getLightingDesigner()),
+Show::Show(const Show& other) : m_lightingDesigner(other.m_lightingDesigner),
 		m_setDesigner(other.m_setDesigner), m_soundDesigner(other.m_soundDesigner),
 		m_duration(other.m_duration), m_loadInLoadOutTime(other.m_loadInLoadOutTime),
-		m_ticketPrice(other.m_ticketPrice), m_numOfShows(other.m_numOfShows)
+		m_ticketPrice(other.m_ticketPrice), m_numOfShows(other.m_numOfShows), m_name(other.m_name)
 {
-	m_name = _strdup(other.m_name);
-
-	m_numOfParticipant = 0;
-	m_participators = new Participator*[MAX_NUM_OF_PARTICIPATORS];
-	if(other.getNumOfParticipant() > 0)
-	{
-		Participator** temp = other.getParticipators();
-		for(int i = 0; i < other.getNumOfParticipant(); i++)
-			addParticipator(*temp[i]);
-	}
+	m_participators.reserve(other.m_participators.size());
+	copy(other.m_participators.begin(), other.m_participators.end(), back_inserter(m_participators));
 
 	m_lightingDesigner.setNumOfWorkingHours(m_loadInLoadOutTime + m_duration);
 	m_setDesigner.setNumOfWorkingHours(m_loadInLoadOutTime);
 	m_soundDesigner.setNumOfWorkingHours(m_loadInLoadOutTime + m_duration);
-}
-
-Show::~Show()
-{ 
-	delete[] m_name; 
-	delete[] m_participators;
 }
 
 int Show::getCost() const
@@ -51,8 +33,12 @@ int Show::getCost() const
 	sum += m_lightingDesigner.calcSalary();
 	sum += m_setDesigner.calcSalary();
 	sum += m_soundDesigner.calcSalary();
-	for(int i = 0; i < getNumOfParticipant(); i++)
-		sum += m_participators[i]->calcSalary();
+
+	vector<Participator*>::const_iterator it = m_participators.begin();
+	vector<Participator*>::const_iterator itEnd = m_participators.end();
+	for (; it != itEnd; ++it)
+		sum += (*it)->calcSalary();
+
 	return sum;
 }
 
@@ -60,9 +46,7 @@ const Show& Show::operator=(const Show& other)
 {
 	if (this != &other)
 	{
-		if (!m_name)
-			delete[] m_name;
-		m_name = _strdup(other.m_name);
+		setName(other.m_name);
 		setDuration(other.m_duration);
 		setLoadInLoadOutTime(other.m_loadInLoadOutTime);
 		setLightingDesigner(other.m_lightingDesigner);
@@ -70,14 +54,9 @@ const Show& Show::operator=(const Show& other)
 		setSetDesigner(other.m_setDesigner);
 		setTicketPrice(other.m_ticketPrice);
 		setNumOfShows(other.m_numOfShows);
-		m_numOfParticipant = 0;
-		m_participators = new Participator*[MAX_NUM_OF_PARTICIPATORS];
-		if(other.getNumOfParticipant() > 0)
-		{
-			Participator** temp = other.getParticipators();
-			for(int i = 0; i < other.getNumOfParticipant(); i++)
-				addParticipator(*temp[i]);
-		}
+
+		m_participators.reserve(other.m_participators.size());
+		copy(other.m_participators.begin(), other.m_participators.end(), back_inserter(m_participators));
 	}
 	return *this;
 }
@@ -103,21 +82,20 @@ void Show::toOs(ostream& os) const
 	os << "Set Designer: " << endl << m_setDesigner << endl;
 	os << "Sound Designer: " << endl << m_soundDesigner << endl;
 	os << "Ticket price: " << m_ticketPrice << ", Num of shows: " << m_numOfShows <<" Show Cost: "<<getCost()<<endl;
-	if (m_numOfParticipant > 0)
-	{
-		os << endl << "Participant:" << endl;
-		for (int i = 0; i < m_numOfParticipant; i++)
-			os << "#" << i+1 << ": " << *(m_participators[i]) << endl;
-	}
+
+	os << endl << "Participant:" << endl;
+	vector<Participator*>::const_iterator it = m_participators.begin();
+	vector<Participator*>::const_iterator itEnd = m_participators.end();
+	for (; it != itEnd; ++it)
+			os << *it << endl;
 }
 
 void Show::addParticipator(Participator& participator) throw (GenericException)
 {
-	if(m_numOfParticipant < MAX_NUM_OF_PARTICIPATORS)
+	if(m_participators.size() < MAX_NUM_OF_PARTICIPATORS)
 	{
 		participator.setNumOfWorkingHours(participator.getNumOfWorkingHours() + m_duration);
-		m_participators[m_numOfParticipant] = &participator;
-		m_numOfParticipant++;
+		m_participators.push_back(&participator);
 	}
 
 	else
@@ -133,11 +111,15 @@ void Show::makeShow() throw (GenericException)
 	}
 
 	cout << "The Show " << m_name << " Is now starting please turn off your phones.\n";
-	for (int i = 0; i < m_numOfParticipant; i++)
+
+	vector<Participator*>::iterator it = m_participators.begin();
+	vector<Participator*>::iterator itEnd = m_participators.end();
+	for (; it != itEnd; ++it)
 	{
-		m_participators[i]->doPartInShow();
-		m_participators[i]->setNumOfWorkingHours(m_participators[i]->getNumOfWorkingHours() + m_duration);
+		(*it)->doPartInShow();
+		(*it)->setNumOfWorkingHours((*it)->getNumOfWorkingHours() + m_duration);
 	}
+
 	m_lightingDesigner.setNumOfWorkingHours(m_lightingDesigner.getNumOfWorkingHours() + m_duration + m_loadInLoadOutTime);
 	m_soundDesigner.setNumOfWorkingHours(m_soundDesigner.getNumOfWorkingHours() + m_duration + m_loadInLoadOutTime);
 	m_setDesigner.setNumOfWorkingHours(m_setDesigner.getNumOfWorkingHours() + m_duration + m_loadInLoadOutTime);
@@ -147,16 +129,20 @@ void Show::makeShow() throw (GenericException)
 
 bool Show::isShowPossible() const
 {
-	for(int i = 0; i < getNumOfParticipant(); i++)
-		if(!(m_participators[i]->isCanPerform()))
+	vector<Participator*>::const_iterator it = m_participators.begin();
+	vector<Participator*>::const_iterator itEnd = m_participators.end();
+	for (; it != itEnd; ++it)
+		if (!((*it)->isCanPerform()))
 			return false;
 	return !(m_lightingDesigner.isTooDrunk()) && !(m_setDesigner.isTooDrunk()) && !(m_soundDesigner.isTooDrunk());
 }
 
 void Show::talkWithProducer()
 {
-	for(int i = 0; i < m_numOfParticipant; i++)
-		m_participators[i]->resetEgoLevel();
+	vector<Participator*>::iterator it = m_participators.begin();
+	vector<Participator*>::iterator itEnd = m_participators.end();
+	for (; it != itEnd; ++it)
+		(*it)->resetEgoLevel();
 	m_lightingDesigner.soberUp();
 	m_setDesigner.soberUp();
 	m_soundDesigner.soberUp();

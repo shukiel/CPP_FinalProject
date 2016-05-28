@@ -85,6 +85,7 @@
     <ClInclude Include="DanceShow.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="Exceptions.h" />
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Musical.h" />
     <ClInclude Include="Musician.h" />
     <ClInclude Include="MusicShow.h" />

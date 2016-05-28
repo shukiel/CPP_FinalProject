@@ -21,8 +21,8 @@ void main()
 
 	Musician** mus = new Musician*[3];
 
-	mus[0] = new Musician(Participator(Employee(Contact("Beri Saharof", "066-777-8888", "66 Rock'nroll st. Petach Tikva"), 777)), "Guitar");
-	mus[1] = new Musician(Participator(Employee(Contact("Yehuda Poliker", "066-555-6666", "11 Depression st. Rehovot"), 111)), "Boozooki");
+	mus[0] = new Musician(Participator(Employee(Contact("Beri Saharof", "066-777-8888", "66 Rock'nroll st. Petach Tikva"), 777)), (string)"Guitar");
+	mus[1] = new Musician(Participator(Employee(Contact("Yehuda Poliker", "066-555-6666", "11 Depression st. Rehovot"), 111)), (string)"Boozooki");
 	mus[2] = new Musician(*mus[1]);
 	*mus[2] = *mus[1];
 	mus[2]->setName("Idan Raichel"); mus[2]->setPhoneNum("066-111-2222"); mus[2]->setAddress("11 Hofrim st. Natania"); mus[2]->setSalaryPerHour(111); mus[2]->setInstrument("Our nerves");
@@ -52,10 +52,10 @@ void main()
 
 	Show** shows = new Show*[4];
 
-	shows[0] = new TheaterShow(Show("Hair", 120, 600, *c[0], *c[1], *c[3], 10000, 0), *c[4]);
-	shows[1] = new DanceShow(Show("Swan Lake", 120, 600, *c[4], *c[3], *c[2], 10000, 0), *c[1]);
-	shows[2] = new MusicShow(Show("U2", 120, 600, *c[2], *c[1], *c[4], 10000, 0), *c[3], 150);
-	shows[3] = new Musical(Show("Hair- the musical", 120, 600, *c[0], *c[1], *c[3], 1000000, 0), *c[4], *c[3], *c[2], 300);
+	shows[0] = new TheaterShow(Show("Hair", 120, 600, *c[0], *c[1], *c[3], 10000), *c[4]);
+	shows[1] = new DanceShow(Show("Swan Lake", 120, 600, *c[4], *c[3], *c[2], 10000), *c[1]);
+	shows[2] = new MusicShow(Show("U2", 120, 600, *c[2], *c[1], *c[4], 10000), *c[3], 150);
+	shows[3] = new Musical(Show("Hair- the musical", 120, 600, *c[0], *c[1], *c[3], 1000000), *c[4], *c[3], *c[2], 300);
 
 
 
@@ -85,11 +85,11 @@ void main()
 	shoAtVen[3] = new ShowAtVenue(ticketOffice->ReserveShow(*ven[0], *shows[3], "12/02/1988"));
 
 	try{
-		ticketOffice->BuyTicket(shoAtVen[0], 40, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[0], 20, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[0], 15, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[0], 1200, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[0], 44, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[0], 40, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[0], 20, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[0], 15, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[0], 1200, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[0], 44, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
 	}
 	catch (GenericException e)	//Should catch because his trying to buy more tickets that the venue have
 	{
@@ -98,11 +98,11 @@ void main()
 	}
 
 	try{
-		ticketOffice->BuyTicket(shoAtVen[0], 40, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[0], 20, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[0], 15, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[0], 500, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[0], 44, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[0], 40, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[0], 20, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[0], 15, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[0], 500, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[0], 44, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
 	}
 	catch (GenericException e) //Should work okay
 	{
@@ -113,23 +113,23 @@ void main()
 	try
 	{
 
-		ticketOffice->BuyTicket(shoAtVen[1], 50, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[1], 72, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[1], 15, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[1], 61, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[1], 28, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[1], 50, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[1], 72, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[1], 15, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[1], 61, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[1], 28, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
 
-		ticketOffice->BuyTicket(shoAtVen[2], 48, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[2], 30, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[2], 11, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[2], 102, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[2], 11, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[2], 48, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[2], 30, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[2], 11, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[2], 102, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[2], 11, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
 
-		ticketOffice->BuyTicket(shoAtVen[3], 100, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[3], 19, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[3], 17, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[3], 2, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
-		ticketOffice->BuyTicket(shoAtVen[3], 32, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[3], 100, Contact("Enosh Cohen", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[3], 19, Contact("Zuhmir ", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[3], 17, Contact("Piposh", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[3], 2, Contact("GOGO", "012-3884-333", "13 Bleecker St. NYC"));
+		ticketOffice->BuyTicket(*shoAtVen[3], 32, Contact("sss Cohen", "012-3884-333", "13 Bleecker St. NYC"));
 	}
 	catch (GenericException e)
 	{

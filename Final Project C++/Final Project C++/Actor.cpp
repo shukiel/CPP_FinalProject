@@ -1,15 +1,4 @@
 #include "Actor.h"
-#include <time.h>
-
-const Actor& Actor::operator=(const Actor& other)
-{
-	if (this != &other)
-	{
-		Participator::operator=(other);
-		setLine(other.getLine());
-	}
-	return *this;
-}
 
 istream& operator>>(istream& in, Actor& actor)
 {

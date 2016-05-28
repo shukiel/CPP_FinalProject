@@ -15,7 +15,7 @@ void MusicShow::toOs(ostream& os) const
 
 void MusicShow::addParticipator(Participator& participator) throw (GenericException)
 {
-	if (m_numOfParticipant < MAX_NUM_OF_MUSICIANS)
+	if (m_participators.size() < MAX_NUM_OF_MUSICIANS)
 	{
 		if (typeid(participator) == typeid(Musician))
 		{
